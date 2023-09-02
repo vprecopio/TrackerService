@@ -1,2 +1,2 @@
-# TrackerService
-Seguimiento de service de equipos y demas
+# TecnoGestion
+Sistema de Seguimiento de Servicio Tecnico para aparatos electronicos.
