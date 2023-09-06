@@ -68,4 +68,34 @@ class ClientModel
             die($e->getMessage());
         }
     }
+
+    public function OneClientByEmail()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM clientes WHERE cliente_email = :cliente_email");
+            $stm->bindParam(':cliente_email', $this->email, \PDO::PARAM_STR);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function ExistClient()
+    {
+        try {
+
+            $sql = "SELECT COUNT(*) FROM `clientes` WHERE `cliente_email` = :cliente_email";
+            $stm = $this->pdo->prepare($sql);
+            $stm->bindParam(':cliente_email', $this->email, \PDO::PARAM_STR);
+            $stm->execute();
+
+            $result = $stm->fetchColumn();
+            
+            return $result > 0 ? true : false;
+
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }
