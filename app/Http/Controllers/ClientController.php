@@ -32,7 +32,7 @@ class ClientController extends ClientModel implements Crud
             $this->telefono = $_POST['telefono'];
             $this->direccion = $_POST['direccion'];
             $this->CreateClient();
-            redirect('/client');
+            return view('client');
         }
 
         return view('clientforminsert');
