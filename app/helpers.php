@@ -21,3 +21,13 @@ if(! function_exists('redirect')) {
    die();
 }
 }
+
+
+trait Sanitize
+{
+    public function __set($name, $value)
+    {
+        $filteredValue = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+        $this->$name = $filteredValue;
+    }
+}
