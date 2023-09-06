@@ -44,17 +44,17 @@ class ClientModel
 
     public function CreateClient()
     {
-        try {
-            $stm = $this->pdo->prepare(" INSERT INTO `clientes` (`cliente_nombre`, `cliente_email`, `cliente_telefono`, `cliente_direccion`) VALUES (:nombre, :email, :telefono, :direccion) ");
-            $stm->bindParam(':nombre', $this->nombre_completo, \PDO::PARAM_STR);
-            $stm->bindParam(':email', $this->email, \PDO::PARAM_STR);
-            $stm->bindParam(':telefono', $this->telefono, \PDO::PARAM_STR);
-            $stm->bindParam(':direccion', $this->direccion, \PDO::PARAM_STR);
-            $stm->execute();
-            return true;
-        } catch (\Exception $e) {
-            die($e->getMessage());
-        }
+        $sql = "INSERT INTO `clientes` (`cliente_nombre`, `cliente_email`, `cliente_telefono`, `cliente_direccion`) VALUES (:nombre, :email, :telefono, :direccion)";
+
+        $params = [
+            ':nombre' => $this->nombre_completo,
+            ':email' => $this->email,
+            ':telefono' => $this->telefono,
+            ':direccion' => $this->direccion
+        ];
+    
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);    
     }
 
     public function DeleteClient()
