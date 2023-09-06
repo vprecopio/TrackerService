@@ -2,7 +2,6 @@
 namespace App\Config;
 
 require_once __DIR__ . '/../vendor/autoload.php';
-use App\Config\Database;
 
 define('ROL_USER',['administrador','tecnico','ventas']);
 define('TK_STATUS',['por asignar', 'asignado', 'en proceso', 'entregado']);
@@ -11,7 +10,7 @@ define('TK_PRIORITY',['alta', 'baja', 'media']);
 
 class Falso
 {
-    use Database;
+    use \Database;
 
     protected $flag = TRUE;
     protected $faker;
