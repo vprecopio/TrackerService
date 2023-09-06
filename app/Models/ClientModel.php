@@ -4,13 +4,13 @@ namespace App\Models;
 
 class ClientModel
 {
-    use \Database;
+    use \Database, \Sanitize;
 
     protected $id;
-    protected $nombre_completo;
-    protected $email;
-    protected $telefono;
-    protected $direccion;
+    private $nombre_completo;
+    private $email;
+    private $telefono;
+    private $direccion;
 
     public function __construct()
     {
