@@ -42,7 +42,7 @@ class ClientController extends ClientModel implements Crud
     {
         $this->id = $_GET['Documento'];
         $this->DeleteClient();
-        redirect('/client');
+        return view('client');
     }
 
     public function search()
