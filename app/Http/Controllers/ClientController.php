@@ -47,8 +47,7 @@ class ClientController extends ClientModel implements Crud
 
     public function search()
     {
-        if($_POST)
-        {
+        if ($_POST) {
             $this->id = $_POST['id'];
             $this->OneClient();
             redirect('/client/search');
@@ -60,31 +59,30 @@ class ClientController extends ClientModel implements Crud
     public function edit()
     {
         //cuando el usuario envia el formulario editar
-        if($_POST && $_POST['Editar'] && $_POST['email'])
+        if ($_POST && isset($_POST['id']) && isset($_POST['Editar'])) 
         {
+            $this->id = $_POST['id'];
             $this->nombre_completo = $_POST['nombre'] ?? 'sin datos';
             $this->email = $_POST['email'] ?? 'sin datos';
             $this->telefono = $_POST['telefono'] ?? 'sin datos';
             $this->direccion = $_POST['direccion'] ?? 'sin datos';
+
+            $this->EditClient();
+
+            return view('client');
         }
 
         //cuando desde cliente se le da click a editar a un usuario de la lista y es redireccionado al formulario 
 
-        if
-        ( 
-            (isset($_GET['email']) && !empty($_GET['email']))
-            &&
-            !isset($_GET['ok'])
-        )
-        {
-            $this->email = $_GET['email'];
+        if ((isset($_GET['id']) && !empty($_GET['id'])) && !isset($_GET['ok'])) {
+            $this->id = $_GET['id'];
 
             //chekea que el email exista
-            if($this->ExistClient($this->email))
-            {
-                $result = $this->OneClientByEmail();
+            if ($this->ExistClient($this->id)) {
+                $result = $this->OneClient();
                 $result = $result[0];
                 $result = [
+                    'id' => $result->id_cliente,
                     'nombre' =>  $result->cliente_nombre,
                     'email' =>  $result->cliente_email,
                     'telefono' =>  $result->cliente_telefono,
@@ -92,11 +90,9 @@ class ClientController extends ClientModel implements Crud
                     'ok' => '1'
                 ];
                 $queryString = http_build_query($result);
-                 
-                redirect('/client/edit/?' . $queryString ,200);
-            }
-            else
-            {
+
+                redirect('/client/edit/?' . $queryString, 200);
+            } else {
                 $this->email = '';
             }
         }

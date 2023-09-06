@@ -69,31 +69,40 @@ class ClientModel
         }
     }
 
-    public function OneClientByEmail()
+
+    public function ExistClient()
     {
         try {
-            $stm = $this->pdo->prepare("SELECT * FROM clientes WHERE cliente_email = :cliente_email");
-            $stm->bindParam(':cliente_email', $this->email, \PDO::PARAM_STR);
+            $sql = "SELECT COUNT(*) FROM `clientes` WHERE `id_cliente` = :id_cliente";
+            $stm = $this->pdo->prepare($sql);
+            $stm->bindParam(':id_cliente', $this->id, \PDO::PARAM_INT);
             $stm->execute();
-            return $stm->fetchAll(\PDO::FETCH_OBJ);
+
+            $result = $stm->fetchColumn();
+
+            return $result > 0 ? true : false;
         } catch (\Exception $e) {
             die($e->getMessage());
         }
     }
 
-    public function ExistClient()
+    //se que es mal editar todos los campos, pero por ahora queda asi
+    public function EditClient()
     {
         try {
+            $sql = "UPDATE `clientes` SET `cliente_nombre` = :nuevo_nombre, `cliente_email` = :nuevo_email, `cliente_telefono` = :nuevo_telefono, `cliente_direccion` = :nueva_direccion WHERE `id_cliente` = :id_cliente;";
 
-            $sql = "SELECT COUNT(*) FROM `clientes` WHERE `cliente_email` = :cliente_email";
             $stm = $this->pdo->prepare($sql);
-            $stm->bindParam(':cliente_email', $this->email, \PDO::PARAM_STR);
+
+            // Asignar valores a los marcadores de posición
+            $stm->bindParam(':nuevo_nombre', $this->nombre_completo);
+            $stm->bindParam(':nuevo_email', $this->email);
+            $stm->bindParam(':nuevo_telefono', $this->telefono);
+            $stm->bindParam(':nueva_direccion', $this->direccion);
+            $stm->bindParam(':id_cliente', $this->id);
+
+            // Ejecutar la consulta
             $stm->execute();
-
-            $result = $stm->fetchColumn();
-            
-            return $result > 0 ? true : false;
-
         } catch (\Exception $e) {
             die($e->getMessage());
         }
