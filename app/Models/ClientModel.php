@@ -2,11 +2,9 @@
 
 namespace App\Models;
 
-use App\Config\Database;
-
 class ClientModel
 {
-    use Database;
+    use \Database;
 
     protected $id;
     protected $nombre_completo;
