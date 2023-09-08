@@ -27,7 +27,7 @@ class MiClaseModel
     public function TuFuncion()
     {
         $sql = 'tu sentencia sql';
-        $this->pdo->prepare($sql);
+        $stm = $this->pdo->prepare($sql);
         /*
         Resto de tu codigo ...
         */
