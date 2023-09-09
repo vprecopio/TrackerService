@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Response;
 use App\Models\ClientModel;
 
 interface Crud
@@ -14,17 +14,17 @@ interface Crud
 
 class ClientController extends ClientModel implements Crud
 {
-    public function index()
+    public function index():Response
     {
         return view('client');
     }
 
-    public function list()
+    public function list():Response
     {
         return $this->listClient();
     }
 
-    public function create()
+    public function create():Response
     {
         if ($_POST) {
             $this->nombre_completo = $_POST['nombre'];
@@ -38,14 +38,14 @@ class ClientController extends ClientModel implements Crud
         return view('clientforminsert');
     }
 
-    public function delete()
+    public function delete():Response
     {
         $this->id = $_GET['Documento'];
         $this->DeleteClient();
         return view('client');
     }
 
-    public function search()
+    public function search():Response
     {
         if ($_POST) {
             $this->id = $_POST['id'];
@@ -56,7 +56,7 @@ class ClientController extends ClientModel implements Crud
         return view('clientformsearch');
     }
 
-    public function edit()
+    public function edit():Response
     {
         //cuando el usuario envia el formulario editar
         if ($_POST && isset($_POST['id']) && isset($_POST['Editar'])) 
