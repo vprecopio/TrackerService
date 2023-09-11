@@ -35,7 +35,7 @@ class ClientController extends ClientModel implements Crud
             return view('client');
         }
 
-        return view('clientforminsert');
+        return view('client');
     }
 
     public function delete():Response
