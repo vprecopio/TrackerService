@@ -72,31 +72,6 @@ class ClientController extends ClientModel implements Crud
             return view('client');
         }
 
-        //cuando desde cliente se le da click a editar a un usuario de la lista y es redireccionado al formulario 
-
-        if ((isset($_GET['id']) && !empty($_GET['id'])) && !isset($_GET['ok'])) {
-            $this->id = $_GET['id'];
-
-            //chekea que el email exista
-            if ($this->ExistClient($this->id)) {
-                $result = $this->OneClient();
-                $result = $result[0];
-                $result = [
-                    'id' => $result->id_cliente,
-                    'nombre' =>  $result->cliente_nombre,
-                    'email' =>  $result->cliente_email,
-                    'telefono' =>  $result->cliente_telefono,
-                    'direccion' =>  $result->cliente_direccion,
-                    'ok' => '1'
-                ];
-                $queryString = http_build_query($result);
-
-                redirect('/client/edit/?' . $queryString, 200);
-            } else {
-                $this->email = '';
-            }
-        }
-
-        return view('clientformedit');
+        return view('client');
     }
 }
