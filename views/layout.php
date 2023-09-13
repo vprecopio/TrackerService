@@ -24,7 +24,7 @@ $esta_logueado = 0;
 </head>
 
 <body>
-    <?php if ($esta_logueado === 0) : ?>
+    <?php if ($esta_logueado === 1) : ?>
         <nav class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
                 <div class="flex items-center justify-between">
@@ -422,7 +422,7 @@ $esta_logueado = 0;
 
 
     <?php else : ?>
-        <?php require $content; ?>
+        <?php require __DIR__ . '/welcome.php'; ?>
     <?php endif; ?>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
