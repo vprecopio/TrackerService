@@ -27,7 +27,20 @@ class AuthController extends UserModel
 
     public function register()
     {
+        if($_POST)
+        {
+            $this->usr_nombre = $_POST['nombre'];
+            $this->usr_apellido = $_POST['apellido'];
+            $this->usr_email = $_POST['email'];
+            $this->usr_contrasena = $_POST['password'];
+            if ($_POST ['password'] == $_POST['password_con']){   
+                echo "<script>alert('$_POST')</script>";
+            }
+            //$_SESSION['TODO'] = $this->ComprobarEmailYPassword();
+            return view('authregister');
 
+        }
+        /*echo "<script>alert('$_POST')</script>";*/
         return view('authregister');
     }
 
