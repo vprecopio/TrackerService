@@ -16,7 +16,7 @@ class AuthController extends UserModel
 
         if($_POST)
         {
-            $this->usr_contrasena = $_POST['password'];
+            $this->usr_contrasena = md5($_POST['password']);
             $this->usr_email = $_POST['email'];
             $_SESSION['TODO'] = $this->ComprobarEmailYPassword();
             return view('home');
@@ -27,25 +27,27 @@ class AuthController extends UserModel
 
     public function register()
     {
-        if($_POST)
+        if(isset($_POST['nombre']) &&  isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_con']))
         {
-            var_dump($_POST);
+          
             $this->usr_nombre = $_POST['nombre'];
             $this->usr_apellido = $_POST['apellido'];
             $this->usr_email = $_POST['email'];
-            $this->usr_contrasena = $_POST['password'];
+            $this->usr_contrasena = md5($_POST['password']);
 
+            //falta validar que no exista alguien con el mismo email
             if ($_POST ['password'] == $_POST['password_con']){   
-                echo "<script>alert('contraseñas iguales')</script>";
-            }else{
-                echo "<script>alert('error contraseña')</script>";
-
+                $this->InsertarNuevoUsuario();
             }
-            //$_SESSION['TODO'] = $this->ComprobarEmailYPassword();
+            else{
+                echo "<script>alert('contraseñas distintas')</script>";
+            }
+
+            
             return view('authregister');
 
         }
-        /*echo "<script>alert('$_POST')</script>";*/
+        
         return view('authregister');
     }
 

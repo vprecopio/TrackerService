@@ -39,5 +39,27 @@ class UserModel
         }
     }
 
+    public function InsertarNuevoUsuario()
+    {
+        try {
+            //consulta
+            $stm = $this->pdo->prepare("INSERT INTO `usuarios` (`usr_nombre`, `usr_apellido`, `usr_email`, `usr_contrasena`, `usr_estado`, `id_rol`) VALUES (:nombre, :apellido, :email, :contrasena, '1', '1');");
+
+            //asignar variables en la consulta
+            $stm->bindParam(':nombre', $this->usr_nombre, \PDO::PARAM_STR);
+            $stm->bindParam(':apellido', $this->usr_apellido, \PDO::PARAM_STR);
+            $stm->bindParam(':email', $this->usr_email, \PDO::PARAM_STR);
+            $stm->bindParam(':contrasena', $this->usr_contrasena, \PDO::PARAM_STR);
+
+            //ejecutar
+            $stm->execute();
+
+            return true;
+
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
 }
 
