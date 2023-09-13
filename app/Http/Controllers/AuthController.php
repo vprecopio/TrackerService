@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-class AuthController
+use App\Models\UserModel;
+
+class AuthController extends UserModel
 {
     public function index()
     {
@@ -11,11 +13,21 @@ class AuthController
 
     public function login()
     {
+
+        if($_POST)
+        {
+            $this->usr_contrasena = $_POST['password'];
+            $this->usr_email = $_POST['email'];
+            $_SESSION['TODO'] = $this->ComprobarEmailYPassword();
+            return view('home');
+
+        }
         return view('authlogin');
     }
 
     public function register()
     {
+
         return view('authregister');
     }
 
