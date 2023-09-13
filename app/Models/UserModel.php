@@ -32,6 +32,7 @@ class UserModel
             //ejecutar
             $stm->execute();
 
+            //en caso de que no exista ninguno devuelva 0 o false en caso contrario que devuelva "return $stm->fetchAll(\PDO::FETCH_OBJ);"
             return $stm->fetchAll(\PDO::FETCH_OBJ);
 
         } catch (\Exception $e) {
