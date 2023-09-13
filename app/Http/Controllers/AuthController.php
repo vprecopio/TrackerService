@@ -29,12 +29,17 @@ class AuthController extends UserModel
     {
         if($_POST)
         {
+            var_dump($_POST);
             $this->usr_nombre = $_POST['nombre'];
             $this->usr_apellido = $_POST['apellido'];
             $this->usr_email = $_POST['email'];
             $this->usr_contrasena = $_POST['password'];
+
             if ($_POST ['password'] == $_POST['password_con']){   
-                echo "<script>alert('$_POST')</script>";
+                echo "<script>alert('contraseñas iguales')</script>";
+            }else{
+                echo "<script>alert('error contraseña')</script>";
+
             }
             //$_SESSION['TODO'] = $this->ComprobarEmailYPassword();
             return view('authregister');

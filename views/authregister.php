@@ -6,14 +6,24 @@
                 <h1 class="text-xl font-bold text-center mb-6">
                     Registrarte
                 </h1>
-                <div class="flex flex-row mb-2">
+
+<!--                 <div class="flex flex-row mb-2">
                     <div class="w-1/2 mr-1">
-                        <input class="border border-gray-400 focus:outline-[#06b6d4] rounded-md w-full shadow-sm px-5 py-2" type="text" name="text" placeholder="Nombre" autocomplete="off" />
+                        <input class="border border-gray-400 focus:outline-[#06b6d4] rounded-md w-full shadow-sm px-5 py-2" type="text" name="nombre" placeholder="Nombre" autocomplete="off" />
                     </div>
                     <div class="w-1/2">
-                        <input class="border border-gray-400 focus:outline-[#06b6d4] rounded-md w-full shadow-sm px-5 py-2" type="text" name="text" placeholder="Apellido" autocomplete="off" />
+                        <input class="border border-gray-400 focus:outline-[#06b6d4] rounded-md w-full shadow-sm px-5 py-2" type="text" name="apellido" placeholder="Apellido" autocomplete="off" />
                     </div>
+                </div> -->
+
+                <div class="mb-2">
+                    <input class="border border-gray-400 focus:outline-[#06b6d4] rounded-md w-full shadow-sm px-5 py-2" type="text" name="nombre" placeholder="nombre" />
                 </div>
+
+                <div class="mb-2">
+                    <input class="border border-gray-400 focus:outline-[#06b6d4] rounded-md w-full shadow-sm px-5 py-2" type="text" name="apellido" placeholder="apellido" />
+                </div>
+
                 <div class="mb-2">
                     <input class="border border-gray-400 focus:outline-[#06b6d4] rounded-md w-full shadow-sm px-5 py-2" type="email" name="email" placeholder="Correo electrónico" />
                 </div>
