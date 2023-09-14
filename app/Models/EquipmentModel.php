@@ -18,10 +18,60 @@ class EquipmentModel
         $this->Connect();
     }
 
+
+    public function ListEquipmentBrand()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM equipos_marca");
+
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function ListEquipmentModels()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM equipos_modelo");
+
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function ListEquipmentCategories()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM categorias_equipos");
+
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function ListEquipments()
     {
         try {
-            $stm = $this->pdo->prepare("SELECT * FROM `modelos_equipos`");
+            $stm = $this->pdo->prepare("SELECT
+          modelos_equipos.id_modelos_equipos as equipo,
+          equipos_marca.marca_descripcion as marca,
+          equipos_modelo.descripcion as modelo,
+          categorias_equipos.categoria_equipo_descripcion as categoria
+        FROM
+          modelos_equipos
+        JOIN
+          equipos_marca ON modelos_equipos.id_marca = equipos_marca.id_marcas
+        JOIN
+          equipos_modelo ON modelos_equipos.id_modelo = equipos_modelo.id_modelo
+        JOIN
+          categorias_equipos ON modelos_equipos.id_categoria_equipo = categorias_equipos.id_categoria_equipo");
+
             $stm->execute();
             return $stm->fetchAll(\PDO::FETCH_OBJ);
         } catch (\Exception $e) {
