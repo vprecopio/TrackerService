@@ -21,7 +21,7 @@ class EquipmentController extends EquipmentModel
         
         if(isset($_POST['nueva-categoria']))
         {
-            $this->categoria_equipo_descripcion =  $_POST['nueva-categoria'];
+            $this->categoria_equipo_descripcion =  trim($_POST['nueva-categoria']);
             $this->CreateEquipmentCategories();
         }
 
