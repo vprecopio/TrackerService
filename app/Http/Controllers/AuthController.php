@@ -16,7 +16,7 @@ class AuthController extends UserModel
 
         if(isset($_POST['password']) && isset($_POST['email']))
         {
-            $this->usr_contrasena = md5($_POST['password']);
+            $this->usr_contrasena = sha1($_POST['password']);
             $this->usr_email = $_POST['email'];
 
             //comprobar email tendria que devolver todos los datos del usuario o 0 false
@@ -46,7 +46,7 @@ class AuthController extends UserModel
             $this->usr_nombre = $_POST['nombre'];
             $this->usr_apellido = $_POST['apellido'];
             $this->usr_email = $_POST['email'];
-            $this->usr_contrasena = md5($_POST['password']);
+            $this->usr_contrasena = sha1($_POST['password']);
 
             //falta validar que no exista alguien con el mismo email
             if ($_POST ['password'] == $_POST['password_con']){   
