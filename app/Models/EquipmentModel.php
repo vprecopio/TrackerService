@@ -11,13 +11,12 @@ class EquipmentModel
     private $id_marca;
     private $id_modelo;
     private $id_categoria_equipo;
-
+    private $categoria_equipo_descripcion;
 
     public function __construct()
     {
         $this->Connect();
     }
-
 
     public function ListEquipmentBrand()
     {
@@ -53,6 +52,19 @@ class EquipmentModel
         } catch (\Exception $e) {
             die($e->getMessage());
         }
+    }
+
+    public function CreateEquipmentCategories()
+    {
+            $sql = "INSERT INTO `categorias_equipos` (`categoria_equipo_descripcion`) VALUES (:categoria_equipo_descripcion)";
+    
+            $params = [
+                ':categoria_equipo_descripcion' => $this->categoria_equipo_descripcion
+            ];
+        
+            $stm = $this->pdo->prepare($sql);
+            return $stm->execute($params);    
+  
     }
 
     public function ListEquipments()

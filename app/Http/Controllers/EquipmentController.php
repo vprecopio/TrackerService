@@ -16,4 +16,16 @@ class EquipmentController extends EquipmentModel
         return $this->ListEquipments();
     }
 
+    public function createcategory()
+    {
+        
+        if(isset($_POST['nueva-categoria']))
+        {
+            $this->categoria_equipo_descripcion =  $_POST['nueva-categoria'];
+            $this->CreateEquipmentCategories();
+        }
+
+        return view('equipment');
+    }
+
 }
