@@ -9,7 +9,11 @@ class EquipmentModel
     //cambiar en la base de datos por nombres singulares
     private $id_modelos_equipos;
     private $id_marca;
+    private $marca_descripcion;
+
     private $id_modelo;
+    private $modelo_equipo_descripcion;
+
     private $id_categoria_equipo;
     private $categoria_equipo_descripcion;
 
@@ -28,6 +32,18 @@ class EquipmentModel
         } catch (\Exception $e) {
             die($e->getMessage());
         }
+    }
+
+    public function CreateEquipmentBrand()
+    {
+        $sql = "INSERT INTO `equipos_marca` (`marca_descripcion`) VALUES (:marca_descripcion)";
+    
+        $params = [
+            ':marca_descripcion' => $this->marca_descripcion
+        ];
+    
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);    
     }
 
     public function ListEquipmentModels()
