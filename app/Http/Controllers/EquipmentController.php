@@ -16,6 +16,18 @@ class EquipmentController extends EquipmentModel
         return $this->ListEquipments();
     }
 
+    public function createbrand()
+    {
+        
+        if(isset($_POST['nueva-marca']))
+        {
+            $this->marca_descripcion =  trim($_POST['nueva-marca']);
+            $this->CreateEquipmentBrand();
+        }
+
+        return view('equipment');
+    }
+
     public function createcategory()
     {
         
