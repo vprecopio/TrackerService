@@ -70,7 +70,7 @@ $nombre_formulario = 'equipo';
                                 </svg>
                                 Refrescar
                             </a>
-                            
+
                             <button id="createBrandButton" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-dark rounded-lg bg-primary-700 hover:text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="button" data-drawer-target="crear-brand" data-drawer-show="crear-brand" aria-controls="crear-brand" data-drawer-placement="right">
                                 <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
@@ -204,11 +204,11 @@ $nombre_formulario = 'equipo';
 
                                 <?php foreach ($equipment_controller->ListEquipmentBrand() as $obj_brand) : ?>
 
-                                <option><?= $obj_brand-> marca_descripcion ?></option>
+                                    <option><?= $obj_brand->marca_descripcion ?></option>
 
                                 <?php endforeach; ?>
                             </select>
-                        
+
                         </div>
 
 
@@ -218,11 +218,11 @@ $nombre_formulario = 'equipo';
 
                                 <?php foreach ($equipment_controller->ListEquipmentCategories() as $obj_categories) : ?>
 
-                                <option><?= $obj_categories-> categoria_equipo_descripcion ?></option>
+                                    <option><?= $obj_categories->categoria_equipo_descripcion ?></option>
 
                                 <?php endforeach; ?>
                             </select>
-                        
+
                         </div>
 
                         <input type="hidden" name="id" id="id">
@@ -288,11 +288,11 @@ $nombre_formulario = 'equipo';
 
                                 <?php foreach ($equipment_controller->ListEquipmentBrand() as $obj_brand) : ?>
 
-                                <option><?= $obj_brand-> marca_descripcion ?></option>
+                                    <option><?= $obj_brand->marca_descripcion ?></option>
 
                                 <?php endforeach; ?>
                             </select>
-                        
+
                         </div>
 
                         <div class="mb-4">
@@ -301,11 +301,11 @@ $nombre_formulario = 'equipo';
 
                                 <?php foreach ($equipment_controller->ListEquipmentCategories() as $obj_categories) : ?>
 
-                                <option><?= $obj_categories-> categoria_equipo_descripcion ?></option>
+                                    <option><?= $obj_categories->categoria_equipo_descripcion ?></option>
 
                                 <?php endforeach; ?>
                             </select>
-                        
+
                         </div>
 
                         <div class="bottom-0 left-0 flex justify-center w-full pb-4 space-x-4 md:px-4 md:absolute">
@@ -325,7 +325,7 @@ $nombre_formulario = 'equipo';
             <!--Fin Formulario Crear Equipo -->
 
             <!-- Formulario Crear Marca -->
-                <div id="crear-brand" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+            <div id="crear-brand" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                 <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
                     Nueva marca
                 </h5>
@@ -359,8 +359,8 @@ $nombre_formulario = 'equipo';
             </div>
             <!--Fin Formulario Crear Marca -->
 
-             <!-- Formulario Crear categoria -->
-             <div id="crear-category" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+            <!-- Formulario Crear categoria -->
+            <div id="crear-category" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                 <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
                     Nuevo category
                 </h5>

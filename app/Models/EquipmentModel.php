@@ -4,7 +4,7 @@ namespace App\Models;
 
 class EquipmentModel
 {
-    use \Database , \Sanitize;
+    use \Database, \Sanitize;
 
     //cambiar en la base de datos por nombres singulares
     private $id_modelos_equipos;
@@ -37,13 +37,13 @@ class EquipmentModel
     public function CreateEquipmentBrand()
     {
         $sql = "INSERT INTO `equipos_marca` (`marca_descripcion`) VALUES (:marca_descripcion)";
-    
+
         $params = [
             ':marca_descripcion' => $this->marca_descripcion
         ];
-    
+
         $stm = $this->pdo->prepare($sql);
-        return $stm->execute($params);    
+        return $stm->execute($params);
     }
 
     public function ListEquipmentModels()
@@ -72,15 +72,14 @@ class EquipmentModel
 
     public function CreateEquipmentCategories()
     {
-            $sql = "INSERT INTO `categorias_equipos` (`categoria_equipo_descripcion`) VALUES (:categoria_equipo_descripcion)";
-    
-            $params = [
-                ':categoria_equipo_descripcion' => $this->categoria_equipo_descripcion
-            ];
-        
-            $stm = $this->pdo->prepare($sql);
-            return $stm->execute($params);    
-  
+        $sql = "INSERT INTO `categorias_equipos` (`categoria_equipo_descripcion`) VALUES (:categoria_equipo_descripcion)";
+
+        $params = [
+            ':categoria_equipo_descripcion' => $this->categoria_equipo_descripcion
+        ];
+
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);
     }
 
     public function ListEquipments()
