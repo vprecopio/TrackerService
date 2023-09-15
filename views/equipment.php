@@ -96,6 +96,8 @@ $nombre_formulario = 'equipo';
                 </div>
             </div>
 
+
+            <!--Listado equipos-->
             <div class="flex flex-col">
                 <div class="overflow-x-auto">
                     <div class="inline-block min-w-full align-middle">
@@ -174,8 +176,10 @@ $nombre_formulario = 'equipo';
                     </div>
                 </div>
             </div>
+            <!--Fin Listado equipos-->
 
-            <!-- Edit Usuario Drawer -->
+
+            <!-- Edit equipo Drawer -->
             <div id="drawer-update-<?= $nombre_formulario ?>-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-x-full" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                 <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
                     Editar <?= $nombre_formulario ?>
@@ -238,6 +242,7 @@ $nombre_formulario = 'equipo';
 
             </div>
             <!-- Fin Edit Usuario Drawer -->
+
 
             <!-- Delete <?= $nombre_formulario ?> Drawer -->
             <div id="drawer-delete-client-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-x-full" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
@@ -324,6 +329,7 @@ $nombre_formulario = 'equipo';
             </div>
             <!--Fin Formulario Crear Equipo -->
 
+
             <!-- Formulario Crear Marca -->
             <div id="crear-brand" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                 <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
@@ -358,6 +364,7 @@ $nombre_formulario = 'equipo';
                 </form>
             </div>
             <!--Fin Formulario Crear Marca -->
+
 
             <!-- Formulario Crear categoria -->
             <div id="crear-category" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
@@ -409,7 +416,7 @@ $nombre_formulario = 'equipo';
         var deleteLink = document.querySelector("#drawer-delete-client-default a.text-white.bg-red-600");
 
         deleteButton.addEventListener("click", function() {
-            // Establecer la ID del <?= $nombre_formulario ?> en el enlace de eliminación
+            // Establecer la ID del formulario en el enlace de eliminación
             deleteLink.href = "/client/delete/?Documento=" + clientId;
         });
     });
