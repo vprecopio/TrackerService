@@ -23,7 +23,7 @@ class UserModel
     {
         try {
             //consulta
-            $stm = $this->pdo->prepare("SELECT * FROM `usuarios` WHERE `usr_email` = :usr_email and `usr_contrasena` = :usr_contrasena ");
+            $stm = $this->pdo->prepare("SELECT * FROM `usuarios` JOIN `roles` ON `roles`.id_rol = `usuarios`.id_rol WHERE `usr_email` = :usr_email and `usr_contrasena` = :usr_contrasena ");
 
             //asignar variables en la consulta
             $stm->bindParam(':usr_email', $this->usr_email, \PDO::PARAM_STR);

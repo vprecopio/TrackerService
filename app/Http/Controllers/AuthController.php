@@ -18,23 +18,28 @@ class AuthController extends UserModel
         {
             $this->usr_contrasena = sha1($_POST['password']);
             $this->usr_email = $_POST['email'];
-
-            //comprobar email tendria que devolver todos los datos del usuario o 0 false
+            
             $respuesta = $this->ComprobarEmailYPassword();
 
-            /*             
-            if($respuesta == 0 )
+            if(empty($respuesta))
             {
-                echo "<script>alert('usuario o contraseña incorrectos')</script>";
+              //si esta vacio 
+                return view('authlogin');
             }
             else
             {
-                echo "<script>alert('usuario existe')</script>";
-                $_SESSION['USUARIO'] = $respuesta;
+                // si esta lleno
+                $_SESSION['TODO'] = $respuesta;
                 return view('home');
-            } */
-
+            }
+            
         }
+        return view('authlogin');
+    }
+
+    public function logout()
+    {
+        session_destroy();
         return view('authlogin');
     }
 
