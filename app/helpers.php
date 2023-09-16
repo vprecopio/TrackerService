@@ -28,6 +28,7 @@ trait Sanitize
     public function __set($name, $value)
     {
         $filteredValue = filter_var($value, FILTER_SANITIZE_SPECIAL_CHARS);
+        $filteredValue = trim($filteredValue);
         $this->$name = $filteredValue;
     }
 }
