@@ -1,7 +1,9 @@
 <?php
 namespace App\Http\Controllers;
 
-class AuthController
+use App\Models\UserModel;
+
+class AuthController extends UserModel
 {
     public function index()
     {
@@ -11,11 +13,59 @@ class AuthController
 
     public function login()
     {
+
+        if(isset($_POST['password']) && isset($_POST['email']))
+        {
+            $this->usr_contrasena = sha1($_POST['password']);
+            $this->usr_email = $_POST['email'];
+            
+            $respuesta = $this->ComprobarEmailYPassword();
+
+            if(empty($respuesta))
+            {
+              //si esta vacio 
+                return view('authlogin');
+            }
+            else
+            {
+                // si esta lleno
+                $_SESSION['TODO'] = $respuesta;
+                return view('home');
+            }
+            
+        }
+        return view('authlogin');
+    }
+
+    public function logout()
+    {
+        session_destroy();
         return view('authlogin');
     }
 
     public function register()
     {
+        if(isset($_POST['nombre']) &&  isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_con']))
+        {
+          
+            $this->usr_nombre = $_POST['nombre'];
+            $this->usr_apellido = $_POST['apellido'];
+            $this->usr_email = $_POST['email'];
+            $this->usr_contrasena = sha1($_POST['password']);
+
+            //falta validar que no exista alguien con el mismo email
+            if ($_POST ['password'] == $_POST['password_con']){   
+                $this->InsertarNuevoUsuario();
+            }
+            else{
+                echo "<script>alert('contraseñas distintas')</script>";
+            }
+
+            
+            return view('authregister');
+
+        }
+        
         return view('authregister');
     }
 

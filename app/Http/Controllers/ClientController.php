@@ -4,15 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Response;
 use App\Models\ClientModel;
 
-interface Crud
-{
-    public function index();
-    public function list();
-    public function create();
-    public function delete();
-}
-
-class ClientController extends ClientModel implements Crud
+class ClientController extends ClientModel
 {
     public function index():Response
     {
@@ -52,7 +44,6 @@ class ClientController extends ClientModel implements Crud
             $this->OneClient();
             redirect('/client/search');
         }
-
         return view('clientformsearch');
     }
 

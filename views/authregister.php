@@ -70,8 +70,18 @@
                     <div class="w-1/2">
                         <label for="apellido" class="block pl-2.5 mb-2 text-sm font-medium text-gray-900 dark:text-white">Apellido</label>
                         <input type="text" name="apellido" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="Lopez" autocomplete="off" required>
+
                     </div>
+                </div> -->
+
+                <div class="mb-2">
+                    <input class="border border-gray-400 focus:outline-[#06b6d4] rounded-md w-full shadow-sm px-5 py-2" type="text" name="nombre" placeholder="nombre" />
                 </div>
+
+                <div class="mb-2">
+                    <input class="border border-gray-400 focus:outline-[#06b6d4] rounded-md w-full shadow-sm px-5 py-2" type="text" name="apellido" placeholder="apellido" />
+                </div>
+
                 <div>
                     <label for="email" class="block pl-2.5 mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                     <input type="email" name="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" placeholder="nombre@compañía.com" autocomplete="off" required>
@@ -79,6 +89,7 @@
                 <div>
                     <label for="password" class="block pl-2.5  mb-2 text-sm font-medium text-gray-900 dark:text-white">Contraseña</label>
                     <input type="password" name="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" autocomplete="off" required>
+
                 </div>
                 <div>
                     <label for="password_con" class="block pl-2.5  mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirmar contraseña</label>
@@ -88,9 +99,11 @@
                 <div class="text-sm text-gray-600 dark:text-gray-400">
                     Ya tiene una cuenta? <a href="/auth/login/" class="text-blue-600 hover:underline">Ingresar</a>
                 </div>
+
             </form>
         </div>
 
     </div>
 
 </body>
+
