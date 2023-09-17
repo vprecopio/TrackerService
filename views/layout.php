@@ -416,7 +416,7 @@ $esta_logueado = 0;
 
 
     <?php else : ?>
-        <?php require __DIR__ . '/authlogin.php'; ?>
+        <?php require __DIR__ . '/authregister.php'; ?>
     <?php endif; ?>
 </body>
 
