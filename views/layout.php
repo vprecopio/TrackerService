@@ -15,12 +15,6 @@ $esta_logueado = 0;
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;600&display=swap" rel="stylesheet">
-
-    <style>
-        .fuente{
-            font-family: 'Inter', sans-serif !important;
-        }
-    </style>
 </head>
 
 <body>
