@@ -30,6 +30,7 @@ class EquipmentController extends EquipmentModel
             }
         }
 
+        unset($_POST,$id_brand);
         return view('equipment');
     }
 
@@ -45,6 +46,7 @@ class EquipmentController extends EquipmentModel
             }
         }
 
+        unset($_POST,$id_brand,$id_category);
         return view('equipment');
     }
 
