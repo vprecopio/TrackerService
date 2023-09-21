@@ -196,7 +196,7 @@ class EquipmentModel
             ':id_marca_existente' => $this->id_marca,
             ':id_categoria_existente' => $this->id_categoria_equipo
         ];
-    
+
         $stm = $this->pdo->prepare($sql);
         return $stm->execute($params);
     }
@@ -225,10 +225,21 @@ class EquipmentModel
             ':id_marca' => $this->id_marca,
             ':id_categoria_equipo' => $this->id_categoria_equipo
         ];
-    
+
         $stm = $this->pdo->prepare($sql);
         return $stm->execute($params);
     }
 
-
+    public function DeleteEquiptment()
+    {
+        try {
+            $stm = $this->pdo->prepare("DELETE FROM modelos_equipos WHERE `modelos_equipos`.`id_modelos_equipos` = :id_equiptment");
+            $stm->bindParam(':id_equiptment', $this->id_modelos_equipos, \PDO::PARAM_INT);
+            $stm->execute();
+            return true;
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+        exit;
+    }
 }
