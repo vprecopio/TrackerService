@@ -1,5 +1,28 @@
 <?php
-$esta_logueado = 0;
+
+use App\Models\UserModel;
+
+$usuario_controller = new UserModel;
+
+$roles = $usuario_controller->ObtenerNuevosRoles();
+
+$tu_array = [];
+
+foreach($roles as $obj)
+{
+    echo '<pre>';
+    $tu_array[] = [$obj->rol_nombre => $obj->id_rol];
+}
+//https://www.php.net/manual/en/function.in-array.php
+if(isset($_SESSION["TODO"]) && !empty($_SESSION["TODO"]))
+{
+    $rol_a_buscar = $_SESSION["TODO"][0]->rol_nombre;
+}
+else
+{
+    $rol_a_buscar = '';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +41,8 @@ $esta_logueado = 0;
 </head>
 
 <body>
-    <?php if ($esta_logueado === 1) : ?>
+    <!-- si es admin,vendedores,tecnicos que pasen -->
+    <?php if (in_array($rol_a_buscar, $roles)) :?>
         <nav class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
                 <div class="flex items-center justify-between">

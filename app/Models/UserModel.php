@@ -19,6 +19,24 @@ class UserModel
         $this->Connect();
     }
 
+    public function ObtenerNuevosRoles(){
+        try {
+            //consulta
+            $stm = $this->pdo->prepare("SELECT * FROM `roles`");
+
+            //asignar variables en la consulta
+
+            //ejecutar
+            $stm->execute();
+
+            //en caso de que no exista ninguno devuelva 0 o false en caso contrario que devuelva "return $stm->fetchAll(\PDO::FETCH_OBJ);"
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+
+        } catch (\Exception $e) {        
+
+        }
+    }
+
     public function ComprobarEmailYPassword()
     {
         try {
@@ -63,4 +81,3 @@ class UserModel
     }
 
 }
-
