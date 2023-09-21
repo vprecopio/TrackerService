@@ -14,8 +14,25 @@ class TicketController extends TicketModel
     public function listvalorticket()
     {
         var_dump($this->ListVT());
-
         exit;
-        return view('ticket');
     }
+
+    public function insertarvalorticket()
+    {
+        $this->InsertVT();
+        exit;
+    }
+
+    public function valorticket()
+    {
+        $this->EditVT();
+        exit;
+    }
+
+    public function eliminarticket()
+    {
+        $this->DeleteVT();
+        exit;
+    }
+
 }
