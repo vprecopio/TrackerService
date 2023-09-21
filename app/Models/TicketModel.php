@@ -76,6 +76,18 @@ class TicketModel
         
     }
 
+    public function OneVT()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM valor_ticket WHERE `valor_ticket`.`id_valor` = :id_valor");
+            $stm->bindParam(':id_valor', $this->id_valor, \PDO::PARAM_INT);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
 
 }
 
