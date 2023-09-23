@@ -6,7 +6,7 @@ class UserModel
 {
     use \Database,\Sanitize;
 
-    private $id_usuario;
+    protected $id_usuario;
     private $usr_nombre;
     private $usr_apellido;
     private $usr_email;
@@ -18,6 +18,110 @@ class UserModel
     {
         $this->Connect();
     }
+
+    public function ListUser(){
+        try{
+            $stm = $this -> pdo -> prepare("SELECT * FROM `usuarios` ORDER BY `usuarios`.`id_usuario` DESC");
+            $stm -> execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        }catch(\Exception $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function OneUser(){
+        try{
+            $stm = $this -> pdo -> prepare("SELECT * FROM `usuarios` WHERE `usuarios`.`id_usuario` = :id_usuario");
+            $stm -> bindParam(':id_usuario', $this->id_usuario, \PDO::PARAM_INT);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        }catch(\Exception $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function CreateUser(){
+        $sql = "INSERT INTO `usuarios`(`usr_nombre`, `usr_apellido`, `usr_email`, `usr_contrasena`, `usr_estado`, `id_rol`) VALUES (:usr_nombre, :usr_apellido, :usr_email, :usr_contrasena, :usr_estado, :id_rol)";
+
+        $params=[
+            ':usr_nombre' => $this->usr_nombre,
+            ':usr_apellido' => $this->usr_apellido,
+            ':usr_email' => $this->usr_email,
+            ':usr_contrasena' => $this->usr_contrasena,
+            ':usr_estado' => $this->usr_estado,
+            ':id_rol' => $this->id_rol
+        ];
+
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);
+    }
+
+    public function DeleteUser(){
+        try{
+            $stm = $this->pdo->prepare("DELETE FROM `usuarios` WHERE `usuarios`.`id_usuario` = :id_usuario");
+            $stm->bindParam(':id_usuario', $this->id_usuario, \PDO::PARAM_INT);
+            $stm->execute();
+            return true;
+        }catch(\Exception $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function ExistUser(){
+        try{
+            $sql = "SELECT COUNT(*) FROM `usuarios` WHERE `id_usuario` = :id_usuario";
+            $stm = $this->pdo->prepare($sql);
+            $stm->bindParam(':id_usuario', $this->id_usuario, \PDO::PARAM_INT);
+            $stm->execute();
+
+            $result = $stm->fetchColumn();
+
+            return $result > 0 ? true : false;
+        }catch(\Exception $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function EditUser(){
+        try {
+
+            $fieldsToUpdate = [
+                'usr_nombre' => $this->usr_nombre,
+                'usr_apellido' => $this->usr_apellido,
+                'usr_email' => $this->usr_email,
+                'usr_contrasena' => $this->usr_contrasena,
+                'usr_estado' => $this->usr_estado,
+                'id_rol' => $this->id_rol,
+            ];
+
+            $sql = "UPDATE `usuarios` SET ";
+            $params = [];
+    
+            foreach ($fieldsToUpdate as $field => $value) {
+                if ($value !== null) {
+                    $sql .= "`$field` = :$field, ";
+                    $params[":$field"] = $value;
+                }
+            }
+    
+            // Quita la coma final y agrega la condición WHERE
+            $sql = rtrim($sql, ', ') . " WHERE `id_usuario` = :id_usuario;";
+    
+            $stm = $this->pdo->prepare($sql);
+    
+            // Agrega los parámetros a la consulta
+            $params[':id_usuario'] = $this->id_usuario;
+            foreach ($params as $param => $value) {
+                $stm->bindParam($param, $value);
+            }
+    
+            // Ejecuta la consulta
+            $stm->execute();
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    /*----------------------------------------------------------------*/
 
     public function ComprobarEmailYPassword()
     {
