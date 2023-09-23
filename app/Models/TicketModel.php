@@ -2,7 +2,26 @@
 
 namespace App\Models;
 
-class TicketModel
+interface ContratoEstadoTickets
+{
+    public function ListET();
+    public function EditET();
+    public function InsertET();
+    public function DeleteET();
+    public function OneET();
+}
+
+interface ContratoPrioridades
+{
+    public function ListPrioridad();
+    public function EditPrioridad();
+    public function InsertPrioridad();
+    public function DeletePrioridad();
+    public function OnePrioridad();
+}
+
+
+class TicketModel implements ContratoEstadoTickets,ContratoPrioridades
 {
     use \Database,\Sanitize;
 
@@ -88,6 +107,35 @@ class TicketModel
         }
     }
 
+
+
+    /* Seccion estados_tickets*/
+    public function ListET()
+    {
+
+    }
+    public function EditET()
+    {
+
+    }
+    public function InsertET()
+    {
+
+    }
+    public function DeleteET()
+    {
+
+    }
+    public function OneET()
+    {
+
+    }
+    /* Fin estados_tickets*/
+
+
+    /* Seccion prioridades*/
+
+    /* Fin prioridades*/
 
 }
 
