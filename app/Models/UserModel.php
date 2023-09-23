@@ -84,7 +84,7 @@ class UserModel
 
     public function EditUser(){
         try {
-
+            /*
             $fieldsToUpdate = [
                 'usr_nombre' => $this->usr_nombre,
                 'usr_apellido' => $this->usr_apellido,
@@ -116,6 +116,19 @@ class UserModel
             }
     
             // Ejecuta la consulta
+            $stm->execute();
+            */
+            $sql = "UPDATE `usuarios` SET `usr_nombre` = :new_usr_nombre, `usr_apellido` = :new_usr_apellido, `usr_email` = :new_usr_email, `usr_estado` = :new_usr_estado, `id_rol` = :new_id_rol WHERE `id_usuario` = :id_usuario;";
+
+            $stm = $this->pdo->prepare($sql);
+
+            $stm->bindParam(':new_usr_nombre', $this->usr_nombre);
+            $stm->bindParam(':new_usr_apellido', $this->usr_apellido);
+            $stm->bindParam(':new_usr_email', $this->usr_email);
+            $stm->bindParam(':new_usr_estado', $this->usr_estado);
+            $stm->bindParam(':new_id_rol', $this->id_rol);
+            $stm->bindParam(':id_usuario', $this->id_usuario);
+
             $stm->execute();
         } catch (\Exception $e) {
             die($e->getMessage());
