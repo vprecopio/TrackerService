@@ -105,7 +105,7 @@ $user_controller = new UserController;
                     <data value="estado"><?= $obj_user->usr_estado ?></data>
                 </td>
                 <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
-                    <data value="rol"><?= $obj_user->id_rol ?></data>
+                    <data value="rol"><?= $obj_user->rol_nombre ?></data>
                 </td>
 
                 <!--botones editar y eliminar-->
@@ -173,7 +173,14 @@ $user_controller = new UserController;
                         </div>
                         <div>
                             <label for="rol" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rol</label>
-                            <input type="text" name="rol" id="rol" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Rol" required="">
+                            <select id="rol" name="rol" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+
+                                <?php foreach ($user_controller->ListUserRoles() as $obj_rol) : ?>
+
+                                    <option><?= $obj_rol->rol_nombre ?></option>
+
+                                <?php endforeach; ?>
+                            </select>
                         </div>
 
                         <input type="hidden" name="id_usuario" id="id_usuario">

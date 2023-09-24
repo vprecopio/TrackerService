@@ -12,16 +12,35 @@ class UserModel
     private $usr_email;
     private $usr_contrasena;
     private $usr_estado;
-    private $id_rol;
+    private $id_rol, $rol_nombre;
 
     public function __construct()
     {
         $this->Connect();
     }
 
+    public function ObtenerNuevosRoles(){
+        try {
+            //consulta
+            $stm = $this->pdo->prepare("SELECT * FROM `roles`");
+
+            //asignar variables en la consulta
+
+            //ejecutar
+            $stm->execute();
+
+            //en caso de que no exista ninguno devuelva 0 o false en caso contrario que devuelva "return $stm->fetchAll(\PDO::FETCH_OBJ);"
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+
+        } catch (\Exception $e) {        
+
+        }
+    }
+
     public function ListUser(){
         try{
-            $stm = $this -> pdo -> prepare("SELECT * FROM `usuarios` ORDER BY `usuarios`.`id_usuario` DESC");
+            $stm = $this -> pdo -> prepare("SELECT * FROM usuarios JOIN roles ON usuarios.id_rol = roles.id_rol ORDER BY usuarios.id_usuario ASC");
+
             $stm -> execute();
             return $stm->fetchAll(\PDO::FETCH_OBJ);
         }catch(\Exception $e){
@@ -33,6 +52,17 @@ class UserModel
         try{
             $stm = $this -> pdo -> prepare("SELECT * FROM `usuarios` WHERE `usuarios`.`id_usuario` = :id_usuario");
             $stm -> bindParam(':id_usuario', $this->id_usuario, \PDO::PARAM_INT);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        }catch(\Exception $e){
+            die($e->getMessage());
+        }
+    }
+
+    public function OneRole(){
+        try{
+            $stm = $this -> pdo -> prepare("SELECT * FROM `roles` WHERE `roles`.`rol_nombre` = :rol_nombre");
+            $stm -> bindParam(':rol_nombre', $this->rol_nombre, \PDO::PARAM_STR);
             $stm->execute();
             return $stm->fetchAll(\PDO::FETCH_OBJ);
         }catch(\Exception $e){
@@ -84,40 +114,6 @@ class UserModel
 
     public function EditUser(){
         try {
-            /*
-            $fieldsToUpdate = [
-                'usr_nombre' => $this->usr_nombre,
-                'usr_apellido' => $this->usr_apellido,
-                'usr_email' => $this->usr_email,
-                'usr_contrasena' => $this->usr_contrasena,
-                'usr_estado' => $this->usr_estado,
-                'id_rol' => $this->id_rol,
-            ];
-
-            $sql = "UPDATE `usuarios` SET ";
-            $params = [];
-    
-            foreach ($fieldsToUpdate as $field => $value) {
-                if ($value !== null) {
-                    $sql .= "`$field` = :$field, ";
-                    $params[":$field"] = $value;
-                }
-            }
-    
-            // Quita la coma final y agrega la condición WHERE
-            $sql = rtrim($sql, ', ') . " WHERE `id_usuario` = :id_usuario;";
-    
-            $stm = $this->pdo->prepare($sql);
-    
-            // Agrega los parámetros a la consulta
-            $params[':id_usuario'] = $this->id_usuario;
-            foreach ($params as $param => $value) {
-                $stm->bindParam($param, $value);
-            }
-    
-            // Ejecuta la consulta
-            $stm->execute();
-            */
             $sql = "UPDATE `usuarios` SET `usr_nombre` = :new_usr_nombre, `usr_apellido` = :new_usr_apellido, `usr_email` = :new_usr_email, `usr_estado` = :new_usr_estado, `id_rol` = :new_id_rol WHERE `id_usuario` = :id_usuario;";
 
             $stm = $this->pdo->prepare($sql);
@@ -131,6 +127,17 @@ class UserModel
 
             $stm->execute();
         } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function ListUserRoles(){
+        try{
+            $stm = $this -> pdo -> prepare("SELECT * FROM roles");
+
+            $stm -> execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        }catch(\Exception $e){
             die($e->getMessage());
         }
     }

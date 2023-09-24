@@ -28,9 +28,17 @@ class UserController extends UserModel
             $this->usr_apellido = $_POST['apellido'] ?? 'Sin datos';
             $this->usr_email = $_POST['email'] ?? 'Sin datos';
             $this->usr_estado = $_POST['estado'] ?? 'Sin datos';
-            $this->id_rol = $_POST['rol'] ?? 'Sin datos';
+            $this->rol_nombre = $_POST['rol'] ?? 'Sin datos';
 
-            $this->EditUser();
+            $user = $this->OneUser();
+            $rol = $this->OneRole();
+
+            if(!empty($user) && !empty($rol)){
+                $this->id_rol = $rol[0]->id_rol;
+                $this->EditUser();
+            }
+
+
 
             return view('user');
         }

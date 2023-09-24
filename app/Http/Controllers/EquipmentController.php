@@ -87,33 +87,20 @@ class EquipmentController extends EquipmentModel
             $this->marca_descripcion = $_POST['marca'];
             $this->categoria_equipo_descripcion = $_POST['categoria'];
 
-            $id_equip = $this->OneEquip(); 
+            $id_equip = $this->OneEquip();
             $id_model = $this->OneModel();
             $id_brand = $this->OneBrand();
             $id_category = $this->OneCategory();
 
-            if (!empty($id_equip) && !empty($id_brand) && !empty($id_category)){
-
+            if (!empty($id_equip) && !empty($id_brand) && !empty($id_category))
+            {
                 $this->id_modelos_equipos = $id_equip[0]->id_modelos_equipos;
                 $this->id_marca = $id_brand[0]->id_marcas;
                 $this->id_categoria_equipo = $id_category[0]->id_categoria_equipo;
-
-                if(!empty($id_model))
-                {
-                    $this->id_modelo = $id_model[0]->id_modelo;
-                }
-                else
-                {
-                    $id_model=$this->OneEquip();
-                    $this->id_modelo = $id_model[0]->id_modelo;
-                    $this->EditEquipmentModel();
-                }
-
+                $this->id_modelo = $id_equip[0]->id_modelo;
+                $this->EditEquipmentModel();
                 $this->EditEquipments();
-
-            } else {
-                echo 'no hay nada';
-            }
+            } 
 
             unset($_POST,$id_equip,$id_model,$id_brand,$id_category);
             return view('equipment');
