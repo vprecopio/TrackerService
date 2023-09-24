@@ -121,7 +121,7 @@ $user_controller = new UserController;
                         Editar usuario
                     </button>
 
-                    <button type="button" id="deleteUserButton" data-user-id="<?php echo $obj_user->id_usuario; ?>" data-drawer-target="drawer-delete-user-default" data-drawer-show="drawer-delete-user-default" aria-controls="drawer-delete-user-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                    <button type="button" id="deleteUserButton" onclick="handleDeleteButtonClick('<?php echo $obj_user->id_usuario; ?>')" data-drawer-target="drawer-delete-user-default" data-drawer-show="drawer-delete-user-default" aria-controls="drawer-delete-user-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
                         <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                         </svg>
@@ -181,7 +181,7 @@ $user_controller = new UserController;
                     </div>
 
                     <div class="bottom-0 left-0 flex justify-center w-full pb-4 mt-4 space-x-4 sm:absolute sm:px-4 sm:mt-0">
-                        <button type="submit" value="Editar" name="Editar" class="w-full justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                        <button type="submit" value="Editar" name="Editar" class="w-full justify-center items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                             Editar
                         </button>
                     </div>
@@ -216,6 +216,12 @@ $user_controller = new UserController;
 
 <script>
     //script eliminar usuario button
+    function handleDeleteButtonClick(userId){
+        var deleteButton = document.getElementById("deleteUserButton");
+        var deleteLink = document.querySelector("#drawer-delete-user-default a.text-white.bg-red-600");
+        deleteLink.href = "/user/delete/?id_usuario" + userId;
+    }
+
     document.addEventListener("DOMContentLoaded", function() {
         var deleteButton = document.getElementById("deleteUserButton");
         var userId = deleteButton.getAttribute("data-user-id");
