@@ -80,4 +80,130 @@ class TicketController extends TicketModel
        
     }
 
+    //estados_tickets
+
+    public function listestadoticket()
+    {
+        var_dump($this->ListET());
+        exit;
+    }
+
+    public function insertarestadoticket()
+    {
+        // simulacion valores que te vienen por el formulario
+        $estad_ticket_descripcion = '';
+        // Fin simulacion
+
+        if(!empty($estado_ticket_descripcion))
+        {
+            // cargar los atributos en TicketModel
+            $this->estado_ticket_descripcion = $estad_ticket_descripcion;   
+            // fin
+
+            $this->InsertET();
+            exit;
+        }
+
+    }
+
+    public function editarestadoticket()
+    {
+        $id_estado_ticket = '';
+        $estad_ticket_descripcion = '';
+
+        if(!empty($id_estado_ticket) && !empty($estad_ticket_descripcion))
+        {
+            $this->id_estado_ticket = $id_estado_ticket;
+
+            if(!empty($this->OneET()))
+            {
+                $this->estado_ticket_descripcion = $estad_ticket_descripcion;
+        
+                $this->EditET();
+               
+            }
+            else
+            {
+                echo 'fijate que no existe esa id';
+            }
+        }
+        exit;
+    }
+
+    public function eliminartvalorticket()
+    {
+        
+        $id_estado_ticket = '1';
+        if(!empty($id_estado_ticket))
+        {
+            $this->id_estado_ticket = $id_estado_ticket; 
+            $this->DeleteET();
+            exit;
+        }
+       
+    }
+
+    //prioridades
+
+    public function listprioridadticket()
+    {
+        var_dump($this->ListPrioridad());
+        exit;
+    }
+
+    public function insertarprioridadticket()
+    {
+        // simulacion valores que te vienen por el formulario
+        $priorida_descripcion = '';
+        // Fin simulacion
+
+        if(!empty($prioridad_descripcion))
+        {
+            // cargar los atributos en TicketModel
+            $this->prioridad_descripcion= $priorida_descripcion;   
+            // fin
+
+            $this->InsertPrioridad();
+            exit;
+        }
+
+    }
+
+    public function editarprioridadticket()
+    {
+        $id_prioridad = '';
+        $priorida_descripcion = '';
+
+        if(!empty($id_prioridad) && !empty($priorida_descripcion))
+        {
+            $this->id_prioridad= $id_prioridad;
+
+            if(!empty($this->OnePrioridad()))
+            {
+                $this->prioridad_descripcion = $priorida_descripcion;
+        
+                $this->EditPrioridad();
+               
+            }
+            else
+            {
+                echo 'fijate que no existe esa id';
+            }
+        }
+        exit;
+    }
+
+    public function eliminartprioridadticket()
+    {
+        
+        $id_prioridad = '1';
+        if(!empty($id_prioridad))
+        {
+            $this->id_prioridad = $id_prioridad; 
+            $this->DeletePrioridad();
+            exit;
+        }
+       
+    }
+
 }
