@@ -67,73 +67,81 @@ $user_controller = new UserController;
                 <div class="overflow-x-auto">
                     <div class="inline-block min-w-full align-middle">
                         <div class="overflow-hidden shadow">
-                        <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
-    <!--Titulos-->
-    <thead class="bg-gray-100 dark:bg-gray-700">
-        <tr>
-            <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
-                Nombre completo
-            </th>
-            <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
-                Email
-            </th>
-            <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
-                Estado
-            </th>
-            <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
-                Rol
-            </th>
-            <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
-                Acciones
-            </th>
-        </tr>
-    </thead>
+                            <table class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-600">
+                                <!--Titulos-->
+                                <thead class="bg-gray-100 dark:bg-gray-700">
+                                    <tr>
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                            Nombre completo
+                                        </th>
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                            Email
+                                        </th>
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                            Estado
+                                        </th>
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                            Rol
+                                        </th>
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                            Acciones
+                                        </th>
+                                    </tr>
+                                </thead>
 
-    <!--Usuarios-->
-    <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-        <?php foreach ($user_controller->ListUser() as $obj_user) : ?>
-            <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
-                <!--datos-->
-                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
-                    <data value="nombre"><?= $obj_user->usr_nombre . ' ' . $obj_user->usr_apellido ?></data>
-                </td>
+                                <!--Usuarios-->
+                                <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+                                    <?php foreach ($user_controller->ListUser() as $obj_user) : ?>
+                                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                            <!--datos-->
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
+                                                <data value="nombre"><?= $obj_user->usr_nombre . ' ' . $obj_user->usr_apellido ?></data>
+                                            </td>
 
-                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
-                    <data value="email"><?= $obj_user->usr_email ?></data>
-                </td>
-                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
-                    <data value="estado"><?= $obj_user->usr_estado ?></data>
-                </td>
-                <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
-                    <data value="rol"><?= $obj_user->rol_nombre ?></data>
-                </td>
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
+                                                <data value="email"><?= $obj_user->usr_email ?></data>
+                                            </td>
+                                            <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white w-1/5">
+                                                <div class="flex items-center">
+                                                    <?php if ($obj_user->usr_estado > 0) : ?>
+                                                        <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
+                                                        Activo
+                                                    <?php else : ?>
+                                                        <div class="h-2.5 w-2.5 rounded-full bg-red-400 mr-2"></div>
+                                                        Inactivo
+                                                    <?php endif; ?>
+                                                </div>
+                                            </td>
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
+                                                <data value="rol"><?= $obj_user->rol_nombre ?></data>
+                                            </td>
 
-                <!--botones editar y eliminar-->
-                <td class="p-4 space-x-2 whitespace-nowrap w-1/5">
+                                            <!--botones editar y eliminar-->
+                                            <td class="p-4 space-x-2 whitespace-nowrap w-1/5">
 
-                    <button type="button" id="updateUserButton" onclick="llenarFormularioUsuario('<?php echo $obj_user->id_usuario ?>','<?= $obj_user->usr_nombre ?>', '<?= $obj_user->usr_apellido ?>', '<?= $obj_user->usr_email ?>', '<?= $obj_user->usr_estado ?>', '<?= $obj_user->id_rol ?>');" data-drawer-target="drawer-update-user-default" data-drawer-show="drawer-update-user-default" aria-controls="drawer-update-user-default" data-drawer-placement="right" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <svg>
-                                <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
-                                <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path>
-                            </svg>
-                        </svg>
-                        Editar usuario
-                    </button>
+                                                <button type="button" id="updateUserButton" onclick="llenarFormularioUsuario('<?php echo $obj_user->id_usuario ?>','<?= $obj_user->usr_nombre ?>', '<?= $obj_user->usr_apellido ?>', '<?= $obj_user->usr_email ?>', '<?= $obj_user->usr_estado ?>', '<?= $obj_user->rol_nombre ?>');" data-drawer-target="drawer-update-user-default" data-drawer-show="drawer-update-user-default" aria-controls="drawer-update-user-default" data-drawer-placement="right" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <svg>
+                                                            <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
+                                                            <path fill-rule="evenodd" d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" clip-rule="evenodd"></path>
+                                                        </svg>
+                                                    </svg>
+                                                    Editar usuario
+                                                </button>
 
-                    <button type="button" id="deleteUserButton" onclick="handleDeleteButtonClick('<?php echo $obj_user->id_usuario; ?>')" data-drawer-target="drawer-delete-user-default" data-drawer-show="drawer-delete-user-default" aria-controls="drawer-delete-user-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
-                        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
-                        </svg>
-                        Eliminar usuario
-                    </button>
+                                                <button type="button" id="deleteUserButton" onclick="handleDeleteButtonClick('<?php echo $obj_user->id_usuario; ?>')" data-drawer-target="drawer-delete-user-default" data-drawer-show="drawer-delete-user-default" aria-controls="drawer-delete-user-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-bold text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                    <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                        <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+                                                    </svg>
+                                                    Eliminar usuario
+                                                </button>
 
-                </td>
-            </tr>
-        <?php endforeach; ?>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
 
-    </tbody>
-</table>
+                                </tbody>
+                            </table>
 
 
                         </div>
@@ -169,7 +177,10 @@ $user_controller = new UserController;
                         </div>
                         <div>
                             <label for="estado" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
-                            <input type="text" name="estado" id="estado" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Estado" required="">
+                            <select id="estado" name="estado" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    <option>Activo</option>
+                                    <option>Inactivo</option>
+                            </select>
                         </div>
                         <div>
                             <label for="rol" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Rol</label>
@@ -223,7 +234,7 @@ $user_controller = new UserController;
 
 <script>
     //script eliminar usuario button
-    function handleDeleteButtonClick(userId){
+    function handleDeleteButtonClick(userId) {
         var deleteButton = document.getElementById("deleteUserButton");
         var deleteLink = document.querySelector("#drawer-delete-user-default a.text-white.bg-red-600");
         deleteLink.href = "/user/delete/?id_usuario" + userId;
@@ -255,7 +266,14 @@ $user_controller = new UserController;
         nombreInput.value = nombre;
         apellidoInput.value = apellido;
         emailInput.value = email;
-        estadoInput.value = estado;
+        //estadoInput.value = estado;
+        
+        for (var i = 0; i < estadoInput.options.length; i++) {
+        if (estadoInput.options[i].value === estado) {
+            estadoInput.options[i].selected = true;
+            break;
+        }
+    }
         rolInput.value = rol;
     }
 </script>

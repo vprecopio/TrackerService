@@ -27,7 +27,7 @@ class UserController extends UserModel
             $this->usr_nombre = $_POST['nombre'] ?? 'Sin datos';
             $this->usr_apellido = $_POST['apellido'] ?? 'Sin datos';
             $this->usr_email = $_POST['email'] ?? 'Sin datos';
-            $this->usr_estado = $_POST['estado'] ?? 'Sin datos';
+            $this->usr_estado = ($_POST['estado'] == 'Activo') ? '1' : '0';
             $this->rol_nombre = $_POST['rol'] ?? 'Sin datos';
 
             $user = $this->OneUser();
