@@ -159,7 +159,7 @@ $nombre_formulario = 'equipo';
                                                     Editar <?= $nombre_formulario ?>
                                                 </button>
 
-                                                <button type="button" id="deleteClientButton" data-client-id="<?php echo $obj_equipo->equipo ?>" data-drawer-target="drawer-delete-client-default" data-drawer-show="drawer-delete-client-default" aria-controls="drawer-delete-client-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                <button type="button" id="deleteEquipmentButton" onclick="handleDeleteButtonClick('<?php echo $obj_equipo->equipo ?>')" data-drawer-target="drawer-delete-equipment-default" data-drawer-show="drawer-delete-equipment-default" aria-controls="drawer-delete-equipment-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                                                     </svg>
@@ -241,15 +241,15 @@ $nombre_formulario = 'equipo';
                 </form>
 
             </div>
-            <!-- Fin Edit Usuario Drawer -->
+            <!-- Fin Edit equipo Drawer -->
 
 
-            <!-- Delete <?= $nombre_formulario ?> Drawer -->
-            <div id="drawer-delete-client-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-x-full" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+            <!-- Delete euipo Drawer -->
+            <div id="drawer-delete-equipment-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-x-full" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                 <h5 id="drawer-label" class="inline-flex items-center text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
                     Eliminar <?= $nombre_formulario ?>
                 </h5>
-                <button type="button" data-drawer-dismiss="drawer-delete-client-default" aria-controls="drawer-delete-client-default" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                <button type="button" data-drawer-dismiss="drawer-delete-equipment-default" aria-controls="drawer-delete-equipment-default" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
                     <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
                     </svg>
@@ -407,19 +407,12 @@ $nombre_formulario = 'equipo';
     </div>
 </div>
 
-
 <script>
-    //script eliminar dato con button
-    document.addEventListener("DOMContentLoaded", function() {
-        var deleteButton = document.getElementById("deleteClientButton");
-        var clientId = deleteButton.getAttribute("data-client-id");
-        var deleteLink = document.querySelector("#drawer-delete-client-default a.text-white.bg-red-600");
-
-        deleteButton.addEventListener("click", function() {
-            // Establecer la ID del formulario en el enlace de eliminación
-            deleteLink.href = "/client/delete/?Documento=" + clientId;
-        });
-    });
+    function handleDeleteButtonClick(equiptmentId) {
+        var deleteButton = document.getElementById("deleteEquiptmentButton");
+        var deleteLink = document.querySelector("#drawer-delete-equipment-default a.text-white.bg-red-600");
+        deleteLink.href = "/equipment/delete/?id_equipo=" + equiptmentId;
+    }
 </script>
 
 <script>

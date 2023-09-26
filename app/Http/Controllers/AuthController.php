@@ -40,7 +40,7 @@ class AuthController extends UserModel
     public function logout()
     {
         session_destroy();
-        return view('authlogin');
+        redirect('/');
     }
 
     public function register()

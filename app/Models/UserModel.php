@@ -37,6 +37,7 @@ class UserModel
         }
     }
 
+
     public function ListUser(){
         try{
             $stm = $this -> pdo -> prepare("SELECT * FROM usuarios JOIN roles ON usuarios.id_rol = roles.id_rol ORDER BY usuarios.id_usuario ASC");
@@ -187,4 +188,3 @@ class UserModel
     }
 
 }
-

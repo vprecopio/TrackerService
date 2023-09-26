@@ -1,5 +1,27 @@
 <?php
-$esta_logueado = 0;
+
+use App\Models\UserModel;
+
+$usuario_controller = new UserModel;
+
+$roles = $usuario_controller->ObtenerNuevosRoles();
+
+$tu_array = [];
+
+foreach($roles as $obj)
+{
+    $tu_array[] = $obj->rol_nombre;
+}
+
+if(isset($_SESSION["TODO"]))
+{
+    $rol_a_buscar = $_SESSION["TODO"][0]->rol_nombre;
+}
+else
+{
+    $rol_a_buscar = '';
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +40,9 @@ $esta_logueado = 0;
 </head>
 
 <body>
-    <?php if ($esta_logueado === 0) : ?>
+
+    <?php if (in_array($rol_a_buscar, $tu_array)) :?>
+
         <nav class="fixed z-30 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
             <div class="px-3 py-3 lg:px-5 lg:pl-3">
                 <div class="flex items-center justify-between">
@@ -316,10 +340,10 @@ $esta_logueado = 0;
                             <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow dark:bg-gray-700 dark:divide-gray-600" id="dropdown-2" style="position: absolute; inset: 0px auto auto 0px; margin: 0px; transform: translate(1867px, 61px);" data-popper-placement="bottom">
                                 <div class="px-4 py-3" role="none">
                                     <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                        Neil Sims
+                                        <?= $_SESSION["TODO"][0]->usr_nombre.' '.$_SESSION["TODO"][0]->usr_apellido?>
                                     </p>
                                     <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                        neil.sims@flowbite.com
+                                        <?= $_SESSION["TODO"][0]->usr_email?>
                                     </p>
                                 </div>
                                 <ul class="py-1" role="none">
@@ -333,7 +357,7 @@ $esta_logueado = 0;
                                         <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Earnings</a>
                                     </li>
                                     <li>
-                                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Sign out</a>
+                                        <a href="/auth/logout/" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">Cerrar Sesion</a>
                                     </li>
                                 </ul>
                             </div>

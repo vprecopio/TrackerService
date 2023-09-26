@@ -30,6 +30,7 @@ class EquipmentController extends EquipmentModel
             }
         }
 
+        unset($_POST,$id_brand);
         return view('equipment');
     }
 
@@ -45,6 +46,7 @@ class EquipmentController extends EquipmentModel
             }
         }
 
+        unset($_POST,$id_brand,$id_category);
         return view('equipment');
     }
 
@@ -105,5 +107,13 @@ class EquipmentController extends EquipmentModel
             unset($_POST,$id_equip,$id_model,$id_brand,$id_category);
             return view('equipment');
         }
+    }
+
+    
+    public function delete()
+    {
+        $this->id_modelos_equipos = $_GET['id_equipo'];
+        $this->DeleteEquiptment();
+        return view('equipment');
     }
 }
