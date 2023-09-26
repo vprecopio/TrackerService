@@ -128,7 +128,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
     {
         try {
             $sql = "UPDATE `estados_tickets` 
-            SET `estado_ticket descripcion` = :nuevo_estado_ticket_descripcion
+            SET `estado_ticket_descripcion` = :nuevo_estado_ticket_descripcion
             WHERE `estados_tickets`.`id_estado_ticket` = :id_estado_ticket ";
 
            $stm = $this->pdo->prepare($sql);
@@ -159,7 +159,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
         try {
             $sql = "DELETE FROM estados_tickets WHERE `estados_tickets`.`id_estado_ticket` = :id_estado_ticket";
             $stm = $this->pdo->prepare($sql);
-            $stm->bindParam(':id_estado_ticket', $this->id_valor, \PDO::PARAM_INT);
+            $stm->bindParam(':id_estado_ticket', $this->id_estado_ticket, \PDO::PARAM_INT);
             $stm->execute();
             return true;
         } catch (\Exception $e) {
@@ -170,7 +170,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
     {
         try {
             $stm = $this->pdo->prepare("SELECT * FROM estados_tickets WHERE `estados_tickets`.`id_estado_ticket` = :id_estado_ticket");
-            $stm->bindParam(':id_estado_ticket', $this->id_valor, \PDO::PARAM_INT);
+            $stm->bindParam(':id_estado_ticket', $this->id_estado_ticket, \PDO::PARAM_INT);
             $stm->execute();
             return $stm->fetchAll(\PDO::FETCH_OBJ);
         } catch (\Exception $e) {
@@ -214,7 +214,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
 
     public function InsertPrioridad()
     {
-        $sql = "INSERT INTO `prioridad` (`prioridad_descripcion`) VALUES (:priorida_descripcion)"; 
+        $sql = "INSERT INTO `prioridades` (`prioridad_descripcion`) VALUES (:priorida_descripcion)"; 
         $params = [
             ':priorida_descripcion' => $this->prioridad_descripcion,
         ];
@@ -228,7 +228,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
         try {
             $sql = "DELETE FROM prioridades WHERE `prioridades`.`id_prioridad` = :id_prioridad";
             $stm = $this->pdo->prepare($sql);
-            $stm->bindParam(':id_prioridad', $this->id_valor, \PDO::PARAM_INT);
+            $stm->bindParam(':id_prioridad', $this->id_prioridad, \PDO::PARAM_INT);
             $stm->execute();
             return true;
         } catch (\Exception $e) {
@@ -240,7 +240,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
     {
         try {
             $stm = $this->pdo->prepare("SELECT * FROM prioridades WHERE `prioridades`.`id_prioridad` = :id_prioridad");
-            $stm->bindParam(':id_prioridad', $this->id_valor, \PDO::PARAM_INT);
+            $stm->bindParam(':id_prioridad', $this->id_prioridad, \PDO::PARAM_INT);
             $stm->execute();
             return $stm->fetchAll(\PDO::FETCH_OBJ);
         } catch (\Exception $e) {

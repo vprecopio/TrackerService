@@ -91,10 +91,10 @@ class TicketController extends TicketModel
     public function insertarestadoticket()
     {
         // simulacion valores que te vienen por el formulario
-        $estad_ticket_descripcion = '';
+        $estad_ticket_descripcion = 'dsadsada';
         // Fin simulacion
 
-        if(!empty($estado_ticket_descripcion))
+        if(!empty($estad_ticket_descripcion))
         {
             // cargar los atributos en TicketModel
             $this->estado_ticket_descripcion = $estad_ticket_descripcion;   
@@ -108,8 +108,8 @@ class TicketController extends TicketModel
 
     public function editarestadoticket()
     {
-        $id_estado_ticket = '';
-        $estad_ticket_descripcion = '';
+        $id_estado_ticket = '5';
+        $estad_ticket_descripcion = 'ccccc';
 
         if(!empty($id_estado_ticket) && !empty($estad_ticket_descripcion))
         {
@@ -130,10 +130,10 @@ class TicketController extends TicketModel
         exit;
     }
 
-    public function eliminartvalorticket()
+    public function eliminarvalorticket()
     {
         
-        $id_estado_ticket = '1';
+        $id_estado_ticket = '6';
         if(!empty($id_estado_ticket))
         {
             $this->id_estado_ticket = $id_estado_ticket; 
@@ -154,10 +154,10 @@ class TicketController extends TicketModel
     public function insertarprioridadticket()
     {
         // simulacion valores que te vienen por el formulario
-        $priorida_descripcion = '';
+        $priorida_descripcion = '4';
         // Fin simulacion
 
-        if(!empty($prioridad_descripcion))
+        if(!empty($priorida_descripcion))
         {
             // cargar los atributos en TicketModel
             $this->prioridad_descripcion= $priorida_descripcion;   
@@ -171,8 +171,8 @@ class TicketController extends TicketModel
 
     public function editarprioridadticket()
     {
-        $id_prioridad = '';
-        $priorida_descripcion = '';
+        $id_prioridad = '4';
+        $priorida_descripcion = 'fijate';
 
         if(!empty($id_prioridad) && !empty($priorida_descripcion))
         {
@@ -193,10 +193,10 @@ class TicketController extends TicketModel
         exit;
     }
 
-    public function eliminartprioridadticket()
+    public function eliminarprioridadticket()
     {
         
-        $id_prioridad = '1';
+        $id_prioridad = '4';
         if(!empty($id_prioridad))
         {
             $this->id_prioridad = $id_prioridad; 
