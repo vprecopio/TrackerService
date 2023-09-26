@@ -61,13 +61,13 @@ $client_controller = new ClientController;
 
 
                         <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                            <a type="button" href="/client/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center hover:text-white text-dark rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            <a type="button" href="/client/" type="button" data-refresh="" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                 <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
                                 </svg>
                                 Refrescar
                             </a>
-                            <button id="createProductButton" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-dark rounded-lg bg-primary-700 hover:text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="button" data-drawer-target="crear-cliente" data-drawer-show="crear-cliente" aria-controls="crear-cliente" data-drawer-placement="right">
+                            <button id="createProductButton" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" data-drawer-target="crear-cliente" data-drawer-show="crear-cliente" aria-controls="crear-cliente" data-drawer-placement="right">
                                 <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
                                 </svg>
@@ -86,20 +86,20 @@ $client_controller = new ClientController;
                                 <!--Titulos-->
                                 <thead class="bg-gray-100 dark:bg-gray-700">
                                     <tr>
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Nombre
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Email
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Teléfono
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Dirección
                                         </th>
 
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Actions
                                         </th>
                                     </tr>
@@ -111,25 +111,25 @@ $client_controller = new ClientController;
                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                             <!--datos-->
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
                                                 <data value="name"><?= $obj_client->cliente_nombre ?></data>
                                             </td>
 
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
                                                 <data value="email"><?= $obj_client->cliente_email ?></data>
                                             </td>
 
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
                                                 <data value="telefono"><?= $obj_client->cliente_telefono ?></data>
                                             </td>
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
                                                 <data value="direccion"><?= $obj_client->cliente_direccion ?></data>
                                             </td>
 
                                             <!--botones editar y eliminar-->
-                                            <td class="p-4 space-x-2 whitespace-nowrap">
+                                            <td class="p-4 space-x-2 whitespace-nowrap w-1/5">
 
-                                                <button type="button" id="updateclienteButton" onclick="llenarFormularioCliente('<?php echo $obj_client->id_cliente; ?>','<?= $obj_client->cliente_nombre ?>', '<?= $obj_client->cliente_email ?>', '<?= $obj_client->cliente_telefono ?>', '<?= $obj_client->cliente_direccion ?>');" data-drawer-target="drawer-update-cliente-default" data-drawer-show="drawer-update-cliente-default" aria-controls="drawer-update-cliente-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                <button type="button" id="updateclienteButton" onclick="llenarFormularioCliente('<?php echo $obj_client->id_cliente; ?>','<?= $obj_client->cliente_nombre ?>', '<?= $obj_client->cliente_email ?>', '<?= $obj_client->cliente_telefono ?>', '<?= $obj_client->cliente_direccion ?>');" data-drawer-target="drawer-update-cliente-default" data-drawer-show="drawer-update-cliente-default" aria-controls="drawer-update-cliente-default" data-drawer-placement="right" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <svg>
                                                             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
@@ -139,7 +139,9 @@ $client_controller = new ClientController;
                                                     Editar cliente
                                                 </button>
 
+
                                                 <button type="button" id="deleteClientButton" onclick="handleDeleteButtonClick('<?php echo $obj_client->id_cliente?>')" data-drawer-target="drawer-delete-client-default" data-drawer-show="drawer-delete-client-default" aria-controls="drawer-delete-client-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>
                                                     </svg>
