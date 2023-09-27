@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Mailer;
 use App\Models\UserModel;
 
 class AuthController extends UserModel
@@ -30,7 +31,11 @@ class AuthController extends UserModel
             {
                 // si esta lleno
                 $_SESSION['TODO'] = $respuesta;
-                return view('home');
+
+                $php_mailer = new Mailer;
+                $php_mailer->SendLoginMail($_SESSION['TODO'][0]->usr_email, $_SESSION['TODO'][0]->usr_nombre, true);
+
+                redirect('/');
             }
             
         }
