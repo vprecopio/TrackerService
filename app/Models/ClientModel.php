@@ -105,4 +105,18 @@ class ClientModel
             die($e->getMessage());
         }
     }
+
+    public function CountClient()
+    {
+        try {
+            $sql = 'SELECT COUNT(cliente_email) AS cantclient FROM `clientes`';
+            $stm = $this->pdo->prepare($sql);
+
+            $stm->execute();
+
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
 }
