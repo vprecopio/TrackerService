@@ -24,59 +24,56 @@ class EquipmentController extends EquipmentModel
             $this->marca_descripcion = $_POST['nueva-marca'];
 
             $id_brand = $this->OneBrand();
-            if(empty($id_brand))
-            {
+            if (empty($id_brand)) {
                 $this->CreateEquipmentBrand();
             }
         }
 
-        unset($_POST,$id_brand);
+        unset($_POST, $id_brand);
         return view('equipment');
     }
 
     public function createcategory()
     {
-        if (isset($_POST['nueva-categoria'])) 
-        {
+        if (isset($_POST['nueva-categoria'])) {
             $this->categoria_equipo_descripcion = $_POST['nueva-categoria'];
             $id_category = $this->OneCategory();
-            if(empty($id_category))
-            {
+            if (empty($id_category)) {
                 $this->CreateEquipmentCategories();
             }
         }
 
-        unset($_POST,$id_brand,$id_category);
+        unset($_POST, $id_brand, $id_category);
         return view('equipment');
     }
 
     public function create()
     {
-        $this->modelo_equipo_descripcion = $_POST['modelo'];
-        $this->marca_descripcion = $_POST['marca'];
-        $this->categoria_equipo_descripcion = $_POST['categoria'];
+        if (isset($_POST['modelo'], $_POST['marca'], $_POST['categoria'])) {
 
-        $id_brand = $this->OneBrand();
-        $id_category = $this->OneCategory();
 
-        if(empty($id_brand) && empty($id_category))
-        {
-            echo 'agrega una marca y categoria';
+            $this->modelo_equipo_descripcion = $_POST['modelo'];
+            $this->marca_descripcion = $_POST['marca'];
+            $this->categoria_equipo_descripcion = $_POST['categoria'];
+
+            $id_brand = $this->OneBrand();
+            $id_category = $this->OneCategory();
+
+            if (empty($id_brand) && empty($id_category)) {
+                echo 'agrega una marca y categoria';
+            } else {
+                $this->id_marca = $id_brand[0]->id_marcas;
+                $this->id_categoria_equipo = $id_category[0]->id_categoria_equipo;
+
+                $this->CreateEquipmentModel();
+
+                $id_model = $this->OneModel();
+                $this->id_modelo = $id_model[0]->id_modelo;
+
+                $this->CreateEquipments();
+            }
         }
-        else
-        {
-            $this->id_marca = $id_brand[0]->id_marcas;
-            $this->id_categoria_equipo = $id_category[0]->id_categoria_equipo;
-
-            $this->CreateEquipmentModel();
-
-            $id_model = $this->OneModel();
-            $this->id_modelo = $id_model[0]->id_modelo;
-
-            $this->CreateEquipments();
-        }
-
-        unset($_POST,$id_brand,$id_category,$id_model);
+        unset($_POST, $id_brand, $id_category, $id_model);
         return view('equipment');
     }
 
@@ -94,22 +91,20 @@ class EquipmentController extends EquipmentModel
             $id_brand = $this->OneBrand();
             $id_category = $this->OneCategory();
 
-            if (!empty($id_equip) && !empty($id_brand) && !empty($id_category))
-            {
+            if (!empty($id_equip) && !empty($id_brand) && !empty($id_category)) {
                 $this->id_modelos_equipos = $id_equip[0]->id_modelos_equipos;
                 $this->id_marca = $id_brand[0]->id_marcas;
                 $this->id_categoria_equipo = $id_category[0]->id_categoria_equipo;
                 $this->id_modelo = $id_equip[0]->id_modelo;
                 $this->EditEquipmentModel();
                 $this->EditEquipments();
-            } 
-
-            unset($_POST,$id_equip,$id_model,$id_brand,$id_category);
-            return view('equipment');
+            }
         }
+        unset($_POST, $id_equip, $id_model, $id_brand, $id_category);
+        return view('equipment');
     }
 
-    
+
     public function delete()
     {
         $this->id_modelos_equipos = $_GET['id_equipo'];

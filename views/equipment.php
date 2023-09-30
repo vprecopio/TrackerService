@@ -258,16 +258,16 @@ $categoria_form = new AutomaticForm(
                     <div class="space-y-4">
                         <div>
                             <label for="equipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">equipo</label>
-                            <input type="text" name="equipo" id="equipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="equipo" placeholder="equipo" required="">
+                            <input type="text" name="equipo" id="editar-equipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="equipo" placeholder="equipo" required="">
                         </div>
                         <div>
                             <label for="modelo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">modelo</label>
-                            <input type="text" name="modelo" id="modelo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                            <input type="text" name="modelo" id="editar-modelo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
                         </div>
 
                         <div class="mb-4">
                             <label for="marca" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una marca</label>
-                            <select id="marca" name="marca" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <select id="editar-marca" name="marca" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
                                 <?php foreach ($equipment_controller->ListEquipmentBrand() as $obj_brand) : ?>
 
@@ -281,7 +281,7 @@ $categoria_form = new AutomaticForm(
 
                         <div class="mb-4">
                             <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una categioría</label>
-                            <select id="categoria" name="categoria" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <select id="editar-categoria" name="categoria" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
                                 <?php foreach ($equipment_controller->ListEquipmentCategories() as $obj_categories) : ?>
 
@@ -346,10 +346,10 @@ $categoria_form = new AutomaticForm(
     // Función para llenar los campos del formulario con los datos del formulario
     function llenarFormulario(equipo, modelo, marca, categoria) {
         // Obtener referencias a los campos del formulario
-        var equipoInput = document.getElementById("equipo");
-        var modeloInput = document.getElementById("modelo");
-        var marcaInput = document.getElementById("marca");
-        var categoriaInput = document.getElementById("categoria");
+        var equipoInput = document.getElementById("editar-equipo");
+        var modeloInput = document.getElementById("editar-modelo");
+        var marcaInput = document.getElementById("editar-marca");
+        var categoriaInput = document.getElementById("editar-categoria");
 
         // Llenar los campos con los datos del formulario
         equipoInput.value = equipo;
