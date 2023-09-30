@@ -7,6 +7,9 @@ $equipment_controller = new EquipmentController;
 $nombre_pagina = 'Equipos';
 $nombre_formulario = 'equipo';
 
+
+$equipo_form = new AutomaticForm('equiposexperimental',''); 
+
 ?>
 
 <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
@@ -61,6 +64,14 @@ $nombre_formulario = 'equipo';
                             </form>
                         </div>
                         <!--Fin buscar-->
+
+                        <!--Form experimental -->
+
+                        <? $equipo_form->GenerateButton()?>
+                        <? $equipo_form->GenerateForm()?>
+
+
+                        <!--FIN Experimental -->
 
 
                         <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
