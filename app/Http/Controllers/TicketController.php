@@ -8,7 +8,7 @@ class TicketController extends TicketModel
 {
     public function index()
     {
-        return view('ticket');
+        return view('tickets');
     }
 
     public function listvalorticket()
