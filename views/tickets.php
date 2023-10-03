@@ -22,6 +22,23 @@ $form_estadticket = new AutomaticForm(
     ]
 );
 
+$form_prioridades = new AutomaticForm(
+    'prioridad_descripcion',
+    'Nueva descripcion',
+    '/ticket/insertarprioridadticket/',
+    'POST',
+    [
+        'prioridad_descripcion' => [
+            'title_label' => 'Nueva descripcion',
+            'id_name' => 'nueva-descripcion',
+            'type' => 'text',
+            'height' => 6,
+            'placeholder' => 'Descripcion',
+            'required' => true,
+        ]
+    ]
+);
+
 
 ?>
 
@@ -78,7 +95,8 @@ $form_estadticket = new AutomaticForm(
                             <? $form_estadticket->GenerateButton() ?>
                             <? $form_estadticket->GenerateForm() ?>
                             <!--FIN Agregar Equipo -->
-
+                            <? $form_prioridades->GenerateButton() ?>
+                            <? $form_prioridades->GenerateForm() ?>
                             <!--Form agregar equipo -->
                             
                             <!--FIN Agregar Equipo -->
