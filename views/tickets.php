@@ -5,6 +5,22 @@ use App\Http\Controllers\TicketController;
 $ticket_controller = new TicketController;
 
 $nombre_pagina = 'Ticket';
+$form_estadticket = new AutomaticForm(
+    'ticket_estado',
+    'Nuevo estado',
+    '/ticket/insertarestadoticket/',
+    'POST',
+    [
+        'ticket_estado' => [
+            'title_label' => 'Nuevo estado',
+            'id_name' => 'nuevo-estado',
+            'type' => 'text',
+            'height' => 6,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ]
+    ]
+);
 
 
 ?>
@@ -59,7 +75,8 @@ $nombre_pagina = 'Ticket';
                                 Refrescar
                             </a>
                             <!--Form agregar equipo -->
-                            
+                            <? $form_estadticket->GenerateButton() ?>
+                            <? $form_estadticket->GenerateForm() ?>
                             <!--FIN Agregar Equipo -->
 
                             <!--Form agregar equipo -->
