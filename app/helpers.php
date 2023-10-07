@@ -46,10 +46,10 @@ class AutomaticForm extends FieldForm implements ButtonAndForm
     private $id, $id_form, $data_modal_toggle, $name_button;
 
     private $name_form, $title_form;
-    private $action, $method;
+    private $action, $method, $class;
     private $labels_form = [];
 
-    public function __construct(string $name_form, string $title_form, string $action,string $method ,array $labels_form)
+    public function __construct(string $name_form, string $title_form, string $action,string $method , string $class, array $labels_form)
     {
         $this->name_form = strtolower($name_form);
         $this->title_form = !empty($title_form) ? $title_form : $this->setTitleForm();
@@ -60,6 +60,7 @@ class AutomaticForm extends FieldForm implements ButtonAndForm
         $this->setIdForm();
         $this->setModalData();
         $this->setNameButton();
+        $this->class=$class ? '' : ''; 
     }
 
     private function setTitleForm()
