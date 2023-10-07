@@ -12,6 +12,7 @@ $equipo_form = new AutomaticForm(
     '',
     '/equipment/create/',
     'POST',
+    '',
     [
         'equipos-modelo' => [
             'title_label' => 'Nombre del equipo',
@@ -47,6 +48,7 @@ $marca_form = new AutomaticForm(
     '',
     '/equipment/createbrand/',
     'POST',
+    '',
     [
         'equipos-marca' => [
             'title_label' => 'Nueva marca',
@@ -64,6 +66,7 @@ $categoria_form = new AutomaticForm(
     'Nueva categoria',
     '/equipment/createcategory/',
     'POST',
+    'bg-red-700',
     [
         'equipos-marca' => [
             'title_label' => 'Nueva categoria',
