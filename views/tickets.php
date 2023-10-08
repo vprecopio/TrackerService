@@ -3,9 +3,10 @@
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\TicketController;
 
+$nombre_pagina = 'Ticket';
+//---------------------------seccion ticket
 $ticket_controller = new TicketController;
 
-$nombre_pagina = 'Ticket';
 $form_estadticket = new AutomaticForm(
     'ticket_estado',
     'Nuevo estado',
@@ -41,6 +42,8 @@ $form_prioridades = new AutomaticForm(
         ]
     ]
 );
+//---------------------------seccion tickets
+
 
 //---------------------------seccion equipos
 $equipment_controller = new EquipmentController;
