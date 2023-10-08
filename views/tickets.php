@@ -42,7 +42,7 @@ $form_prioridades = new AutomaticForm(
         ]
     ]
 );
-//---------------------------seccion tickets
+//---------------------------fin tickets
 
 
 //---------------------------seccion equipos
