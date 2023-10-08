@@ -6,30 +6,30 @@ use App\Models\UserModel;
 
 class AuthController extends UserModel
 {
+
     public function index()
     {
-        //en este caso, esto tendria que comprobar si estas logeado o no por ahora tiene una redireccion al login
-        redirect('/auth/login');
+        // Redireccionar al inicio de sesión si el usuario no está autenticado
+        if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+            redirect('/auth/login');
+        }
     }
 
     public function login()
     {
-
-        if(isset($_POST['password']) && isset($_POST['email']))
-        {
+        if (isset($_POST['password']) && isset($_POST['email'])) {
             $this->usr_contrasena = sha1($_POST['password']);
             $this->usr_email = $_POST['email'];
-            
+
             $respuesta = $this->ComprobarEmailYPassword();
 
-            if(empty($respuesta))
-            {
-              //si esta vacio 
+            if (empty($respuesta)) {
+                // si está vacío
+                $_SESSION['logged_in'] = false;
                 return view('authlogin');
-            }
-            else
-            {
-                // si esta lleno
+            } else {
+                // si está lleno
+                $_SESSION['logged_in'] = true; // Marcar al usuario como autenticado
                 $_SESSION['TODO'] = $respuesta;
 
                 $php_mailer = new Mailer;
@@ -37,7 +37,6 @@ class AuthController extends UserModel
 
                 redirect('/');
             }
-            
         }
         return view('authlogin');
     }
