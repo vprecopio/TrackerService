@@ -22,6 +22,61 @@ class SparepartsModel
         $this->Connect();
     }
 
+    public function OneSpare() // Traigo el id del repuesto
+    {
+        try {
+            $sql = "SELECT * FROM `repuestos` WHERE `id_repuesto` = :id_repuesto LIMIT 1";
+
+            $params = [
+                ':id_repuesto' => $this->id_repuesto 
+            ];
+
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute($params);
+
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function OneSupplier() // traigo el id de proveedor
+    {
+        try {
+            $sql = "SELECT * FROM `proveedores` WHERE `id_proveedor` = :id_proveedor LIMIT 1";
+
+            $params = [
+                ':id_proveedor' => $this->id_proveedor 
+            ];
+
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute($params);
+
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function OneCategory() //traigo el id de marca categoria
+
+    {
+        try {
+            $sql = "SELECT * FROM `categorias_repuestos` WHERE `id_categoria_repuesto` = :id_categoria_repuesto LIMIT 1";
+
+            $params = [
+                ':id_categoria_repuesto' => $this->id_categoria_repuesto
+            ];
+
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute($params);
+
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function ListSpareparts()
     {
         try {
