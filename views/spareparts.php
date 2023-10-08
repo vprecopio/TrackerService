@@ -76,7 +76,10 @@ $categoria_form = new AutomaticForm(
                                 Refrescar
                             </a>
 
-                            <?php $categoria_form->CreateButton;?>
+                            <!--Form agregar categoria -->
+                            <?$categoria_form->GenerateButton() ?>
+                            <?$categoria_form->GenerateForm() ?>
+                            <!--FIN Agregar Categoria -->
 
                             
                         </div>
@@ -140,8 +143,9 @@ $categoria_form = new AutomaticForm(
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <data value="descripcion><?= $obj_spare->descripcion ?></data>
-                                            </td>
+                                                <data value="descripcion"><?= $obj_spare->descripcion ?></data>
+                                            </td>  
+                                            
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="proveedor"><?= $obj_spare->prov_empresa?></data>
                                             </td>
