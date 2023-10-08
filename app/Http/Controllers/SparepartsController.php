@@ -23,7 +23,7 @@ class SparepartsController extends SparepartsModel
             $id_category = $this->OneCategory();
             
             if (empty($id_category)) {
-                $this->CreateEquipmentCategories();
+                $this->createsparecateg();
             }
         }
         
