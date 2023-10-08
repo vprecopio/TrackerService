@@ -28,5 +28,28 @@ class SparepartsController extends SparepartsModel
         }
         
         redirect('/spareparts/');
+
     }
+
+
+    public function createspareparts()
+    {
+        if (isset($_POST['nombre-repuesto'])) {
+       
+     $this->repuesto_nombre=$_POST['nombre-repuesto'];
+     $this->repuesto_descripcion=$_POST['descripcion-repuesto'];
+     $this->prov_empresa=$_POST['prov_empresa-repuesto'];
+     $this->categoria_repuesto_descripcion=$_POST['descripcion_categoria-repuesto'];
+     $this->respuesto_stock=$_POST['stock-repuesto'];
+     $this->repuesto_costo=$_POST['costo-repuesto'];
+     $this->repuesto_gan=$_POST['ganancia-repuesto'];
+     $this->repuesto_estado=$_POST['estado-repuesto'];
+        
+
+        }
+    }
+    
+
 }
+
+
