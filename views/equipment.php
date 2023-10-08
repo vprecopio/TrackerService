@@ -2,10 +2,83 @@
 
 use App\Http\Controllers\EquipmentController;
 
-$equipment_controller = new EquipmentController;
-
 $nombre_pagina = 'Equipos';
 $nombre_formulario = 'equipo';
+
+$equipment_controller = new EquipmentController;
+
+$equipo_form = new AutomaticForm(
+    'equipo',
+    '',
+    '/equipment/create/',
+    'POST',
+    '',
+    [
+        'equipos-modelo' => [
+            'title_label' => 'Nombre del equipo',
+            'id_name' => 'modelo',
+            'type' => 'text',
+            'height' => 6,
+            'placeholder' => 'samsung #4321',
+            'required' => true,
+        ],
+        'equipos-marca' => [
+            'title_label' => 'Selecciona una marca',
+            'id_name' => 'marca',
+            'type' => 'select',
+            'height' => 3,
+            'required' => true,
+            'options' => json_encode($equipment_controller->ListEquipmentBrand()),
+            'options_table' => 'marca_descripcion',
+        ],
+        'equipos-categoria' => [
+            'title_label' => 'Selecciona una categoria',
+            'id_name' => 'categoria',
+            'type' => 'select',
+            'height' => 3,
+            'required' => true,
+            'options' => json_encode($equipment_controller->ListEquipmentCategories()),
+            'options_table' => 'categoria_equipo_descripcion',
+        ],
+    ]
+);
+
+$marca_form = new AutomaticForm(
+    'marca',
+    '',
+    '/equipment/createbrand/',
+    'POST',
+    '',
+    [
+        'equipos-marca' => [
+            'title_label' => 'Nueva marca',
+            'id_name' => 'nueva-marca',
+            'type' => 'text',
+            'height' => 6,
+            'placeholder' => 'samsung',
+            'required' => true,
+        ]
+    ]
+);
+
+$categoria_form = new AutomaticForm(
+    'categoria',
+    'Nueva categoria',
+    '/equipment/createcategory/',
+    'POST',
+    'bg-red-700',
+    [
+        'equipos-marca' => [
+            'title_label' => 'Nueva categoria',
+            'id_name' => 'nueva-categoria',
+            'type' => 'text',
+            'height' => 6,
+            'placeholder' => 'Telefonos',
+            'required' => true,
+        ]
+    ]
+);
+
 
 ?>
 
@@ -62,35 +135,28 @@ $nombre_formulario = 'equipo';
                         </div>
                         <!--Fin buscar-->
 
-
                         <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                            <a type="button" href="/equipment/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center hover:text-white text-dark rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            <a type="button" href="/equipment/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center hover:text-white text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
                                 </svg>
                                 Refrescar
                             </a>
+                            <!--Form agregar equipo -->
+                            <? $marca_form->GenerateButton() ?>
+                            <? $marca_form->GenerateForm() ?>
+                            <!--FIN Agregar Equipo -->
 
-                            <button id="createBrandButton" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-dark rounded-lg bg-primary-700 hover:text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="button" data-drawer-target="crear-brand" data-drawer-show="crear-brand" aria-controls="crear-brand" data-drawer-placement="right">
-                                <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                </svg>
-                                Agregar Marca
-                            </button>
+                            <!--Form agregar equipo -->
+                            <? $categoria_form->GenerateButton() ?>
+                            <? $categoria_form->GenerateForm() ?>
+                            <!--FIN Agregar Equipo -->
 
-                            <button id="createCategoryButton" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-dark rounded-lg bg-primary-700 hover:text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="button" data-drawer-target="crear-category" data-drawer-show="crear-category" aria-controls="crear-category" data-drawer-placement="right">
-                                <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                </svg>
-                                Agregar categoria
-                            </button>
+                            <!--Form agregar equipo -->
+                            <? $equipo_form->GenerateButton() ?>
+                            <? $equipo_form->GenerateForm() ?>
+                            <!--FIN Agregar Equipo -->
 
-                            <button id="createProductButton" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-dark rounded-lg bg-primary-700 hover:text-white hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800" type="button" data-drawer-target="crear-<?= $nombre_formulario ?>" data-drawer-show="crear-<?= $nombre_formulario ?>" aria-controls="crear-<?= $nombre_formulario ?>" data-drawer-placement="right">
-                                <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
-                                </svg>
-                                Agregar <?= $nombre_formulario ?>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -195,16 +261,16 @@ $nombre_formulario = 'equipo';
                     <div class="space-y-4">
                         <div>
                             <label for="equipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">equipo</label>
-                            <input type="text" name="equipo" id="equipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="equipo" placeholder="equipo" required="">
+                            <input type="text" name="equipo" id="editar-equipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="equipo" placeholder="equipo" required="">
                         </div>
                         <div>
                             <label for="modelo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">modelo</label>
-                            <input type="text" name="modelo" id="modelo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                            <input type="text" name="modelo" id="editar-modelo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
                         </div>
 
                         <div class="mb-4">
                             <label for="marca" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una marca</label>
-                            <select id="marca" name="marca" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <select id="editar-marca" name="marca" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
                                 <?php foreach ($equipment_controller->ListEquipmentBrand() as $obj_brand) : ?>
 
@@ -218,7 +284,7 @@ $nombre_formulario = 'equipo';
 
                         <div class="mb-4">
                             <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una categioría</label>
-                            <select id="categoria" name="categoria" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <select id="editar-categoria" name="categoria" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
                                 <?php foreach ($equipment_controller->ListEquipmentCategories() as $obj_categories) : ?>
 
@@ -243,7 +309,6 @@ $nombre_formulario = 'equipo';
             </div>
             <!-- Fin Edit equipo Drawer -->
 
-
             <!-- Delete euipo Drawer -->
             <div id="drawer-delete-equipment-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-x-full" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
                 <h5 id="drawer-label" class="inline-flex items-center text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
@@ -267,141 +332,6 @@ $nombre_formulario = 'equipo';
             </div>
             <!-- Formulario Eliminar Equipo -->
 
-
-            <!-- Formulario Crear Equipo -->
-            <div id="crear-<?= $nombre_formulario ?>" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
-                <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
-                    Nuevo <?= $nombre_formulario ?>
-                </h5>
-                <button type="button" data-drawer-dismiss="crear-<?= $nombre_formulario ?>" aria-controls="crear-<?= $nombre_formulario ?>" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Close menu</span>
-                </button>
-                <form action="/equipment/create" method="POST">
-                    <div class="space-y-4">
-
-                        <div>
-                            <label for="modelo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre Modelo</label>
-                            <input type="text" name="modelo" id="modelo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" required="">
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="marca" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una marca</label>
-                            <select id="marca" name="marca" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
-                                <?php foreach ($equipment_controller->ListEquipmentBrand() as $obj_brand) : ?>
-
-                                    <option><?= $obj_brand->marca_descripcion ?></option>
-
-                                <?php endforeach; ?>
-                            </select>
-
-                        </div>
-
-                        <div class="mb-4">
-                            <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una categioría</label>
-                            <select id="categoria" name="categoria" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
-                                <?php foreach ($equipment_controller->ListEquipmentCategories() as $obj_categories) : ?>
-
-                                    <option><?= $obj_categories->categoria_equipo_descripcion ?></option>
-
-                                <?php endforeach; ?>
-                            </select>
-
-                        </div>
-
-                        <div class="bottom-0 left-0 flex justify-center w-full pb-4 space-x-4 md:px-4 md:absolute">
-                            <button type="submit" class="text-white w-full justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                Agregar <?= $nombre_formulario ?>
-                            </button>
-                            <button type="button" data-drawer-dismiss="crear-<?= $nombre_formulario ?>" aria-controls="crear-<?= $nombre_formulario ?>" class="inline-flex w-full justify-center text-gray-500 items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                                <svg aria-hidden="true" class="w-5 h-5 -ml-1 sm:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                                Cancelar
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!--Fin Formulario Crear Equipo -->
-
-
-            <!-- Formulario Crear Marca -->
-            <div id="crear-brand" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
-                <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
-                    Nueva marca
-                </h5>
-                <button type="button" data-drawer-dismiss="crear-brand" aria-controls="crear-brand" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Close menu</span>
-                </button>
-                <form action="/equipment/createbrand/" method="POST">
-                    <div class="space-y-4">
-
-                        <div>
-                            <label for="nueva-marca" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre de la nueva marca</label>
-                            <input type="text" name="nueva-marca" id="nueva-marca" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" required="">
-                        </div>
-
-                        <div class="bottom-0 left-0 flex justify-center w-full pb-4 space-x-4 md:px-4 md:absolute">
-                            <button type="submit" class="text-white w-full justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                Agregar marca
-                            </button>
-                            <button type="button" data-drawer-dismiss="crear-category" aria-controls="crear-category" class="inline-flex w-full justify-center text-gray-500 items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                                <svg aria-hidden="true" class="w-5 h-5 -ml-1 sm:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                                Cancelar
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!--Fin Formulario Crear Marca -->
-
-
-            <!-- Formulario Crear categoria -->
-            <div id="crear-category" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform translate-x-full bg-white dark:bg-gray-800" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
-                <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
-                    Nuevo category
-                </h5>
-                <button type="button" data-drawer-dismiss="crear-category" aria-controls="crear-category" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
-                    </svg>
-                    <span class="sr-only">Close menu</span>
-                </button>
-                <form action="/equipment/createcategory/" method="POST">
-                    <div class="space-y-4">
-
-                        <div>
-                            <label for="nueva-categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre de la nueva categoría</label>
-                            <input type="text" name="nueva-categoria" id="nueva-categoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="" required="">
-                        </div>
-
-                        <div class="bottom-0 left-0 flex justify-center w-full pb-4 space-x-4 md:px-4 md:absolute">
-                            <button type="submit" class="text-white w-full justify-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                Agregar categoria
-                            </button>
-                            <button type="button" data-drawer-dismiss="crear-category" aria-controls="crear-category" class="inline-flex w-full justify-center text-gray-500 items-center bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-primary-300 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">
-                                <svg aria-hidden="true" class="w-5 h-5 -ml-1 sm:mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                                </svg>
-                                Cancelar
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!--Fin Formulario Crear categoria -->
-
-
         </entities-crud>
 
     </div>
@@ -419,10 +349,10 @@ $nombre_formulario = 'equipo';
     // Función para llenar los campos del formulario con los datos del formulario
     function llenarFormulario(equipo, modelo, marca, categoria) {
         // Obtener referencias a los campos del formulario
-        var equipoInput = document.getElementById("equipo");
-        var modeloInput = document.getElementById("modelo");
-        var marcaInput = document.getElementById("marca");
-        var categoriaInput = document.getElementById("categoria");
+        var equipoInput = document.getElementById("editar-equipo");
+        var modeloInput = document.getElementById("editar-modelo");
+        var marcaInput = document.getElementById("editar-marca");
+        var categoriaInput = document.getElementById("editar-categoria");
 
         // Llenar los campos con los datos del formulario
         equipoInput.value = equipo;

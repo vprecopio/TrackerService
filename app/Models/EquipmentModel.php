@@ -27,7 +27,7 @@ class EquipmentModel
     public function OneEquip()
     {
         try {
-            $sql = "SELECT * FROM `modelos_equipos` WHERE `id_modelos_equipos` = :id_modelos_equipos";
+            $sql = "SELECT * FROM `modelos_equipos` WHERE `id_modelos_equipos` = :id_modelos_equipos LIMIT 1";
 
             $params = [
                 ':id_modelos_equipos' => $this->id_modelos_equipos
@@ -45,7 +45,7 @@ class EquipmentModel
     public function OneModel()
     {
         try {
-            $sql = "SELECT * FROM `equipos_modelo` WHERE `descripcion` = :modelo_descripcion_buscar";
+            $sql = "SELECT * FROM `equipos_modelo` WHERE `descripcion` = :modelo_descripcion_buscar LIMIT 1";
 
             $params = [
                 ':modelo_descripcion_buscar' => $this->modelo_equipo_descripcion
@@ -63,7 +63,7 @@ class EquipmentModel
     public function OneBrand()
     {
         try {
-            $sql = "SELECT * FROM `equipos_marca` WHERE `marca_descripcion` = :marca_descripcion_buscar";
+            $sql = "SELECT * FROM `equipos_marca` WHERE `marca_descripcion` = :marca_descripcion_buscar LIMIT 1";
 
             $params = [
                 ':marca_descripcion_buscar' => $this->marca_descripcion
@@ -82,7 +82,7 @@ class EquipmentModel
     {
         try {
 
-            $sql = "SELECT * FROM `categorias_equipos` WHERE `categoria_equipo_descripcion` = :categoria_equipo_descripcion_buscar";
+            $sql = "SELECT * FROM `categorias_equipos` WHERE `categoria_equipo_descripcion` = :categoria_equipo_descripcion_buscar LIMIT 1";
 
             $params = [
                 ':categoria_equipo_descripcion_buscar' => $this->categoria_equipo_descripcion

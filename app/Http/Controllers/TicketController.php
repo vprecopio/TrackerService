@@ -8,7 +8,7 @@ class TicketController extends TicketModel
 {
     public function index()
     {
-        return view('ticket');
+        return view('tickets');
     }
 
     public function listvalorticket()
@@ -88,10 +88,10 @@ class TicketController extends TicketModel
         exit;
     }
 
-    public function insertarestadoticket()
+    public function insertaretadoticket()
     {
         // simulacion valores que te vienen por el formulario
-        $estad_ticket_descripcion = 'dsadsada';
+        $estad_ticket_descripcion = $_POST['nuevo-estado'];
         // Fin simulacion
 
         if(!empty($estad_ticket_descripcion))
@@ -101,7 +101,7 @@ class TicketController extends TicketModel
             // fin
 
             $this->InsertET();
-            exit;
+            redirect('/ticket');
         }
 
     }
@@ -154,7 +154,7 @@ class TicketController extends TicketModel
     public function insertarprioridadticket()
     {
         // simulacion valores que te vienen por el formulario
-        $priorida_descripcion = '4';
+        $priorida_descripcion = $_POST['nueva-descripcion'];
         // Fin simulacion
 
         if(!empty($priorida_descripcion))
@@ -164,7 +164,7 @@ class TicketController extends TicketModel
             // fin
 
             $this->InsertPrioridad();
-            exit;
+            redirect('/ticket');
         }
 
     }
