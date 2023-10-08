@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\TicketController;
 
 $ticket_controller = new TicketController;
@@ -41,7 +42,45 @@ $form_prioridades = new AutomaticForm(
     ]
 );
 
+//---------------------------seccion equipos
+$equipment_controller = new EquipmentController;
 
+$equipo_form = new AutomaticForm(
+    'equipo',
+    '',
+    '/equipment/create/',
+    'POST',
+    'bg-blue-500 animate-spin',
+    [
+        'equipos-modelo' => [
+            'title_label' => 'Nombre del equipo',
+            'id_name' => 'modelo',
+            'type' => 'text',
+            'height' => 6,
+            'placeholder' => 'samsung #4321',
+            'required' => true,
+        ],
+        'equipos-marca' => [
+            'title_label' => 'Selecciona una marca',
+            'id_name' => 'marca',
+            'type' => 'select',
+            'height' => 3,
+            'required' => true,
+            'options' => json_encode($equipment_controller->ListEquipmentBrand()),
+            'options_table' => 'marca_descripcion',
+        ],
+        'equipos-categoria' => [
+            'title_label' => 'Selecciona una categoria',
+            'id_name' => 'categoria',
+            'type' => 'select',
+            'height' => 3,
+            'required' => true,
+            'options' => json_encode($equipment_controller->ListEquipmentCategories()),
+            'options_table' => 'categoria_equipo_descripcion',
+        ],
+    ]
+);
+//---------------------------fin equipos
 ?>
 
 <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
@@ -100,11 +139,8 @@ $form_prioridades = new AutomaticForm(
                             <? $form_prioridades->GenerateButton() ?>
                             <? $form_prioridades->GenerateForm() ?>
                             <!--Form agregar equipo -->
-                            
-                            <!--FIN Agregar Equipo -->
-
-                            <!--Form agregar equipo -->
-                             
+                            <? $equipo_form->GenerateButton() ?>
+                            <? $equipo_form->GenerateForm() ?>
                             <!--FIN Agregar Equipo -->
 
                         </div>
