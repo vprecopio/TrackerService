@@ -10,6 +10,7 @@ $form_estadticket = new AutomaticForm(
     'Nuevo estado',
     '/ticket/insertarestadoticket/',
     'POST',
+    '',
     [
         'ticket_estado' => [
             'title_label' => 'Nuevo estado',
@@ -27,6 +28,7 @@ $form_prioridades = new AutomaticForm(
     'Nueva descripcion',
     '/ticket/insertarprioridadticket/',
     'POST',
+    '',
     [
         'prioridad_descripcion' => [
             'title_label' => 'Nueva descripcion',
