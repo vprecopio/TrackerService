@@ -1,7 +1,9 @@
 <?php 
     $aside_list = [
         "/client/" => "Clientes",
-        "/user/" => "Usuarios"
+        "/user/" => "Usuarios",
+        "/ticket/" => "Tickets",
+        "/equipment/" => "Equipos",
     ];
 
     $aside_items = [

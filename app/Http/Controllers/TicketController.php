@@ -88,7 +88,7 @@ class TicketController extends TicketModel
         exit;
     }
 
-    public function insertarestadoticket()
+    public function insertaretadoticket()
     {
         // simulacion valores que te vienen por el formulario
         $estad_ticket_descripcion = $_POST['nuevo-estado'];

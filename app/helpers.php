@@ -60,7 +60,7 @@ class AutomaticForm extends FieldForm implements ButtonAndForm
         $this->setIdForm();
         $this->setModalData();
         $this->setNameButton();
-        $this->class=$class ? '' : ''; 
+        $this->class = $class == '' ? 'bg-red-600' : $class; 
     }
 
     private function setTitleForm()
