@@ -97,7 +97,7 @@ $categoria_form = new AutomaticForm(
     [
         'categoria-des' => [
             'title_label' => '',
-            'id_name' => 'categoria_descripcion',
+            'id_name' => 'categoria-descripcion',
             'type' => 'text',
             'height' => 6,
             'placeholder' => 'Categoria',

@@ -25,7 +25,7 @@ class SparepartsModel
     public function OneSpare() // Traigo el id del repuesto
     {
         try {
-            $sql = "SELECT * FROM `repuestos` WHERE `id_repuesto` = :id_repuesto LIMIT 1";
+            $sql = "SELECT * FROM `repuestos` WHERE `repuesto_nombre` = :id_repuesto LIMIT 1";
 
             $params = [
                 ':id_repuesto' => $this->id_repuesto 
@@ -43,10 +43,10 @@ class SparepartsModel
     public function OneSupplier() // traigo el id de proveedor
     {
         try {
-            $sql = "SELECT * FROM `proveedores` WHERE `id_proveedor` = :id_proveedor LIMIT 1";
+            $sql = "SELECT * FROM `proveedores` WHERE `prov_empresa` = :prov_empresa_a_buscar LIMIT 1";
 
             $params = [
-                ':id_proveedor' => $this->id_proveedor 
+                ':prov_empresa_a_buscar' => $this->prov_empresa 
             ];
 
             $stm = $this->pdo->prepare($sql);
@@ -62,10 +62,10 @@ class SparepartsModel
 
     {
         try {
-            $sql = "SELECT * FROM `categorias_repuestos` WHERE `id_categoria_repuesto` = :id_categoria_repuesto LIMIT 1";
+            $sql = "SELECT * FROM `categorias_repuestos` WHERE `categoria_repuesto_descripcion` = :categoria_repuesto_descripcion LIMIT 1";
 
             $params = [
-                ':id_categoria_repuesto' => $this->id_categoria_repuesto
+                ':categoria_repuesto_descripcion' => $this->categoria_repuesto_descripcion
             ];
 
             $stm = $this->pdo->prepare($sql);
@@ -96,5 +96,36 @@ class SparepartsModel
         }
     }
 
+    public function CreateSpareModel()
+    {
+        $sql = "INSERT INTO `repuestos` ( `repuesto_estado`, `repuesto_nombre`, `repuesto_descripcion`, `repuesto_id_provedor`, `repuesto_stock`, `repuesto_costo`, `repuesto_gan`, `id_categoria_repuesto`) VALUES (:repuesto_estado,:repuesto_nombre,:repuesto_descripcion,:repuesto_id_provedor,:repuesto_stock,:repuesto_costo,:repuesto_gan,:id_categoria_repuesto)"; 
+        
+        $params = [
+            ':repuesto_estado' => $this->repuesto_estado,
+            ':repuesto_nombre' => $this->repuesto_nombre,
+            ':repuesto_descripcion' => $this->repuesto_descripcion,
+            ':repuesto_id_provedor' => $this->id_proveedor,
+            ':repuesto_stock' => $this->respuesto_stock,
+            ':repuesto_costo' => $this->repuesto_costo,
+            ':repuesto_gan' => $this->repuesto_gan,
+            ':id_categoria_repuesto' => $this->id_categoria_repuesto,
+        ];
     
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);  
+    }
+
+
+    public function CreateSpareCategory()
+    {
+        $sql = "INSERT INTO `categorias_repuestos` (`categoria_repuesto_descripcion`)  VALUES (:categoria_repuesto_descripcion)";
+
+        $params = [
+            ':categoria_repuesto_descripcion' => $this->categoria_repuesto_descripcion,
+        ];
+    
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);  
+    }
+
 }

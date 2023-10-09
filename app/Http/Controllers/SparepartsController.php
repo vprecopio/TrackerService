@@ -18,12 +18,15 @@ class SparepartsController extends SparepartsModel
 
     public function createsparecateg()
     {
-        if (isset($_POST['nueva-categoria'])) {
-            $this->categoria_equipo_descripcion = $_POST['nueva-categoria'];
+
+        if (isset($_POST['categoria-descripcion'])) 
+        {
+            $this->categoria_repuesto_descripcion = $_POST['categoria-descripcion'];
             $id_category = $this->OneCategory();
 
-            if (empty($id_category)) {
-                $this->createsparecateg();
+            if (empty($id_category))
+            {
+                $this->CreateSpareCategory();
             }
         }
 
@@ -45,24 +48,20 @@ class SparepartsController extends SparepartsModel
             $this->repuesto_gan = $_POST['ganancia-repuesto'];
             $this->repuesto_estado = $_POST['estado-repuesto'];
 
-            $id_spare = $this->OneSpare();
             $id_category = $this->OneCategory();
             $id_proveedor = $this->OneSupplier();
 
-            if (empty($id_proveedor && empty($id_category))) {
+            if (empty($id_proveedor || empty($id_category))) {
                 echo 'agrega un proveedor y categoria';
-            } else 
-                {
+            } 
+            else     
+            {
                 $this->id_proveedor = $id_proveedor[0]->id_proveedor;
-                $this->id_category = $id_category[0]->id_categoria_repuesto;
-
-                $this->CreateSparetModel();
-
-                $id_spare = $this->OneSpare();
-                $this->id_spare = $id_repuesto[0]->id_spare;
-
-                $this->createspareparts();
+                $this->id_categoria_repuesto = $id_category[0]->id_categoria_repuesto;
+                $this->CreateSpareModel();
             }
         }
+
+        redirect('/spareparts/');
     }
 }
