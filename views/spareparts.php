@@ -260,7 +260,7 @@ $categoria_form = new AutomaticForm(
                                             <!--botones editar y eliminar-->
                                             <td class="p-4 space-x-2 whitespace-nowrap">
 
-                                                <button type="button" id="updateclienteButton" onclick="llenarFormulario('<?php echo $obj_spare->equipo; ?>','<?= $obj_spare->modelo ?>', '<?= $obj_spare->marca ?>', '<?= $obj_spare->categoria ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                <button type="button" id="updateSpareButton" onclick="llenarFormulario('<?php echo $obj_spare->repuesto_nombre; ?>','<?= $obj_spare->repuesto_descripcion ?>', '<?= $obj_spare->prov_empresa ?>', '<?= $obj_spare->categoria ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <svg>
                                                             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
@@ -307,21 +307,33 @@ $categoria_form = new AutomaticForm(
                 <form action="/spareparts/edit/" method="POST">
                     <div class="space-y-4">
                         <div>
-                            <label for="equipo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">equipo</label>
-                            <input type="text" name="equipo" id="editar-equipo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="equipo" placeholder="equipo" required="">
+                            <label for="repuesto" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repuesto</label>
+                            <input type="text" name="repuesto" id="editar-repuesto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="equipo" placeholder="equipo" required="">
                         </div>
                         <div>
-                            <label for="modelo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">modelo</label>
-                            <input type="text" name="modelo" id="editar-modelo" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                            <label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Descripcion</label>
+                            <input type="text" name="descripcion" id="editar-repuesto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="descripcion" placeholder="descripcion" required="">
+                        </div>
+                        <div>
+                            <label for="stock" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stock</label>
+                            <input type="text" name="stock" id="editar-repuesto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="stock" placeholder="stock" required="">
+                        </div>
+                        <div>
+                            <label for="costo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Costo</label>
+                            <input type="text" name="costo" id="editar-repuesto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="costo" placeholder="costo" required="">
+                        </div>
+                        <div>
+                            <label for="ganancia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ganancia</label>
+                            <input type="text" name="ganancia" id="editar-repuesto" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="ganancia" placeholder="ganancia" required="">
                         </div>
 
                         <div class="mb-4">
-                            <label for="marca" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una marca</label>
-                            <select id="editar-marca" name="marca" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <label for="proveedor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona un Proveedor</label>
+                            <select id="editar-spare" name="proveedor" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
                                 <?php foreach ($spareparts_controller->ListSpareparts() as $obj_spare) : ?>
 
-                                    <option><?= $obj_spare->marca_descripcion ?></option>
+                                    <option><?= $obj_spare->prov_empresa  ?></option>
 
                                 <?php endforeach; ?>
                             </select>
@@ -333,9 +345,9 @@ $categoria_form = new AutomaticForm(
                             <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una categioría</label>
                             <select id="editar-categoria" name="categoria" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
-                                <?php foreach ($equipment_controller->ListEquipmentCategories() as $obj_categories) : ?>
+                                <?php foreach ($spareparts_controller->ListSpareparts() as $obj_spare) : ?>
 
-                                    <option><?= $obj_categories->categoria_equipo_descripcion ?></option>
+                                    <option><?= $obj_spare->categoria_repuesto_descripcion ?></option>
 
                                 <?php endforeach; ?>
                             </select>
@@ -381,6 +393,7 @@ $categoria_form = new AutomaticForm(
             var deleteButton = document.getElementById("deleteSparepartsButton");
             var deleteLink = document.querySelector("#drawer-delete-spareparts-default a.text-white.bg-red-600");
             deleteLink.href = "/spareparts/delete/?id_repuesto=" + sparepartsId;
+            
         } 
     </script>
 
@@ -391,8 +404,8 @@ $categoria_form = new AutomaticForm(
             // Obtener referencias a los campos del formulario
             var nombreInput = document.getElementById("editar-nombre");
             var descripcionInput = document.getElementById("editar-descripcion");
-           // var proveedorInput = document.getElementById("editar-marca");
-            //var categoriaInput = document.getElementById("editar-categoria");
+            var proveedorInput = document.getElementById("editar-proveedor");
+            var categoriaInput = document.getElementById("editar-categoria");
 
             // Llenar los campos con los datos del formulario
             repuestoInput.value = nombre;
