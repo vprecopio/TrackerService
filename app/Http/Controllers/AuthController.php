@@ -31,6 +31,8 @@ class AuthController extends UserModel
                 // si está lleno
                 $_SESSION['logged_in'] = true; // Marcar al usuario como autenticado
                 $_SESSION['TODO'] = $respuesta;
+                var_dump($_SESSION['TODO']);
+                exit;
 
                 $php_mailer = new Mailer;
                 $php_mailer->SendLoginMail($_SESSION['TODO'][0]->usr_email, $_SESSION['TODO'][0]->usr_nombre, true);
