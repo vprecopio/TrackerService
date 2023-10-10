@@ -206,4 +206,11 @@ class TicketController extends TicketModel
        
     }
 
+    public function listarticket()
+    {
+        var_dump($this->ListT());
+        exit;
+    }
+
+
 }

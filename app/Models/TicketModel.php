@@ -20,8 +20,25 @@ interface ContratoPrioridades
     public function OnePrioridad();
 }
 
+interface ContratoValorTicket 
+{
+    public function ListVT();
+    public function EditVT();
+    public function InsertVT();
+    public function DeleteVT();
+    public function OneVT();
+}
 
-class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
+interface ContratoTicket 
+{
+    public function ListT();
+    public function EditT();
+    public function InsertT();
+    public function DeleteT();
+    public function OneT();
+}
+
+class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, ContratoValorTicket, ContratoTicket
 {
     use \Database,\Sanitize;
 
@@ -34,6 +51,9 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
     //atributos prioridades
     private $id_prioridad, $prioridad_descripcion;
 
+    //atributos ticket 	
+    private $id_ticket, $ticket_fecha_creacion, $ticket_fecha_cierre, $ticket_tiempo_garantia, $ticket_descripcion, $id_usuario, $id_cliente, $id_modelo_equipo; 	
+
     public function __construct()
     {
         $this->Connect();
@@ -41,6 +61,26 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
 
     public function ListVT()
     {
+        // a la izquierda del join el nombre de la tabla foranea(traer todos los datos que corresponde al id dentro de tu tabla principal)
+        $sql_ejemplo = "SELECT *
+        FROM
+        tickets
+        JOIN
+        valor_ticket ON valor_ticket.id_valor = tickets.id_valor
+        JOIN
+        usuarios ON usuarios.id_usuario = tickets.id_usuario
+        JOIN
+        clientes ON clientes.id_cliente = tickets.id_cliente
+        JOIN 
+        estados_tickets ON estados_tickets.id_estado_ticket = tickets.id_estado_ticket
+        JOIN
+        prioridades ON prioridades.id_prioridad = tickets.id_prioridad
+        JOIN
+        modelos_equipos ON modelos_equipos.id_modelos_equipos = tickets.id_modelos_equipos   
+        
+        ";
+
+
         try {
             $stm = $this->pdo->prepare("SELECT * FROM `valor_ticket` ");
             $stm->execute();
@@ -248,6 +288,38 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades
         }
     }
     /* Fin prioridades*/
+
+    /*Inicio de ticket*/
+    public function ListT()
+    {
+        $sql = "SELECT * FROM `tickets`";
+        try {
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function EditT()
+    {
+        $sql = "UPDATE `tickets` SET `ticket_fecha_creacion` = '2023-10-01', `ticket_fecha_cierre` = '2023-10-02', `ticket_tiempo_garantia` = '2023-10-04', `ticket_descripcion` = 'fdafdsafsdf', `id_usuario` = '3', `id_cliente` = '11', `id_prioridad` = '2', `id_modelo_equipo` = '8', `id_valor` = '2' WHERE `tickets`.`id_ticket` = 1; ";
+
+    }
+    public function InsertT()
+    {
+        $sql= "INSERT INTO `tickets` (`id_ticket`, `ticket_fecha_creacion`, `ticket_fecha_cierre`, `ticket_tiempo_garantia`, `ticket_descripcion`, `id_usuario`, `id_cliente`, `id_estado_ticket`, `id_prioridad`, `id_modelo_equipo`, `id_valor`) VALUES (NULL, '2023-10-08', '2023-10-19', '2023-10-19', 'fdsafdsafdsadfadsf', '1', '10', '1', '1', '1', '1')";
+
+    }
+    public function DeleteT()
+    {
+        $sql = "DELETE FROM tickets WHERE `tickets`.`id_ticket` = 1";
+
+    }
+    public function OneT()
+    {
+        $sql = "SELECT * FROM `tickets` WHERE `tickets`.`id_ticket` = 1";
+    }
 
 }
 
