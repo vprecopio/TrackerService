@@ -64,4 +64,11 @@ class SparepartsController extends SparepartsModel
 
         redirect('/spareparts/');
     }
+
+    public function delete() //elimina el repuesto
+    {
+        $this->id_repuesto = $_GET['id_repuesto'];
+        $this->DeleteSpareparts();
+        return view('spareparts');
+    }
 }

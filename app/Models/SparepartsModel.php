@@ -128,4 +128,17 @@ class SparepartsModel
         return $stm->execute($params);  
     }
 
+    public function DeleteSpareparts() //elimina el repuesto
+    {
+        try {
+            $stm = $this->pdo->prepare("DELETE FROM `repuestos` WHERE `repuestos`.`id_repuesto` = :id_repuesto");
+            $stm->bindParam(':id_repuesto', $this->id_repuesto, \PDO::PARAM_INT);
+            $stm->execute();
+            return true;
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+      
+    }
+
 }
