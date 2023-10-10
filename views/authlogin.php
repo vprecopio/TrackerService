@@ -1,11 +1,10 @@
 <body>
-    <?php require __DIR__ . '/components/template/navbar.php'; ?>
-
     <div id="main-content" class="relative flex items-center justify-center flex-wrap flex-col w-full h-full overflow-y-auto bg-gray-50 dark:bg-gray-900 min-h-screen">
         <div class="flex justify-center">
-            <a href="#"><img class="h-20 mb-6" src="/public/src/img/logo.png" alt="logo" /></a>    
+            <a href="#"><img class="h-20 mb-8" src="/public/src/img/logo.png" alt="TecnoGestion logo" />
+        </a>    
         </div>
-    <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full max-w-sm p-4 border bg-white rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
             <form class="space-y-6" action="/auth/login/" method="POST">
                 <h5 class="text-xl font-bold text-gray-900 dark:text-white">Ingrese a su cuenta</h5>
                 <div>
