@@ -68,7 +68,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
         JOIN
         valor_ticket ON valor_ticket.id_valor = tickets.id_valor
         JOIN
-        usuarios ON usuarios.usr_nombre = tickets.usr_nombre
+        usuarios ON usuarios.id_usuario = tickets.id_usuario
         JOIN
         clientes ON clientes.id_cliente = tickets.id_cliente
         JOIN 
