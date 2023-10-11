@@ -27,10 +27,11 @@ class EquipmentController extends EquipmentModel
             if (empty($id_brand)) {
                 $this->CreateEquipmentBrand();
             }
+            redirect('/equipment/');
         }
 
         unset($_POST, $id_brand);
-        return view('equipment');
+        redirect('/equipment/');
     }
 
     public function createcategory()
@@ -42,9 +43,8 @@ class EquipmentController extends EquipmentModel
                 $this->CreateEquipmentCategories();
             }
         }
-
         unset($_POST, $id_brand, $id_category);
-        return view('equipment');
+        redirect('/equipment/');
     }
 
     public function create()
@@ -74,7 +74,7 @@ class EquipmentController extends EquipmentModel
             }
         }
         unset($_POST, $id_brand, $id_category, $id_model);
-        return view('equipment');
+        redirect('/equipment/');
     }
 
     public function edit()
@@ -101,7 +101,7 @@ class EquipmentController extends EquipmentModel
             }
         }
         unset($_POST, $id_equip, $id_model, $id_brand, $id_category);
-        return view('equipment');
+        redirect('/equipment/');
     }
 
 
@@ -109,6 +109,6 @@ class EquipmentController extends EquipmentModel
     {
         $this->id_modelos_equipos = $_GET['id_equipo'];
         $this->DeleteEquiptment();
-        return view('equipment');
+        redirect('/equipment/');
     }
 }
