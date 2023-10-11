@@ -6,7 +6,7 @@ use Carbon\Carbon;
 <!-- Activity Card -->
 <div class="p-4 mb-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800 xl:mb-0">
     <div class="flex items-center justify-between mb-4">
-        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Equipo <?= $value->id_modelo ?></h3>
+        <h3 class="text-lg font-semibold text-gray-900 dark:text-white"><?= $value->equipo_modelo ?> - <?= $value->equipo_marca ?></h3>
     </div>
     <ol class="relative border-l border-gray-200 dark:border-gray-700">
 
@@ -61,7 +61,7 @@ use Carbon\Carbon;
             </div>
             <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"><?= Carbon::parse($value->ticket_fecha_creacion)->locale('es_ES')->isoFormat('LL') ?></time>
             <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Hemos recibido tu equipo 🔍📦</h3>
-            <p class="text-base font-normal text-gray-500 dark:text-gray-400"><?= $value->id_modelo ?></p>
+            <p class="text-base font-normal text-gray-500 dark:text-gray-400"><?= $value->equipo_modelo ?><br><?= $value->equipo_marca ?></p>
         </li>
         <!-- Fin Estado Inicial -->
     </ol>

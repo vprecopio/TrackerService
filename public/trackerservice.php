@@ -34,12 +34,7 @@ final class TicketClient extends TicketModel
     private function OneTicketByClient()
     {
 
-        $sql = "SELECT * 
-        FROM tickets
-        JOIN clientes ON tickets.id_cliente = clientes.id_cliente
-        JOIN estados_tickets ON tickets.id_estado_ticket = estados_tickets.id_estado_ticket
-        JOIN modelos_equipos ON tickets.id_modelo_equipo = modelos_equipos.id_modelos_equipos
-        WHERE cliente_email = :client_search";
+        $sql = "SELECT *, (SELECT marca_descripcion FROM equipos_marca WHERE equipos_marca.id_marcas = modelos_equipos.id_marca) AS equipo_marca, (SELECT descripcion FROM equipos_modelo WHERE equipos_modelo.id_modelo = modelos_equipos.id_modelo) AS equipo_modelo FROM tickets JOIN clientes ON tickets.id_cliente = clientes.id_cliente JOIN estados_tickets ON tickets.id_estado_ticket = estados_tickets.id_estado_ticket JOIN modelos_equipos ON tickets.id_modelo_equipo = modelos_equipos.id_modelos_equipos WHERE cliente_email = :client_search";
 
         $consulta = $this->pdo->prepare($sql);
         $consulta->bindParam(':client_search', $this->client, \PDO::PARAM_STR);
@@ -94,7 +89,6 @@ $client = new TicketClient($_GET['email']);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $page_title ?></title>
     <link rel="stylesheet" href="/public/src/main.css">
-    <script src="https://cdn.tailwindcss.com?plugins=animation"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
 </head>
