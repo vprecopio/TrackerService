@@ -1,6 +1,4 @@
 <body>
-    <?php require __DIR__ . '/components/template/navbar.php'; ?>
-
     <div id="main-content" class="relative flex items-center justify-center flex-wrap flex-col w-full h-full overflow-y-auto bg-gray-50 dark:bg-gray-900 min-h-screen">
         <div class="flex justify-center">
             <a href="#"><img class="h-[60px] w-[60px] mb-6" src="/public/src/img/logo.png" alt="logo" /></a>
