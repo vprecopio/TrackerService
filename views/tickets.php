@@ -1,5 +1,6 @@
 <?php
 
+use \App\AutomaticForm;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\TicketController;
 
