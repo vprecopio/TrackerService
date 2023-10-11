@@ -22,6 +22,61 @@ class SparepartsModel
         $this->Connect();
     }
 
+    public function OneSpare() // Traigo el id del repuesto
+    {
+        try {
+            $sql = "SELECT * FROM `repuestos` WHERE `repuesto_nombre` = :id_repuesto LIMIT 1";
+
+            $params = [
+                ':id_repuesto' => $this->id_repuesto 
+            ];
+
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute($params);
+
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function OneSupplier() // traigo el id de proveedor
+    {
+        try {
+            $sql = "SELECT * FROM `proveedores` WHERE `prov_empresa` = :prov_empresa_a_buscar LIMIT 1";
+
+            $params = [
+                ':prov_empresa_a_buscar' => $this->prov_empresa 
+            ];
+
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute($params);
+
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+    public function OneCategory() //traigo el id de marca categoria
+
+    {
+        try {
+            $sql = "SELECT * FROM `categorias_repuestos` WHERE `categoria_repuesto_descripcion` = :categoria_repuesto_descripcion LIMIT 1";
+
+            $params = [
+                ':categoria_repuesto_descripcion' => $this->categoria_repuesto_descripcion
+            ];
+
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute($params);
+
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function ListSpareparts()
     {
         try {
@@ -40,4 +95,50 @@ class SparepartsModel
             die($e->getMessage());
         }
     }
+
+    public function CreateSpareModel()
+    {
+        $sql = "INSERT INTO `repuestos` ( `repuesto_estado`, `repuesto_nombre`, `repuesto_descripcion`, `repuesto_id_provedor`, `repuesto_stock`, `repuesto_costo`, `repuesto_gan`, `id_categoria_repuesto`) VALUES (:repuesto_estado,:repuesto_nombre,:repuesto_descripcion,:repuesto_id_provedor,:repuesto_stock,:repuesto_costo,:repuesto_gan,:id_categoria_repuesto)"; 
+        
+        $params = [
+            ':repuesto_estado' => $this->repuesto_estado,
+            ':repuesto_nombre' => $this->repuesto_nombre,
+            ':repuesto_descripcion' => $this->repuesto_descripcion,
+            ':repuesto_id_provedor' => $this->id_proveedor,
+            ':repuesto_stock' => $this->respuesto_stock,
+            ':repuesto_costo' => $this->repuesto_costo,
+            ':repuesto_gan' => $this->repuesto_gan,
+            ':id_categoria_repuesto' => $this->id_categoria_repuesto,
+        ];
+    
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);  
+    }
+
+
+    public function CreateSpareCategory()
+    {
+        $sql = "INSERT INTO `categorias_repuestos` (`categoria_repuesto_descripcion`)  VALUES (:categoria_repuesto_descripcion)";
+
+        $params = [
+            ':categoria_repuesto_descripcion' => $this->categoria_repuesto_descripcion,
+        ];
+    
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);  
+    }
+
+    public function DeleteSpareparts() //elimina el repuesto
+    {
+        try {
+            $stm = $this->pdo->prepare("DELETE FROM `repuestos` WHERE `repuestos`.`id_repuesto` = :id_repuesto");
+            $stm->bindParam(':id_repuesto', $this->id_repuesto, \PDO::PARAM_INT);
+            $stm->execute();
+            return true;
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+      
+    }
+
 }

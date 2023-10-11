@@ -8,7 +8,7 @@ $aside_list = [
 
 $aside_items = [
     "/" => "Dashboard",
-    "/equipments/" => "Equipos"
+    "/equipment/" => "Equipos"
 ];
 ?>
 <aside id="sidebar" class="fixed top-0 left-0 z-20 flex flex-col flex-shrink-0 hidden w-64 h-full pt-16 font-normal duration-75 lg:flex transition-width" aria-label="Sidebar">
@@ -53,14 +53,13 @@ $aside_items = [
                             </svg>
                         </button>
                         <ul id="dropdown-crud" class="hidden space-y-2 py-2">
+                           
                             <?php foreach ($aside_list as $key => $value) : ?>
-                                <!-- if not (eq .Params.group crud) }}hidden {{ end }} -->
                                 <li>
-                                    <!--  {{ if eq $page_slug "users" }} -->
-                                    <!-- bg-gray-100 dark:bg-gray-700 -->
                                     <a href="<?php echo $key ?>" class="text-base text-gray-900 rounded-lg flex items-center p-2 group hover:bg-gray-100 transition duration-75 pl-11 dark:text-gray-200 dark:hover:bg-gray-700"><?php echo $value ?></a>
                                 </li>
                             <?php endforeach; ?>
+
                         </ul>
                     </li>
                 </ul>
