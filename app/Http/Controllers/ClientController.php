@@ -24,7 +24,7 @@ class ClientController extends ClientModel
             $this->telefono = $_POST['telefono'];
             $this->direccion = $_POST['direccion'];
             $this->CreateClient();
-            return view('client');
+            redirect('/client/');
         }
 
         return view('client');
@@ -34,7 +34,7 @@ class ClientController extends ClientModel
     {
         $this->id = $_GET['Documento'];
         $this->DeleteClient();
-        return view('client');
+        redirect('/client/');
     }
 
     public function search():Response
@@ -60,7 +60,7 @@ class ClientController extends ClientModel
 
             $this->EditClient();
 
-            return view('client');
+            redirect('/client/');
         }
 
         return view('client');
