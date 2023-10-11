@@ -46,3 +46,17 @@ trait CheckInternet {
         return ($httpcode>=200 && $httpcode<300) ? TRUE : FALSE;
     }
 }
+
+use Ramsey\Uuid\Uuid;
+class Seed
+{
+    static function GenerateSeed(string $seed):string
+    {
+        return Uuid::uuid5(Uuid::NAMESPACE_DNS,  md5($seed))->toString();
+    }
+
+    static function CompareSeed(string $a,string $b):bool
+    {
+        return $a === $b ? true : false;
+    }
+}
