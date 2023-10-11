@@ -223,6 +223,7 @@ $cantclient = $client_controller->CountClient();
 
             </div>
 
+            <? require_once __DIR__ . '/components/section/01_list_ticket.php'?>
 
         </div>
     </div>
