@@ -13,13 +13,13 @@ $equipo_form = new AutomaticForm(
     '',
     '/equipment/create/',
     'POST',
-    '',
+    'bg-blue-700',
     [
         'equipos-modelo' => [
             'title_label' => 'Nombre del equipo',
             'id_name' => 'modelo',
             'type' => 'text',
-            'height' => 6,
+            'height' => 3,
             'placeholder' => 'samsung #4321',
             'required' => true,
         ],
@@ -49,13 +49,13 @@ $marca_form = new AutomaticForm(
     '',
     '/equipment/createbrand/',
     'POST',
-    '',
+    'bg-blue-700',
     [
         'equipos-marca' => [
             'title_label' => 'Nueva marca',
             'id_name' => 'nueva-marca',
             'type' => 'text',
-            'height' => 6,
+            'height' => 3,
             'placeholder' => 'samsung',
             'required' => true,
         ]
@@ -67,13 +67,13 @@ $categoria_form = new AutomaticForm(
     'Nueva categoria',
     '/equipment/createcategory/',
     'POST',
-    'bg-red-700',
+    'bg-blue-700',
     [
         'equipos-marca' => [
             'title_label' => 'Nueva categoria',
             'id_name' => 'nueva-categoria',
             'type' => 'text',
-            'height' => 6,
+            'height' => 3,
             'placeholder' => 'Telefonos',
             'required' => true,
         ]
@@ -216,7 +216,7 @@ $categoria_form = new AutomaticForm(
                                             <!--botones editar y eliminar-->
                                             <td class="p-4 space-x-2 whitespace-nowrap">
 
-                                                <button type="button" id="updateclienteButton" onclick="llenarFormulario('<?php echo $obj_equipo->equipo; ?>','<?= $obj_equipo->modelo ?>', '<?= $obj_equipo->marca ?>', '<?= $obj_equipo->categoria ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                <button type="button" id="updateclienteButton" onclick="llenarFormulario('<?php echo $obj_equipo->equipo; ?>','<?= $obj_equipo->modelo ?>', '<?= $obj_equipo->marca ?>', '<?= $obj_equipo->categoria ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <svg>
                                                             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
