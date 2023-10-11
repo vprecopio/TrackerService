@@ -29,8 +29,6 @@ class EquipmentController extends EquipmentModel
             }
             redirect('/equipment/');
         }
-
-        unset($_POST, $id_brand);
         redirect('/equipment/');
     }
 
@@ -43,7 +41,6 @@ class EquipmentController extends EquipmentModel
                 $this->CreateEquipmentCategories();
             }
         }
-        unset($_POST, $id_brand, $id_category);
         redirect('/equipment/');
     }
 
@@ -73,7 +70,6 @@ class EquipmentController extends EquipmentModel
                 $this->CreateEquipments();
             }
         }
-        unset($_POST, $id_brand, $id_category, $id_model);
         redirect('/equipment/');
     }
 
@@ -100,7 +96,6 @@ class EquipmentController extends EquipmentModel
                 $this->EditEquipments();
             }
         }
-        unset($_POST, $id_equip, $id_model, $id_brand, $id_category);
         redirect('/equipment/');
     }
 
