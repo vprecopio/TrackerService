@@ -67,9 +67,6 @@ class AuthController extends UserModel
             } else {
                 echo "<script>alert('contraseñas distintas')</script>";
             }
-
-
-            return view('authregister');
         }
 
         return view('authregister');
