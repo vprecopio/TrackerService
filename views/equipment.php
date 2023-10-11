@@ -173,20 +173,20 @@ $categoria_form = new AutomaticForm(
                                 <!--Titulos-->
                                 <thead class="bg-gray-100 dark:bg-gray-700">
                                     <tr>
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Equipo
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Modelo
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Marca
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Categoria
                                         </th>
 
-                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
+                                        <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
                                             Actions
                                         </th>
                                     </tr>
@@ -198,23 +198,23 @@ $categoria_form = new AutomaticForm(
                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                             <!--datos-->
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
                                                 <data value="name"><?= $obj_equipo->equipo ?></data>
                                             </td>
 
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
                                                 <data value="modelo"><?= $obj_equipo->modelo ?></data>
                                             </td>
 
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
                                                 <data value="marca"><?= $obj_equipo->marca ?></data>
                                             </td>
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
                                                 <data value="categoria"><?= $obj_equipo->categoria ?></data>
                                             </td>
 
                                             <!--botones editar y eliminar-->
-                                            <td class="p-4 space-x-2 whitespace-nowrap">
+                                            <td class="p-4 space-x-2 whitespace-nowrap w-1/5">
 
                                                 <button type="button" id="updateclienteButton" onclick="llenarFormulario('<?php echo $obj_equipo->equipo; ?>','<?= $obj_equipo->modelo ?>', '<?= $obj_equipo->marca ?>', '<?= $obj_equipo->categoria ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
