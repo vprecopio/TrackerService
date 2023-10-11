@@ -1,5 +1,5 @@
 <?php
-
+use \App\AutomaticForm;
 use App\Http\Controllers\SparePartsController;
 
 $nombre_pagina = 'Repuestos';

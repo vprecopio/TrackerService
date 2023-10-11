@@ -16,7 +16,7 @@ class ClientController extends ClientModel
         return $this->listClient();
     }
 
-    public function create():Response
+    public function create()
     {
         if ($_POST) {
             $this->nombre_completo = $_POST['nombre'];
@@ -24,20 +24,18 @@ class ClientController extends ClientModel
             $this->telefono = $_POST['telefono'];
             $this->direccion = $_POST['direccion'];
             $this->CreateClient();
-            return view('client');
         }
-
-        return view('client');
+        redirect('/client/');
     }
 
-    public function delete():Response
+    public function delete()
     {
         $this->id = $_GET['Documento'];
         $this->DeleteClient();
-        return view('client');
+        redirect('/client/');
     }
 
-    public function search():Response
+    public function search()
     {
         if ($_POST) {
             $this->id = $_POST['id'];
@@ -47,7 +45,7 @@ class ClientController extends ClientModel
         return view('clientformsearch');
     }
 
-    public function edit():Response
+    public function edit()
     {
         //cuando el usuario envia el formulario editar
         if ($_POST && isset($_POST['id']) && isset($_POST['Editar'])) 
@@ -59,10 +57,8 @@ class ClientController extends ClientModel
             $this->direccion = $_POST['direccion'] ?? 'sin datos';
 
             $this->EditClient();
-
-            return view('client');
         }
 
-        return view('client');
+        redirect('/client/');
     }
 }

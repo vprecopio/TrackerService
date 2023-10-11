@@ -1,5 +1,6 @@
 <?php
 
+use \App\AutomaticForm;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\TicketController;
 
@@ -19,7 +20,7 @@ $form_estadticket = new AutomaticForm(
             'title_label' => 'Nuevo estado',
             'id_name' => 'nuevo-estado',
             'type' => 'text',
-            'height' => 6,
+            'height' => 3,
             'placeholder' => 'Estado',
             'required' => true,
         ]
@@ -37,7 +38,7 @@ $form_prioridades = new AutomaticForm(
             'title_label' => 'Nueva descripcion',
             'id_name' => 'nueva-descripcion',
             'type' => 'text',
-            'height' => 6,
+            'height' => 3,
             'placeholder' => 'Descripcion',
             'required' => true,
         ]
@@ -54,13 +55,13 @@ $equipo_form = new AutomaticForm(
     '',
     '/equipment/create/',
     'POST',
-    'bg-blue-500 animate-spin',
+    '',
     [
         'equipos-modelo' => [
             'title_label' => 'Nombre del equipo',
             'id_name' => 'modelo',
             'type' => 'text',
-            'height' => 6,
+            'height' => 3,
             'placeholder' => 'samsung #4321',
             'required' => true,
         ],
@@ -68,7 +69,7 @@ $equipo_form = new AutomaticForm(
             'title_label' => 'Selecciona una marca',
             'id_name' => 'marca',
             'type' => 'select',
-            'height' => 3,
+            'height' => 6,
             'required' => true,
             'options' => json_encode($equipment_controller->ListEquipmentBrand()),
             'options_table' => 'marca_descripcion',
@@ -77,7 +78,7 @@ $equipo_form = new AutomaticForm(
             'title_label' => 'Selecciona una categoria',
             'id_name' => 'categoria',
             'type' => 'select',
-            'height' => 3,
+            'height' => 6,
             'required' => true,
             'options' => json_encode($equipment_controller->ListEquipmentCategories()),
             'options_table' => 'categoria_equipo_descripcion',
@@ -267,7 +268,7 @@ $equipo_form = new AutomaticForm(
                                             <!--botones editar y eliminar-->
                                             <td class="p-4 space-x-2 whitespace-nowrap">
 
-                                                <button type="button" id="updateclienteButton" onclick="llenarFormulario('');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-black rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                <button type="button" id="updateclienteButton" onclick="llenarFormulario('');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <svg>
                                                             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
