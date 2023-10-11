@@ -1,11 +1,14 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Mailer;
 use App\Models\UserModel;
+use CheckInternet;
 
 class AuthController extends UserModel
 {
+    use CheckInternet;
 
     public function index()
     {
@@ -32,8 +35,10 @@ class AuthController extends UserModel
                 $_SESSION['logged_in'] = true; // Marcar al usuario como autenticado
                 $_SESSION['TODO'] = $respuesta;
 
-                $php_mailer = new Mailer;
-                $php_mailer->SendLoginMail($_SESSION['TODO'][0]->usr_email, $_SESSION['TODO'][0]->usr_nombre, true);
+                if ($this->hasConnection()) {
+                    $php_mailer = new Mailer;
+                    $php_mailer->SendLoginMail($_SESSION['TODO'][0]->usr_email, $_SESSION['TODO'][0]->usr_nombre, true);
+                }
 
                 redirect('/');
             }
@@ -49,27 +54,24 @@ class AuthController extends UserModel
 
     public function register()
     {
-        if(isset($_POST['nombre']) &&  isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_con']))
-        {
-          
+        if (isset($_POST['nombre']) &&  isset($_POST['apellido']) && isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password_con'])) {
+
             $this->usr_nombre = $_POST['nombre'];
             $this->usr_apellido = $_POST['apellido'];
             $this->usr_email = $_POST['email'];
             $this->usr_contrasena = sha1($_POST['password']);
 
             //falta validar que no exista alguien con el mismo email
-            if ($_POST ['password'] == $_POST['password_con']){   
+            if ($_POST['password'] == $_POST['password_con']) {
                 $this->InsertarNuevoUsuario();
-            }
-            else{
+            } else {
                 echo "<script>alert('contraseñas distintas')</script>";
             }
 
-            
-            return view('authregister');
 
+            return view('authregister');
         }
-        
+
         return view('authregister');
     }
 
