@@ -48,28 +48,6 @@ final class TicketClient extends TicketModel
     {
         foreach ($this->ticket as $value) {
 
-            /*             
-            ["id_ticket"]
-            ["ticket_fecha_creacion"]
-            ["ticket_fecha_cierre"]
-            ["ticket_tiempo_garantia"]
-            ["ticket_descripcion"]
-            ["id_cliente"]
-            ["id_usuario"]
-            ["id_estado_ticket"]
-            ["id_prioridad"]
-            ["id_modelo_equipo"]
-            ["id_valor"]
-            ["cliente_nombre"]
-            ["cliente_email"]
-            ["cliente_telefono"]
-            ["cliente_direccion"]
-            ["estado_ticket_descripcion"]
-            ["id_modelos_equipos"]
-            ["id_marca"]
-            ["id_modelo"]
-            ["id_categoria_equipo"] */
-
             if ($this->ticket->valid()) {
                 include __DIR__ . '/../views/components/ticket/ticket-activity-card.php';
             }
@@ -99,13 +77,11 @@ $client = new TicketClient($_GET['email']);
 
 
             <main>
-
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
 
-                    <!--Carousel widget -->
                     <div class="p-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
-
                         <div class="relative mx-auto ">
+
                             <div class="bg-white dark:bg-gray-800">
                                 <div class="flex items-center mb-4 text-lg font-medium text-primary-600">
                                     <img src="../public/src/img/logo.png" class="h-8 mr-3" alt="TecnoGestión Logo">
@@ -126,15 +102,14 @@ $client = new TicketClient($_GET['email']);
                                     </svg>
                                 </a>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
 
 
                     <?php $client->GenerateBlockTicket() ?>
 
                 </div>
-
             </main>
 
 
