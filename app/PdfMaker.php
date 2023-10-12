@@ -10,6 +10,7 @@ interface PdfMakerPublic
     public function PdfString():string;
 }
 
+
 class PdfMaker implements PdfMakerPublic
 {
     public Dompdf $pdf_maker;
@@ -35,6 +36,7 @@ class PdfMaker implements PdfMakerPublic
     {
         if($this->is_route)
         {
+            $html = file_get_contents(__DIR__ . '/../views/pdf/' . $html );
             return $html;
         }
         else
