@@ -15,9 +15,12 @@ class PdfMaker implements PdfMakerPublic
     public Dompdf $pdf_maker;
     private Options $options;
     private string $html;
+    private bool $is_route;
 
-    public function __construct(string $html)
+    public function __construct(string $html, bool $is_route = false)
     {
+        $this->is_route = $is_route;
+
         $this->options = new Options();
         $this->options->set('isHtml5ParserEnabled', true);
         $this->options->set('isPhpEnabled', false);
@@ -30,7 +33,14 @@ class PdfMaker implements PdfMakerPublic
 
     private function setHtml(string $html): string
     {
-        return $html;
+        if($this->is_route)
+        {
+            return $html;
+        }
+        else
+        {
+            return $html;
+        }
     }
 
     public function RenderDownload(): void
