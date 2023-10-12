@@ -62,24 +62,6 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     public function ListVT()
     {
         // a la izquierda del join el nombre de la tabla foranea(traer todos los datos que corresponde al id dentro de tu tabla principal)
-        $sql_ejemplo = "SELECT *
-        FROM
-        tickets
-        JOIN
-        valor_ticket ON valor_ticket.id_valor = tickets.id_valor
-        JOIN
-        usuarios ON usuarios.id_usuario = tickets.id_usuario
-        JOIN
-        clientes ON clientes.id_cliente = tickets.id_cliente
-        JOIN 
-        estados_tickets ON estados_tickets.id_estado_ticket = tickets.id_estado_ticket
-        JOIN
-        prioridades ON prioridades.id_prioridad = tickets.id_prioridad
-        JOIN
-        modelos_equipos ON modelos_equipos.id_modelos_equipos = tickets.id_modelos_equipos   
-        
-        ";
-
 
         try {
             $stm = $this->pdo->prepare("SELECT * FROM `valor_ticket` ");
@@ -292,9 +274,26 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     /*Inicio de ticket*/
     public function ListT()
     {
-        $sql = "SELECT * FROM `tickets`";
+        $sql_ejemplo = "SELECT *, 
+        (SELECT descripcion FROM equipos_modelo WHERE equipos_modelo.id_modelo = modelos_equipos.id_modelo) AS ModeloEquipo
+        FROM
+        tickets
+        JOIN
+        valor_ticket ON valor_ticket.id_valor = tickets.id_valor
+        JOIN
+        usuarios ON usuarios.id_usuario = tickets.id_usuario
+        JOIN
+        clientes ON clientes.id_cliente = tickets.id_cliente
+        JOIN 
+        estados_tickets ON estados_tickets.id_estado_ticket = tickets.id_estado_ticket
+        JOIN
+        prioridades ON prioridades.id_prioridad = tickets.id_prioridad
+        JOIN
+        modelos_equipos ON modelos_equipos.id_modelos_equipos = tickets.id_modelo_equipo   
+        
+        ";
         try {
-            $stm = $this->pdo->prepare($sql);
+            $stm = $this->pdo->prepare($sql_ejemplo);
             $stm->execute();
             return $stm->fetchAll(\PDO::FETCH_OBJ);
         } catch (\Exception $e) {
@@ -313,7 +312,16 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     }
     public function DeleteT()
     {
-        $sql = "DELETE FROM tickets WHERE `tickets`.`id_ticket` = 1";
+        $sql = "DELETE FROM tickets WHERE `tickets`.`id_ticket` = :id_ticket";
+        try {
+            $stm = $this->pdo->prepare($sql);
+            $stm->bindParam(':id_ticket', $this->id_ticket, \PDO::PARAM_INT);
+            $stm->execute();
+            return true;
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+        exit;
 
     }
     public function OneT()

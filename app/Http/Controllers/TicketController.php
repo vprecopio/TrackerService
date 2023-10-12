@@ -212,5 +212,14 @@ class TicketController extends TicketModel
         exit;
     }
 
+    public function delete()
+    {
+        if(!isset($_GET["id_ticket"]))
+        {
+        $this->id_ticket = $_GET["id_ticket"];
+        $this->DeleteT();
+        redirect('/ticket/');
+        }
+    }
 
 }

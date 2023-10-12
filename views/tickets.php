@@ -9,6 +9,57 @@ $nombre_formulario = 'ticket-final';
 //---------------------------seccion ticket
 $ticket_controller = new TicketController;
 
+/* 
+572ac0d2c0220 [usr_estado] => 1 
+[id_rol] => 1 
+[cliente_nombre] => Dashawn Vandervort 
+[cliente_email] => mateo80@example.org 
+[cliente_telefono] => 1-507-546-5250 
+[cliente_direccion] => 4729 Myrtie Centers 
+[estado_ticket_descripcion] => en proceso 
+[prioridad_descripcion] => alta 
+[id_modelos_equipos] => 2 
+[id_marca] => 1 
+[id_modelo] => 2 
+[id_categoria_equipo] => 2 ) 
+[1] => 
+stdClass Object ( [id_ticket] => 2 
+[ticket_fecha_creacion] => 2023-10-25 
+[ticket_fecha_cierre] => 2023-10-29 
+[ticket_tiempo_garantia] => 2023-10-31 
+[ticket_descripcion] => qcyo qcyo 
+[id_usuario] => 3 
+[id_cliente] => 28 
+[id_estado_ticket] => 4 
+[id_prioridad] => 3 
+[id_modelo_equipo] => 1 
+[id_valor] => 3 
+[valor_servicios] => 400 
+[valor_repuestos] => 200 
+[valor_ticket_total] => 600 
+[usr_nombre] => Hildegard 
+[usr_apellido] => Skiles 
+[usr_email] => larson.maxie@example.org 
+[usr_contrasena] => 2345 
+[usr_estado] => 1 
+[id_rol] => 3 
+[cliente_nombre] => Dayana Cremin 
+[cliente_email] => ricky36@example.org 
+[cliente_telefono] => +12569300056 
+[cliente_direccion] => 8445 Daugherty Walks Apt. 697 
+[estado_ticket_descripcion] => entregado 
+[prioridad_descripcion] => media 
+[id_modelos_equipos] => 1 
+[id_marca] => 1 
+[id_modelo] => 1 
+[id_categoria_equipo] => 1 ) ) 
+
+
+
+
+
+*/
+
 $form_estadticket = new AutomaticForm(
     'ticket_estado',
     'Nuevo estado',
@@ -181,27 +232,27 @@ $equipo_form = new AutomaticForm(
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            IdUsuario
+                                            Nombre
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            IdCliente
+                                            Email
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            IdEstadoTicket
+                                            EstadoTicket
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            IdPrioridad
+                                            Prioridad
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            IdModeloEquipo
+                                            ModeloEquipo
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            IdValor
+                                            Valor
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -219,14 +270,14 @@ $equipo_form = new AutomaticForm(
                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                             <!--datos-->
-                                        
+
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="id_ticket"><?= $obj_value->id_ticket ?></data>
                                             </td>
-                                           
+
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                           
-                                            <data value="ticket_fecha_creacion"><?= $obj_value->ticket_fecha_creacion ?></data>
+
+                                                <data value="ticket_fecha_creacion"><?= $obj_value->ticket_fecha_creacion ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -242,27 +293,27 @@ $equipo_form = new AutomaticForm(
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap da rk:text-white">
-                                                <data value="id_usuario"><?= $obj_value->id_usuario ?></data>
+                                                <data value="usr_nombre"><?= $obj_value->usr_nombre ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <data value="id_cliente"><?= $obj_value->id_cliente ?></data>
+                                                <data value="cliente_email"><?= $obj_value->cliente_email ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <data value="id_estado_ticket"><?= $obj_value->id_estado_ticket ?></data>
+                                                <data value="estado_ticket_descripcion"><?= $obj_value->estado_ticket_descripcion ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <data value="id_prioridad"><?= $obj_value->id_prioridad ?></data>
+                                                <data value="prioridad_descripcion"><?= $obj_value->prioridad_descripcion ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap da rk:text-white">
-                                                <data value="id_modelo_equipo"><?= $obj_value->id_modelo_equipo ?></data>
+                                                <data value="ModeloEquipo"><?= $obj_value->ModeloEquipo ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap da rk:text-white">
-                                                <data value="id_valor"><?= $obj_value->id_valor ?></data>
+                                                <data value="valor_ticket_total">$<?= $obj_value->valor_ticket_total ?></data>
                                             </td>
 
                                             <!--botones editar y eliminar-->
@@ -299,16 +350,122 @@ $equipo_form = new AutomaticForm(
                 </div>
             </div>
 
+            <!-- Edit equipo Drawer -->
+            <div id="drawer-update-<?= $nombre_formulario ?>-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-x-full" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+                <h5 id="drawer-label" class="inline-flex items-center mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+                    Editar <?= $nombre_formulario ?>
+                </h5>
+                <button type="button" data-drawer-dismiss="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Cerrar menu</span>
+                </button>
+
+                <form action="/equipment/edit/" method="POST">
+                    <div class="space-y-4">
+
+
+                        <div>
+                            <label for="fecha_creacion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">fecha_creacion</label>
+                            <input type="date" name="fecha_creacion" id="fecha_creacion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                        </div>
+
+                        <div>
+                            <label for="fecha_cierre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">fecha_cierre</label>
+                            <input type="date" name="fecha_cierre" id="fecha_cierre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                        </div>
+
+                        <div>
+                            <label for="tiempo_garantia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tiempo_garantia</label>
+                            <input type="date" name="tiempo_garanti" id="tiempo_garantia" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                        </div>
+
+                        <div>
+                            <label for="ticket_descripcion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ticket_descripcion</label>
+                            <input type="text" name="ticket_descripcion" id="ticket_descripcion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                        </div>
+
+                        <div>
+                            <label for="editar_nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">editar_nombre</label>
+                            <input type="text" name="editar_nombre" id="editar_nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                        </div>
+
+                        <div>
+                            <label for="editar_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">editar_email</label>
+                            <input type="email" name="editar_email" id="editar-email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                        </div>
+
+                        <div>
+                            <label for="editar_estadoticket" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">editar_estadoticket</label>
+                            <input type="text" name="editar_estadoticket" id="editar_estadoticket" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                        </div>
+
+
+                        <div class="mb-4">
+                            <label for="marca" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una marca</label>
+                            <select id="editar-marca" name="marca" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+
+                                <?php foreach ($ticket_controller->ListPrioridad() as $obj_brand) : ?>
+
+                                    <option><?= $obj_brand->estado_ticket_descripcion ?></option>
+
+                                <?php endforeach; ?>
+                            </select>
+
+                        </div>
+
+
+                        
+                        <input type="hidden" name="id" id="id">
+
+                    </div>
+
+                    <div class="bottom-0 left-0 flex justify-center w-full pb-4 mt-4 space-x-4 sm:absolute sm:px-4 sm:mt-0">
+                        <button type="submit" value="Editar" name="Editar" class="w-full justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                            Update
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+            <!-- Fin Edit equipo Drawer -->
+
+
+            <!-- Delete euipo Drawer -->
+            <div id="drawer-delete-equipment-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-x-full" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
+                <h5 id="drawer-label" class="inline-flex items-center text-sm font-semibold text-gray-500 uppercase dark:text-gray-400">
+                    Eliminar <?= $nombre_formulario ?>
+                </h5>
+                <button type="button" data-drawer-dismiss="drawer-delete-equipment-default" aria-controls="drawer-delete-equipment-default" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white">
+                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                    </svg>
+                    <span class="sr-only">Close menu</span>
+                </button>
+                <svg class="w-10 h-10 mt-8 mb-4 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h3 class="mb-6 text-lg text-gray-500 dark:text-gray-400">
+                    ¿Estas seguro de eliminar este <?= $nombre_formulario ?>?
+                </h3>
+                <a href="" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm inline-flex items-center px-3 py-2.5 text-center mr-2 dark:focus:ring-red-900">
+                    Si, estoy seguro.
+                </a>
+            </div>
+            <!-- Formulario Eliminar Equipo -->
+
+
         </entities-crud>
 
     </div>
 </div>
 
 <script>
-    function handleDeleteButtonClick(equiptmentId) {
-        var deleteButton = document.getElementById("deleteEquiptmentButton");
+    function handleDeleteButtonClick(ticket) {
+        var deleteButton = document.getElementById("deleteticketsButton");
         var deleteLink = document.querySelector("#drawer-delete-equipment-default a.text-white.bg-red-600");
-        deleteLink.href = "/equipment/delete/?id_equipo=" + equiptmentId;
+        deleteLink.href = "/ticket/delete/?id_ticket=" + ticket;
     }
 </script>
 
