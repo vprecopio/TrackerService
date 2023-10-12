@@ -150,11 +150,6 @@ class EquipmentModel
         }
     }
 
-
-
-
-
-
     public function CreateEquipmentModel()
     {
         $sql = "INSERT INTO `equipos_modelo` (`descripcion`) VALUES (:modelo_descripcion)";
@@ -200,9 +195,6 @@ class EquipmentModel
         $stm = $this->pdo->prepare($sql);
         return $stm->execute($params);
     }
-
-
-
 
     public function EditEquipmentModel()
     {

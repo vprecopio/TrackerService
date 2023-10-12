@@ -222,4 +222,10 @@ class TicketController extends TicketModel
         }
     }
 
+    public function edit()
+    {
+        var_dump($_POST);
+        exit;
+    }
+
 }

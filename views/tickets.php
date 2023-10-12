@@ -362,7 +362,7 @@ $equipo_form = new AutomaticForm(
                     <span class="sr-only">Cerrar menu</span>
                 </button>
 
-                <form action="/equipment/edit/" method="POST">
+                <form action="/ticket/edit/" method="POST">
                     <div class="space-y-4">
 
 
@@ -397,16 +397,42 @@ $equipo_form = new AutomaticForm(
                         </div>
 
                         <div>
-                            <label for="editar_estadoticket" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">editar_estadoticket</label>
-                            <input type="text" name="editar_estadoticket" id="editar_estadoticket" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
+                            <label for="editar_valor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">editar_valor</label>
+                            <input type="number" name="editar_valor" id="editar_valor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
                         </div>
 
 
                         <div class="mb-4">
-                            <label for="marca" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una marca</label>
-                            <select id="editar-marca" name="marca" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <label for="editar_prioridad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una prioridad</label>
+                            <select id="editar_prioridad" name="editar_prioridad" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
                                 <?php foreach ($ticket_controller->ListPrioridad() as $obj_brand) : ?>
+
+                                    <option><?= $obj_brand->prioridad_descripcion ?></option>
+
+                                <?php endforeach; ?>
+                            </select>
+
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="editar_modelo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona un modelo</label>
+                            <select id="editar_modelo" name="editar_modelo" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+
+                                <?php foreach ($equipment_controller->ListEquipments() as $obj_brand) : ?>
+
+                                    <option><?= $obj_brand->modelo ?></option>
+
+                                <?php endforeach; ?>
+                            </select>
+
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="editar_estado" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona un estado</label>
+                            <select id="editar_estado" name="editar_estado" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+
+                                <?php foreach ($ticket_controller->ListET() as $obj_brand) : ?>
 
                                     <option><?= $obj_brand->estado_ticket_descripcion ?></option>
 
@@ -414,18 +440,15 @@ $equipo_form = new AutomaticForm(
                             </select>
 
                         </div>
-
-
                         
                         <input type="hidden" name="id" id="id">
 
-                    </div>
 
-                    <div class="bottom-0 left-0 flex justify-center w-full pb-4 mt-4 space-x-4 sm:absolute sm:px-4 sm:mt-0">
-                        <button type="submit" value="Editar" name="Editar" class="w-full justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                            Update
-                        </button>
-                    </div>
+                        <div class="flex justify-center w-full pb-4 mt-4 space-x-4 sm:absolute sm:px-4 sm:mt-0">
+                            <button type="submit" value="Editar" name="Editar" class="w-full justify-center text-white bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                Update
+                            </button>
+                        </div>
                 </form>
 
             </div>
