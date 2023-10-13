@@ -52,8 +52,6 @@ class PdfMaker implements PdfMakerPublic
 
     public function PdfString(): string|null
     {
-        #header('Content-Type: application/pdf');
-        #header('Content-Disposition: inline; filename="documento.pdf"');
         $this->pdf_maker->render();
         return $this->pdf_maker->output();
     }
