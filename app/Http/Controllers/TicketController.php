@@ -202,30 +202,22 @@ class TicketController extends TicketModel
 
         /**
          * Array(
-            [fecha_creacion] => 2023-10-01
-            [fecha_cierre] => 2023-10-02
-            [tiempo_garanti] => 2023-10-04
-            [ticket_descripcion] => fdafdsafsdf
             [editar_valor] => 43143
             [editar_prioridad] => alta
-            [editar_modelo] => Tone Free FN4
             [editar_estado] => asignado
-            [editar_nombre] => Maeve
-            [editar_email] => 4321@example.com
-            [id_ticket] => 
-            [Editar] => Editar
             )
          */
 
         $this->id_ticket = $_POST['id_ticket'];
-
         $this->ticket_fecha_creacion = $_POST['fecha_creacion'];
         $this->ticket_fecha_cierre = $_POST['fecha_cierre'];
         $this->ticket_tiempo_garantia = $_POST['tiempo_garanti'];
         $this->ticket_descripcion = $_POST['ticket_descripcion'];
+
         $this->valor_ticket_total = $_POST['editar_valor'];
-        $this->prioridad_descripcion = $_POST['editar_prioridad'];
-        $this->estado_ticket_descripcion = $_POST['editar_estado'];
+        
+        $_POST['editar_prioridad'];
+        $_POST['editar_estado'];
 
         //----- Cliente Model Buscar si existe el email enviado en el formulario
         $cliente_model = new ClientModel;
@@ -269,6 +261,8 @@ class TicketController extends TicketModel
         {
            $this->id_modelo_equipo = $datos_model[0]->id_modelo;
         }
+
+        
         
         
         //$_POST['Editar'];

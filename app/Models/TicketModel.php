@@ -9,6 +9,7 @@ interface ContratoEstadoTickets
     public function InsertET();
     public function DeleteET();
     public function OneET();
+    public function OneETByDescripcion();
 }
 
 interface ContratoPrioridades
@@ -18,6 +19,7 @@ interface ContratoPrioridades
     public function InsertPrioridad();
     public function DeletePrioridad();
     public function OnePrioridad();
+    public function OnePrioridadByDescripcion();
 }
 
 interface ContratoValorTicket 
