@@ -243,21 +243,31 @@ class TicketController extends TicketModel
         }
         //----- FIN Cliente Model
 
-        $usuario_email = $_POST['editar_email_usuario'];
         $usuario_model = new UserModel;
+        $usuario_model->usr_email = $_POST['editar_email_usuario'];
+        $datos_email=$usuario_model->OneUserByEmail();
+
+        if(empty($datos_email))
+        {
+            echo'no esta en la base de datos';
+            redirect('/ticket/');
+        }
+        else
+        {
+           $this->id_usuario = $datos_email[0]->id_usuario;
+        }
 
         $equipo_model = new EquipmentModel;
         $equipo_model->modelo_equipo_descripcion = $_POST['editar_modelo'];
         $datos_model = $equipo_model->OneModel();
 
-        if($datos_model){
+        if(empty($datos_model)){
             echo 'no esta en la base de datos';
             redirect('/ticket/');
         }
         else
         {
-            var_dump($datos_model);
-            exit;
+           $this->id_modelo_equipo = $datos_model[0]->id_modelo;
         }
         
         
