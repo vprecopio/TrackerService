@@ -224,6 +224,10 @@ class TicketController extends TicketModel
 
     public function edit()
     {
+        echo '<pre>';
+        print_r($_POST);
+exit;
+
         $this->ticket_fecha_creacion = $_POST['fecha_creacion'];
         $this->ticket_fecha_cierre = $_POST['fecha_cierre'] ;
         $this->ticket_tiempo_garantia = $_POST['tiempo_garanti']; 

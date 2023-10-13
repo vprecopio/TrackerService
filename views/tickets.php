@@ -12,59 +12,6 @@ $nombre_formulario = 'ticket-final';
 $ticket_controller = new TicketController;
 $usr_controller = new UserController;
 $cli_controller = new ClientController;
-$cli_controller->ListClient();
-$usr_controller->ListUser();
-
-/* 
-572ac0d2c0220 [usr_estado] => 1 
-[id_rol] => 1 
-[cliente_nombre] => Dashawn Vandervort 
-[cliente_email] => mateo80@example.org 
-[cliente_telefono] => 1-507-546-5250 
-[cliente_direccion] => 4729 Myrtie Centers 
-[estado_ticket_descripcion] => en proceso 
-[prioridad_descripcion] => alta 
-[id_modelos_equipos] => 2 
-[id_marca] => 1 
-[id_modelo] => 2 
-[id_categoria_equipo] => 2 ) 
-[1] => 
-stdClass Object ( [id_ticket] => 2 
-[ticket_fecha_creacion] => 2023-10-25 
-[ticket_fecha_cierre] => 2023-10-29 
-[ticket_tiempo_garantia] => 2023-10-31 
-[ticket_descripcion] => qcyo qcyo 
-[id_usuario] => 3 
-[id_cliente] => 28 
-[id_estado_ticket] => 4 
-[id_prioridad] => 3 
-[id_modelo_equipo] => 1 
-[id_valor] => 3 
-[valor_servicios] => 400 
-[valor_repuestos] => 200 
-[valor_ticket_total] => 600 
-[usr_nombre] => Hildegard 
-[usr_apellido] => Skiles 
-[usr_email] => larson.maxie@example.org 
-[usr_contrasena] => 2345 
-[usr_estado] => 1 
-[id_rol] => 3 
-[cliente_nombre] => Dayana Cremin 
-[cliente_email] => ricky36@example.org 
-[cliente_telefono] => +12569300056 
-[cliente_direccion] => 8445 Daugherty Walks Apt. 697 
-[estado_ticket_descripcion] => entregado 
-[prioridad_descripcion] => media 
-[id_modelos_equipos] => 1 
-[id_marca] => 1 
-[id_modelo] => 1 
-[id_categoria_equipo] => 1 ) ) 
-
-
-
-
-
-*/
 
 $form_estadticket = new AutomaticForm(
     'ticket_estado',
@@ -368,10 +315,6 @@ $equipo_form = new AutomaticForm(
                     <span class="sr-only">Cerrar menu</span>
                 </button>
 
-                $cli_controller->ListClient();
-                $usr_controller->ListUser();
-
-
                 <form action="/ticket/edit/" method="POST">
                     <div class="space-y-4">
 
@@ -397,16 +340,6 @@ $equipo_form = new AutomaticForm(
                         </div>
 
                         <div>
-                            <label for="editar_nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">editar_nombre</label>
-                            <input type="text" name="editar_nombre" id="editar_nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
-                        </div>
-
-                        <div>
-                            <label for="editar_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">editar_email</label>
-                            <input type="email" name="editar_email" id="editar-email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
-                        </div>
-
-                        <div>
                             <label for="editar_valor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">editar_valor</label>
                             <input type="number" name="editar_valor" id="editar_valor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
                         </div>
@@ -415,66 +348,46 @@ $equipo_form = new AutomaticForm(
                         <div class="mb-4">
                             <label for="editar_prioridad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una prioridad</label>
                             <select id="editar_prioridad" name="editar_prioridad" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
                                 <?php foreach ($ticket_controller->ListPrioridad() as $obj_brand) : ?>
-
                                     <option><?= $obj_brand->prioridad_descripcion ?></option>
-
                                 <?php endforeach; ?>
                             </select>
-
                         </div>
 
                         <div class="mb-4">
                             <label for="editar_modelo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona un modelo</label>
                             <select id="editar_modelo" name="editar_modelo" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
                                 <?php foreach ($equipment_controller->ListEquipments() as $obj_brand) : ?>
-
                                     <option><?= $obj_brand->modelo ?></option>
-
                                 <?php endforeach; ?>
                             </select>
-
                         </div>
 
                         <div class="mb-4">
                             <label for="editar_estado" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona un estado</label>
                             <select id="editar_estado" name="editar_estado" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
                                 <?php foreach ($ticket_controller->ListET() as $obj_brand) : ?>
-
                                     <option><?= $obj_brand->estado_ticket_descripcion ?></option>
-
                                 <?php endforeach; ?>
                             </select>
-
                         </div>
 
                         <div class="mb-4">
-                            <label for="editar_prioridad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una prioridad</label>
-                            <select id="editar_prioridad" name="editar_prioridad" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
+                            <label for="editar_nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asignar a empleado</label>
+                            <select id="editar_nombre" name="editar_nombre" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <?php foreach ($usr_controller->ListUser() as $obj_brand) : ?>
-
                                     <option><?= $obj_brand->usr_nombre ?></option>
-
                                 <?php endforeach; ?>
                             </select>
-
                         </div>
 
                         <div class="mb-4">
-                            <label for="editar_prioridad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una prioridad</label>
-                            <select id="editar_prioridad" name="editar_prioridad" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-
+                            <label for="editar-email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email del Cliente</label>
+                            <select id="editar-email" name="editar-email" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <?php foreach ($cli_controller->ListClient() as $obj_brand) : ?>
-
                                     <option><?= $obj_brand->cliente_email ?></option>
-
                                 <?php endforeach; ?>
                             </select>
-
                         </div>
 
                         <input type="hidden" name="id_ticket" id="id_ticket">
