@@ -224,30 +224,16 @@ class TicketController extends TicketModel
 
     public function edit()
     {
-
-        //atributos valor_ticket
-    private $id_valor, $valor_servicios, $valor_repuestos ,$valor_ticket_total;
-
-    //atributos estados_tickets
-    private $id_estado_ticket, $estado_ticket_descripcion;
-
-    //atributos prioridades
-    private $id_prioridad, $prioridad_descripcion;
-
-    //atributos ticket 	
-    private $id_ticket, $ticket_fecha_creacion, $ticket_fecha_cierre, $ticket_tiempo_garantia, $ticket_descripcion, $id_usuario, $id_cliente, $id_modelo_equipo; 	
-
-
         $this->ticket_fecha_creacion = $_POST['fecha_creacion'];
         $this->ticket_fecha_cierre = $_POST['fecha_cierre'] ;
         $this->ticket_tiempo_garantia = $_POST['tiempo_garanti']; 
         $this->ticket_descripcion = $_POST['ticket_descripcion'];
-        = $_POST['editar_nombre'] ;
-        = $_POST['editar_email'];
-        = $_POST['editar_valor'] ;
-        = $_POST['editar_prioridad'];
-        = $_POST['editar_modelo'];
-        = $_POST['editar_estado'] ;
+        $id_usuario = $_POST['editar_nombre'] ;
+        $id_cliente = $_POST['editar_email'];
+        $this->valor_ticket_total = $_POST['editar_valor'] ;
+        $this->prioridad_descripcion = $_POST['editar_prioridad'];
+        $id_modelo_equipo = $_POST['editar_modelo'];
+        $this->estado_ticket_descripcion = $_POST['editar_estado'] ;
         $this->id_ticket = $_POST['id_ticket'] ;
         //$_POST['Editar'];
 
