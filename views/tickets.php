@@ -246,7 +246,7 @@ $equipo_form = new AutomaticForm(
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap da rk:text-white">
-                                                <data value="usr_nombre"><?= $obj_value->usr_nombre ?></data>
+                                                <data value="usr_nombre"><?= $obj_value->usr_email ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -272,7 +272,7 @@ $equipo_form = new AutomaticForm(
                                             <!--botones editar y eliminar-->
                                             <td class="p-4 space-x-2 whitespace-nowrap">
 
-                                                <button type="button" id="updateclienteButton" onclick="llenarFormulario('<?= $obj_value->id_ticket ?>','<?= $obj_value->ticket_fecha_creacion ?>','<?= $obj_value->ticket_fecha_cierre ?>','<?= $obj_value->ticket_tiempo_garantia ?>','<?= $obj_value->ticket_descripcion ?>','<?= $obj_value->usr_nombre ?>','<?= $obj_value->cliente_email ?>','<?= $obj_value->valor_ticket_total ?>','<?= $obj_value->prioridad_descripcion ?>','<?= $obj_value->ModeloEquipo ?>','<?= $obj_value->estado_ticket_descripcion ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                                <button type="button" id="updateclienteButton" onclick="llenarFormulario('<?= $obj_value->id_ticket ?>','<?= $obj_value->ticket_fecha_creacion ?>','<?= $obj_value->ticket_fecha_cierre ?>','<?= $obj_value->ticket_tiempo_garantia ?>','<?= $obj_value->ticket_descripcion ?>','<?= $obj_value->usr_email ?>','<?= $obj_value->cliente_email ?>','<?= $obj_value->valor_ticket_total ?>','<?= $obj_value->prioridad_descripcion ?>','<?= $obj_value->ModeloEquipo ?>','<?= $obj_value->estado_ticket_descripcion ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 hover:text-white focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <svg>
                                                             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
@@ -373,10 +373,10 @@ $equipo_form = new AutomaticForm(
                         </div>
 
                         <div class="mb-4">
-                            <label for="editar_nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asignar a empleado</label>
-                            <select id="editar_nombre" name="editar_nombre" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <label for="editar_email_usuario" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asignar a empleado</label>
+                            <select id="editar_email_usuario" name="editar_email_usuario" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <?php foreach ($usr_controller->ListUser() as $obj_brand) : ?>
-                                    <option><?= $obj_brand->usr_nombre ?></option>
+                                    <option><?= $obj_brand->usr_email ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
@@ -443,13 +443,13 @@ $equipo_form = new AutomaticForm(
 
 <script>
     // Función para llenar los campos del formulario con los datos del formulario
-    function llenarFormulario(id, fecha_creacion, fecha_cierre, tiempo_garantia, ticket_descripcion, editar_nombre, editar_email, editar_valor, editar_prioridad, editar_modelo, editar_estado) {
+    function llenarFormulario(id, fecha_creacion, fecha_cierre, tiempo_garantia, ticket_descripcion, editar_email_usuario, editar_email, editar_valor, editar_prioridad, editar_modelo, editar_estado) {
         // Obtener referencias a los campos del formulario
         var a = document.getElementById("fecha_creacion");
         var b = document.getElementById("fecha_cierre");
         var c = document.getElementById("tiempo_garantia");
         var d = document.getElementById("ticket_descripcion");
-        var e = document.getElementById("editar_nombre");
+        var e = document.getElementById("editar_email_usuario");
         var f = document.getElementById("editar_email");
         var g = document.getElementById("editar_valor");
         var h = document.getElementById("editar_prioridad");
@@ -462,7 +462,7 @@ $equipo_form = new AutomaticForm(
         b.value = fecha_cierre;
         c.value = tiempo_garantia;
         d.value = ticket_descripcion;
-        e.value = editar_nombre;
+        e.value = editar_email_usuario;
         f.value = editar_email;
         g.value = editar_valor;
         h.value = editar_prioridad;

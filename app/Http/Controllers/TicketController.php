@@ -227,14 +227,24 @@ class TicketController extends TicketModel
         $this->prioridad_descripcion = $_POST['editar_prioridad'];
         $this->estado_ticket_descripcion = $_POST['editar_estado'];
 
-        $usuario_nombre = $_POST['editar_nombre'];
-        $usuario_model = new UserModel;
-
         //----- Cliente Model Buscar si existe el email enviado en el formulario
         $cliente_model = new ClientModel;
         $cliente_model->email = $_POST['editar_email'];
-        var_dump($cliente_model->OneClientByEmail());
+        $datos_cliente = $cliente_model->OneClientByEmail();
+
+        if(empty($datos_cliente))
+        {
+            echo 'no esta en la base de datos';
+            redirect('/ticket/');
+        }
+        else
+        {
+            $this->id_cliente = $datos_cliente[0]->id_cliente;
+        }
         //----- FIN Cliente Model
+
+        $usuario_email = $_POST['editar_email_usuario'];
+        $usuario_model = new UserModel;
 
         $modelo_equipo = $_POST['editar_modelo'];
         $equipo_model = new EquipmentModel;
