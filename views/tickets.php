@@ -1,13 +1,19 @@
 <?php
 
 use \App\AutomaticForm;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\UserController;
 
 $nombre_pagina = 'Ticket';
 $nombre_formulario = 'ticket-final';
 //---------------------------seccion ticket
 $ticket_controller = new TicketController;
+$usr_controller = new UserController;
+$cli_controller = new ClientController;
+$cli_controller->ListClient();
+$usr_controller->ListUser();
 
 /* 
 572ac0d2c0220 [usr_estado] => 1 
@@ -362,6 +368,10 @@ $equipo_form = new AutomaticForm(
                     <span class="sr-only">Cerrar menu</span>
                 </button>
 
+                $cli_controller->ListClient();
+                $usr_controller->ListUser();
+
+
                 <form action="/ticket/edit/" method="POST">
                     <div class="space-y-4">
 
@@ -435,6 +445,32 @@ $equipo_form = new AutomaticForm(
                                 <?php foreach ($ticket_controller->ListET() as $obj_brand) : ?>
 
                                     <option><?= $obj_brand->estado_ticket_descripcion ?></option>
+
+                                <?php endforeach; ?>
+                            </select>
+
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="editar_prioridad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una prioridad</label>
+                            <select id="editar_prioridad" name="editar_prioridad" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+
+                                <?php foreach ($usr_controller->ListUser() as $obj_brand) : ?>
+
+                                    <option><?= $obj_brand->usr_nombre ?></option>
+
+                                <?php endforeach; ?>
+                            </select>
+
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="editar_prioridad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una prioridad</label>
+                            <select id="editar_prioridad" name="editar_prioridad" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+
+                                <?php foreach ($cli_controller->ListClient() as $obj_brand) : ?>
+
+                                    <option><?= $obj_brand->cliente_email ?></option>
 
                                 <?php endforeach; ?>
                             </select>
