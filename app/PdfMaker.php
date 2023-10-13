@@ -8,7 +8,7 @@ interface PdfMakerPublic
 {
     public function PdfDownload(): void;
     public function PdfString(): string|null;
-    public function PdfView(): string|null;
+    public function PdfView(): void;
 }
 
 class PdfMaker implements PdfMakerPublic
@@ -56,12 +56,12 @@ class PdfMaker implements PdfMakerPublic
         return $this->pdf_maker->output();
     }
 
-    public function PdfView(): string|null
+    public function PdfView(): void
     {
         header('Content-Type: application/pdf');
         header('Content-Disposition: inline; filename="documento.pdf"');
         $this->pdf_maker->render();
-        return $this->pdf_maker->output();
+        echo $this->pdf_maker->output();
     }
 
 }
