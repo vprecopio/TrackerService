@@ -1,5 +1,4 @@
 <?php
-
 namespace App;
 
 use Dompdf\Dompdf;
@@ -9,8 +8,8 @@ interface PdfMakerPublic
 {
     public function PdfDownload(): void;
     public function PdfString(): string|null;
+    public function PdfView(): string|null;
 }
-
 
 class PdfMaker implements PdfMakerPublic
 {
@@ -58,4 +57,13 @@ class PdfMaker implements PdfMakerPublic
         $this->pdf_maker->render();
         return $this->pdf_maker->output();
     }
+
+    public function PdfView(): string|null
+    {
+        header('Content-Type: application/pdf');
+        header('Content-Disposition: inline; filename="documento.pdf"');
+        $this->pdf_maker->render();
+        return $this->pdf_maker->output();
+    }
+
 }
