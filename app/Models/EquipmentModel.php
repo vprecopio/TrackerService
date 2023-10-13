@@ -97,11 +97,6 @@ class EquipmentModel
         }
     }
 
-
-
-
-
-
     public function ListEquipmentBrand()
     {
         try {

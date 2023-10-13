@@ -246,8 +246,19 @@ class TicketController extends TicketModel
         $usuario_email = $_POST['editar_email_usuario'];
         $usuario_model = new UserModel;
 
-        $modelo_equipo = $_POST['editar_modelo'];
         $equipo_model = new EquipmentModel;
+        $equipo_model->modelo_equipo_descripcion = $_POST['editar_modelo'];
+        $datos_model = $equipo_model->OneModel();
+
+        if($datos_model){
+            echo 'no esta en la base de datos';
+            redirect('/ticket/');
+        }
+        else
+        {
+            var_dump($datos_model);
+            exit;
+        }
         
         
         //$_POST['Editar'];
