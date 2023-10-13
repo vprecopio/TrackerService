@@ -12,6 +12,7 @@ $cantclient = $client_controller->CountClient();
         <main>
             <div class="px-4 pt-6">
                 <div class="grid gap-4 xl:grid-cols-2 2xl:grid-cols-3">
+                    <!-- Radial Chart -->
                     <div class="max-w-full place-self-center bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
                         <div class="flex justify-between mb-3">
                             <div class="flex items-center">
@@ -29,7 +30,7 @@ $cantclient = $client_controller->CountClient();
                                 </dl>
                                 <dl class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
                                     <dt class="w-8 h-8 rounded-full bg-teal-100 dark:bg-gray-500 text-teal-600 dark:text-teal-300 text-sm font-medium flex items-center justify-center mb-1">23</dt>
-                                    <dd class="text-teal-600 dark:text-teal-300 text-sm font-medium">En progreso</dd>
+                                    <dd class="text-teal-600 dark:text-teal-300 text-sm font-medium">En proceso</dd>
                                 </dl>
                                 <dl class="bg-blue-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
                                     <dt class="w-8 h-8 rounded-full bg-blue-100 dark:bg-gray-500 text-blue-600 dark:text-blue-300 text-sm font-medium flex items-center justify-center mb-1">64</dt>
@@ -79,6 +80,7 @@ $cantclient = $client_controller->CountClient();
                         </div>
                     </div>
                     <div class="flex flex-col space-y-6 2xl:col-span-2">
+                        <!-- Tickets Chart -->
                         <div class="flex-1 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                             <div class="w-full">
                                 <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">New products</h3>
@@ -174,6 +176,7 @@ $cantclient = $client_controller->CountClient();
                                 </div>
                             </div>
                         </div>
+                        <!-- Users Chart -->
                         <div class="flex-1 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                             <div class="w-full">
                                 <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Users</h3>
@@ -288,71 +291,4 @@ $cantclient = $client_controller->CountClient();
     </div>
 </div>
 
-<script>
-    // ApexCharts options and config
-    window.addEventListener("load", function() {
-        const getChartOptions = () => {
-            return {
-                series: [90, 85, 70],
-                colors: ["#1C64F2", "#16BDCA", "#FDBA8C"],
-                chart: {
-                    height: "380px",
-                    width: "100%",
-                    type: "radialBar",
-                    sparkline: {
-                        enabled: true,
-                    },
-                },
-                plotOptions: {
-                    radialBar: {
-                        track: {
-                            background: '#E5E7EB',
-                        },
-                        dataLabels: {
-                            show: false,
-                        },
-                        hollow: {
-                            margin: 0,
-                            size: "32%",
-                        }
-                    },
-                },
-                grid: {
-                    show: false,
-                    strokeDashArray: 4,
-                    padding: {
-                        left: 2,
-                        right: 2,
-                        top: -23,
-                        bottom: -20,
-                    },
-                },
-                labels: ["Finalizado", "En progreso", "Pendiente"],
-                legend: {
-                    show: true,
-                    position: "bottom",
-                    fontFamily: "Inter, sans-serif",
-                },
-                tooltip: {
-                    enabled: true,
-                    x: {
-                        show: false,
-                    },
-                },
-                yaxis: {
-                    show: false,
-                    labels: {
-                        formatter: function(value) {
-                            return value + '%';
-                        }
-                    }
-                }
-            }
-        }
-
-        if (document.getElementById("radial-chart") && typeof ApexCharts !== 'undefined') {
-            var chart = new ApexCharts(document.querySelector("#radial-chart"), getChartOptions());
-            chart.render();
-        }
-    });
-</script>
+<script src="../public/src/scripts/home_charts.js"></script>
