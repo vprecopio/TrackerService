@@ -40,6 +40,18 @@ class ClientModel
         }
     }
 
+    public function OneClientByEmail()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM clientes WHERE `clientes`.`cliente_email` = :cliente_emai");
+            $stm->bindParam(':cliente_emai', $this->email, \PDO::PARAM_INT);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     public function CreateClient()
     {
         $sql = "INSERT INTO `clientes` (`cliente_nombre`, `cliente_email`, `cliente_telefono`, `cliente_direccion`) VALUES (:nombre, :email, :telefono, :direccion)";
