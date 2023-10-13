@@ -201,6 +201,19 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             die($e->getMessage());
         }
     }
+
+    public function OneETByDescripcion()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM estados_tickets WHERE `estados_tickets`.`estado_ticket_descripcion` = :estado_ticket_descripcion");
+            $stm->bindParam(':estado_ticket_descripcion', $this->estado_ticket_descripcion, \PDO::PARAM_STR);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     /* Fin estados_tickets*/
 
 
@@ -271,6 +284,19 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             die($e->getMessage());
         }
     }
+
+    public function OnePrioridadByDescripcion()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM prioridades WHERE `prioridades`.`prioridad_descripcion` = :prioridad_descripcion");
+            $stm->bindParam(':prioridad_descripcion', $this->prioridad_descripcion, \PDO::PARAM_STR);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     /* Fin prioridades*/
 
     /*Inicio de ticket*/
