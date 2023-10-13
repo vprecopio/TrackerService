@@ -382,8 +382,8 @@ $equipo_form = new AutomaticForm(
                         </div>
 
                         <div class="mb-4">
-                            <label for="editar-email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email del Cliente</label>
-                            <select id="editar-email" name="editar-email" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <label for="editar_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email del Cliente</label>
+                            <select id="editar_email" name="editar_email" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <?php foreach ($cli_controller->ListClient() as $obj_brand) : ?>
                                     <option><?= $obj_brand->cliente_email ?></option>
                                 <?php endforeach; ?>
@@ -450,7 +450,7 @@ $equipo_form = new AutomaticForm(
         var c = document.getElementById("tiempo_garantia");
         var d = document.getElementById("ticket_descripcion");
         var e = document.getElementById("editar_nombre");
-        var f = document.getElementById("editar-email");
+        var f = document.getElementById("editar_email");
         var g = document.getElementById("editar_valor");
         var h = document.getElementById("editar_prioridad");
         var i = document.getElementById("editar_modelo");
