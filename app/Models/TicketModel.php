@@ -330,7 +330,30 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     }
     public function EditT()
     {
-        $sql = "UPDATE `tickets` SET `ticket_fecha_creacion` = '2023-10-01', `ticket_fecha_cierre` = '2023-10-02', `ticket_tiempo_garantia` = '2023-10-04', `ticket_descripcion` = 'fdafdsafsdf', `id_usuario` = '3', `id_cliente` = '11', `id_prioridad` = '2', `id_modelo_equipo` = '8', `id_valor` = '2' WHERE `tickets`.`id_ticket` = 1; ";
+        $sql = "UPDATE `tickets` 
+        SET 
+        `ticket_fecha_creacion` = :ticket_fecha_creacion, 
+        `ticket_fecha_cierre` = :ticket_fecha_cierre, 
+        `ticket_tiempo_garantia` = :ticket_tiempo_garantia, 
+        `ticket_descripcion` = :ticket_descripcion, 
+        `id_usuario` = :id_usuario, `id_cliente` = :id_cliente, `id_prioridad` = :id_prioridad, `id_modelo_equipo` = :id_modelo_equipo,`id_valor` = :id_valor
+        WHERE `id_ticket` = :id_ticket";
+
+        $params = [
+            ':id_ticket' => $this->id_ticket,
+            ':ticket_fecha_creacion' => $this->ticket_fecha_creacion,
+            ':ticket_fecha_cierre' => $this->ticket_fecha_cierre,
+            ':ticket_tiempo_garantia' => $this->ticket_tiempo_garantia,
+            ':ticket_descripcion' => $this->ticket_descripcion,
+            ':id_usuario' => $this->id_usuario,
+            ':id_cliente' => $this->id_cliente,
+            ':id_prioridad' => $this->id_prioridad,
+            ':id_modelo_equipo' => $this->id_modelo_equipo,
+            ':id_valor' => 1,
+        ];
+    
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);  
 
     }
     public function InsertT()

@@ -199,27 +199,13 @@ class TicketController extends TicketModel
 
     public function edit()
     {
-
-        /**
-         * Array(
-            [editar_valor] => 43143
-            [editar_prioridad] => alta
-            [editar_estado] => asignado
-            )
-         */
-
         $this->id_ticket = $_POST['id_ticket'];
         $this->ticket_fecha_creacion = $_POST['fecha_creacion'];
         $this->ticket_fecha_cierre = $_POST['fecha_cierre'];
         $this->ticket_tiempo_garantia = $_POST['tiempo_garanti'];
         $this->ticket_descripcion = $_POST['ticket_descripcion'];
 
-        $this->valor_ticket_total = $_POST['editar_valor'];
-        
-        $_POST['editar_prioridad'];
-        $_POST['editar_estado'];
-
-        //----- Cliente Model Buscar si existe el email enviado en el formulario
+        //cliente
         $cliente_model = new ClientModel;
         $cliente_model->email = $_POST['editar_email'];
         $datos_cliente = $cliente_model->OneClientByEmail();
@@ -233,8 +219,8 @@ class TicketController extends TicketModel
         {
             $this->id_cliente = $datos_cliente[0]->id_cliente;
         }
-        //----- FIN Cliente Model
 
+        //usuario
         $usuario_model = new UserModel;
         $usuario_model->usr_email = $_POST['editar_email_usuario'];
         $datos_email=$usuario_model->OneUserByEmail();
@@ -249,9 +235,10 @@ class TicketController extends TicketModel
            $this->id_usuario = $datos_email[0]->id_usuario;
         }
 
+        //equipo
         $equipo_model = new EquipmentModel;
         $equipo_model->modelo_equipo_descripcion = $_POST['editar_modelo'];
-        $datos_model = $equipo_model->OneModel();
+        $datos_model = $equipo_model->OneEquipByModel();
 
         if(empty($datos_model)){
             echo 'no esta en la base de datos';
@@ -259,12 +246,45 @@ class TicketController extends TicketModel
         }
         else
         {
-           $this->id_modelo_equipo = $datos_model[0]->id_modelo;
+           $this->id_modelo_equipo = $datos_model[0]->id_modelos_equipos;
         }
 
+        //prioridad
+        $this->prioridad_descripcion = $_POST['editar_prioridad'];
+        $datos_prioridad = $this->OnePrioridadByDescripcion();
         
+        if(empty($datos_prioridad)){
+            echo 'no esta en la base de datos';
+            redirect('/ticket/');
+        }
+        else
+        {
+            $this->id_prioridad = $datos_prioridad[0]->id_prioridad;
+        }
+
+        //estado tk
+        $this->estado_ticket_descripcion = $_POST['editar_estado'];
+        $datos_estado = $this->OneETByDescripcion();
         
+        if(empty($datos_estado)){
+            echo 'no esta en la base de datos';
+            redirect('/ticket/');
+        }
+        else
+        {
+            $this->id_estado_ticket = $datos_estado[0]->id_estado_ticket;
+        }
         
+
+        $this->EditT();
+
+        redirect('/ticket/');
+
+        echo 'correcto';
+        
+
+        //por ahora el valor del ticket va a estar hardcodeado
+        //$this->valor_ticket_total = $_POST['editar_valor'];
         //$_POST['Editar'];
 
         exit;
