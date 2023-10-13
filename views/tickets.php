@@ -90,7 +90,104 @@ $equipo_form = new AutomaticForm(
     ]
 );
 //---------------------------fin equipos
+
+$ticket_insert = new AutomaticForm(
+    'ticket_insertar',
+    'Insertar Ticket',
+    '/ticket/insertarticket/',
+    'POST',
+    '',
+    [
+        'ticket_estado' => [
+            'title_label' => 'Fecha_Creacion',
+            'id_name' => 'fecha_creacion',
+            'type' => 'date',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+        'ticket_estado2' => [
+            'title_label' => 'Fecha_Cierre',
+            'id_name' => 'fecha_cierre',
+            'type' => 'date',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+        'ticket_estado3' => [
+            'title_label' => 'Fecha_Tiempo_Garantia',
+            'id_name' => 'fecha_tiempo_garantia',
+            'type' => 'date',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+        'ticket_estado4' => [
+            'title_label' => 'Ticket_descripcion',
+            'id_name' => 'ticket_descripcion',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+        'ticket_estado5' => [
+            'title_label' => 'Editar_valor',
+            'id_name' => 'editar_valor',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+        'ticket_estado6' => [
+            'title_label' => 'Prioridad',
+            'id_name' => 'prioridad',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+        'ticket_estado7' => [
+            'title_label' => 'Modelo',
+            'id_name' => 'modelo',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+        'ticket_estado8' => [
+            'title_label' => 'Estado',
+            'id_name' => 'estado',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+        'ticket_estado9' => [
+            'title_label' => 'Empleado',
+            'id_name' => 'empleado',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+        'ticket_estado10' => [
+            'title_label' => 'Email_cliente',
+            'id_name' => 'email_cliente',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => 'Estado',
+            'required' => true,
+        ],
+    ]
+);
+
+
 ?>
+
+
+
+
+
 
 <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
     <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900 min-h-screen">
@@ -151,6 +248,10 @@ $equipo_form = new AutomaticForm(
                             <? $equipo_form->GenerateButton() ?>
                             <? $equipo_form->GenerateForm() ?>
                             <!--FIN Agregar Equipo -->
+                            <!--Form agregar ticket -->
+                            <? $ticket_insert->GenerateButton() ?>
+                            <? $ticket_insert->GenerateForm() ?>
+                            <!--FIN Agregar Ticket -->
 
                         </div>
                     </div>
