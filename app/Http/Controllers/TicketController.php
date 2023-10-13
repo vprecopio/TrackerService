@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ClientModel;
+use App\Models\EquipmentModel;
 use App\Models\TicketModel;
+use App\Models\UserModel;
 
 class TicketController extends TicketModel
 {
@@ -198,8 +201,7 @@ class TicketController extends TicketModel
     {
 
         /**
-         * Array
-            (
+         * Array(
             [fecha_creacion] => 2023-10-01
             [fecha_cierre] => 2023-10-02
             [tiempo_garanti] => 2023-10-04
@@ -215,18 +217,29 @@ class TicketController extends TicketModel
             )
          */
 
+        $this->id_ticket = $_POST['id_ticket'];
 
         $this->ticket_fecha_creacion = $_POST['fecha_creacion'];
         $this->ticket_fecha_cierre = $_POST['fecha_cierre'];
         $this->ticket_tiempo_garantia = $_POST['tiempo_garanti'];
         $this->ticket_descripcion = $_POST['ticket_descripcion'];
-        $id_usuario = $_POST['editar_nombre'];
-        $id_cliente = $_POST['editar_email'];
         $this->valor_ticket_total = $_POST['editar_valor'];
         $this->prioridad_descripcion = $_POST['editar_prioridad'];
-        $id_modelo_equipo = $_POST['editar_modelo'];
         $this->estado_ticket_descripcion = $_POST['editar_estado'];
-        $this->id_ticket = $_POST['id_ticket'];
+
+        $usuario_nombre = $_POST['editar_nombre'];
+        $usuario_model = new UserModel;
+
+        //----- Cliente Model Buscar si existe el email enviado en el formulario
+        $cliente_model = new ClientModel;
+        $cliente_model->email = $_POST['editar_email'];
+        var_dump($cliente_model->OneClientByEmail());
+        //----- FIN Cliente Model
+
+        $modelo_equipo = $_POST['editar_modelo'];
+        $equipo_model = new EquipmentModel;
+        
+        
         //$_POST['Editar'];
 
         exit;
