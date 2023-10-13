@@ -14,7 +14,7 @@ $usr_controller = new UserController;
 $cli_controller = new ClientController;
 
 $form_estadticket = new AutomaticForm(
-    'ticket_estado',
+    'estado',
     'Nuevo estado',
     '/ticket/insertarestadoticket/',
     'POST',
@@ -32,7 +32,7 @@ $form_estadticket = new AutomaticForm(
 );
 
 $form_prioridades = new AutomaticForm(
-    'prioridad_descripcion',
+    'descripcion',
     'Nueva descripcion',
     '/ticket/insertarprioridadticket/',
     'POST',
@@ -92,7 +92,7 @@ $equipo_form = new AutomaticForm(
 //---------------------------fin equipos
 
 $ticket_insert = new AutomaticForm(
-    'ticket_insertar',
+    'ticket',
     'Insertar Ticket',
     '/ticket/insertarticket/',
     'POST',
@@ -103,7 +103,7 @@ $ticket_insert = new AutomaticForm(
             'id_name' => 'fecha_creacion',
             'type' => 'date',
             'height' => 3,
-            'placeholder' => 'Estado',
+            'placeholder' => '',
             'required' => true,
         ],
         'ticket_estado2' => [
@@ -127,7 +127,7 @@ $ticket_insert = new AutomaticForm(
             'id_name' => 'ticket_descripcion',
             'type' => 'text',
             'height' => 3,
-            'placeholder' => 'Estado',
+            'placeholder' => 'Descripcion',
             'required' => true,
         ],
         'ticket_estado5' => [
@@ -135,7 +135,7 @@ $ticket_insert = new AutomaticForm(
             'id_name' => 'editar_valor',
             'type' => 'text',
             'height' => 3,
-            'placeholder' => 'Estado',
+            'placeholder' => '$',
             'required' => true,
         ],
         'ticket_estado6' => [
@@ -143,7 +143,7 @@ $ticket_insert = new AutomaticForm(
             'id_name' => 'prioridad',
             'type' => 'text',
             'height' => 3,
-            'placeholder' => 'Estado',
+            'placeholder' => '',
             'required' => true,
         ],
         'ticket_estado7' => [
@@ -151,7 +151,7 @@ $ticket_insert = new AutomaticForm(
             'id_name' => 'modelo',
             'type' => 'text',
             'height' => 3,
-            'placeholder' => 'Estado',
+            'placeholder' => 'samsung',
             'required' => true,
         ],
         'ticket_estado8' => [
@@ -159,7 +159,7 @@ $ticket_insert = new AutomaticForm(
             'id_name' => 'estado',
             'type' => 'text',
             'height' => 3,
-            'placeholder' => 'Estado',
+            'placeholder' => '',
             'required' => true,
         ],
         'ticket_estado9' => [
@@ -167,7 +167,7 @@ $ticket_insert = new AutomaticForm(
             'id_name' => 'empleado',
             'type' => 'text',
             'height' => 3,
-            'placeholder' => 'Estado',
+            'placeholder' => '',
             'required' => true,
         ],
         'ticket_estado10' => [
@@ -175,19 +175,13 @@ $ticket_insert = new AutomaticForm(
             'id_name' => 'email_cliente',
             'type' => 'text',
             'height' => 3,
-            'placeholder' => 'Estado',
+            'placeholder' => 'algo123@gmail.com',
             'required' => true,
         ],
     ]
 );
 
-
 ?>
-
-
-
-
-
 
 <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
     <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900 min-h-screen">
