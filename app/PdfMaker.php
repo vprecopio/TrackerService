@@ -1,4 +1,5 @@
 <?php
+
 namespace App;
 
 use Dompdf\Dompdf;
@@ -6,8 +7,8 @@ use Dompdf\Options;
 
 interface PdfMakerPublic
 {
-    public function PdfDownload():void;
-    public function PdfString():string|null;
+    public function PdfDownload(): void;
+    public function PdfString(): string|null;
 }
 
 
@@ -34,13 +35,12 @@ class PdfMaker implements PdfMakerPublic
 
     private function setHtml(string $html): string
     {
-        if($this->is_route)
-        {
-            $html = file_get_contents(__DIR__ . '/../views/pdf/' . $html );
+        if ($this->is_route) {
+            ob_start();
+            require_once(__DIR__ . '/../views/pdf/' . $html);
+            $html = ob_get_clean();
             return $html;
-        }
-        else
-        {
+        } else {
             return $html;
         }
     }
@@ -51,7 +51,7 @@ class PdfMaker implements PdfMakerPublic
         $this->pdf_maker->stream();
     }
 
-    public function PdfString():string|null
+    public function PdfString(): string|null
     {
         #header('Content-Type: application/pdf');
         #header('Content-Disposition: inline; filename="documento.pdf"');
