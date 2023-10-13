@@ -6,8 +6,8 @@ use Dompdf\Options;
 
 interface PdfMakerPublic
 {
-    public function RenderDownload():void;
-    public function PdfString():string;
+    public function PdfDownload():void;
+    public function PdfString():string|null;
 }
 
 
@@ -45,13 +45,13 @@ class PdfMaker implements PdfMakerPublic
         }
     }
 
-    public function RenderDownload(): void
+    public function PdfDownload(): void
     {
         $this->pdf_maker->render();
         $this->pdf_maker->stream();
     }
 
-    public function PdfString(): string
+    public function PdfString():string|null
     {
         #header('Content-Type: application/pdf');
         #header('Content-Disposition: inline; filename="documento.pdf"');
