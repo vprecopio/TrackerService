@@ -210,29 +210,23 @@ class TicketController extends TicketModel
         $cliente_model->email = $_POST['editar_email'];
         $datos_cliente = $cliente_model->OneClientByEmail();
 
-        if(empty($datos_cliente))
-        {
+        if (empty($datos_cliente)) {
             echo 'no esta en la base de datos';
             redirect('/ticket/');
-        }
-        else
-        {
+        } else {
             $this->id_cliente = $datos_cliente[0]->id_cliente;
         }
 
         //usuario
         $usuario_model = new UserModel;
         $usuario_model->usr_email = $_POST['editar_email_usuario'];
-        $datos_email=$usuario_model->OneUserByEmail();
+        $datos_email = $usuario_model->OneUserByEmail();
 
-        if(empty($datos_email))
-        {
-            echo'no esta en la base de datos';
+        if (empty($datos_email)) {
+            echo 'no esta en la base de datos';
             redirect('/ticket/');
-        }
-        else
-        {
-           $this->id_usuario = $datos_email[0]->id_usuario;
+        } else {
+            $this->id_usuario = $datos_email[0]->id_usuario;
         }
 
         //equipo
@@ -240,41 +234,35 @@ class TicketController extends TicketModel
         $equipo_model->modelo_equipo_descripcion = $_POST['editar_modelo'];
         $datos_model = $equipo_model->OneEquipByModel();
 
-        if(empty($datos_model)){
+        if (empty($datos_model)) {
             echo 'no esta en la base de datos';
             redirect('/ticket/');
-        }
-        else
-        {
-           $this->id_modelo_equipo = $datos_model[0]->id_modelos_equipos;
+        } else {
+            $this->id_modelo_equipo = $datos_model[0]->id_modelos_equipos;
         }
 
         //prioridad
         $this->prioridad_descripcion = $_POST['editar_prioridad'];
         $datos_prioridad = $this->OnePrioridadByDescripcion();
-        
-        if(empty($datos_prioridad)){
+
+        if (empty($datos_prioridad)) {
             echo 'no esta en la base de datos';
             redirect('/ticket/');
-        }
-        else
-        {
+        } else {
             $this->id_prioridad = $datos_prioridad[0]->id_prioridad;
         }
 
         //estado tk
         $this->estado_ticket_descripcion = $_POST['editar_estado'];
         $datos_estado = $this->OneETByDescripcion();
-        
-        if(empty($datos_estado)){
+
+        if (empty($datos_estado)) {
             echo 'no esta en la base de datos';
             redirect('/ticket/');
-        }
-        else
-        {
+        } else {
             $this->id_estado_ticket = $datos_estado[0]->id_estado_ticket;
         }
-        
+
 
         $this->EditT();
 
@@ -282,27 +270,80 @@ class TicketController extends TicketModel
 
         echo 'correcto';
 
-        
+
 
         //por ahora el valor del ticket va a estar hardcodeado
         //$this->valor_ticket_total = $_POST['editar_valor'];
         //$_POST['Editar'];
 
         exit;
-
     }
 
     public function insertarticket()
     {
-        $_POST['fecha_creacion'];  
-        $_POST['fecha_cierre'];  
-        $_POST['fecha_tiempo_garantia']; 
-        $_POST['ticket_descripcion']; 
-        $_POST['editar_valor']; 
-        $_POST['prioridad']; 
-        $_POST['modelo']; 
-        $_POST['estado']; 
-        $_POST['empleado']; 
-        $_POST['email_cliente'];
+        //$_POST['editar_valor'];
+
+        $this->ticket_fecha_creacion = $_POST['fecha_creacion'];
+        $this->ticket_fecha_cierre = $_POST['fecha_cierre'];
+        $this->ticket_tiempo_garantia = $_POST['fecha_tiempo_garantia'];
+        $this->ticket_descripcion = $_POST['ticket_descripcion'];
+
+        //cliente
+        $cliente_model = new ClientModel;
+        $cliente_model->email = $_POST['email_cliente'];
+        $datos_cliente = $cliente_model->OneClientByEmail();
+
+        if (empty($datos_cliente)) {
+            echo 'no esta en la base de datos';
+            redirect('/ticket/');
+        } else {
+            $this->id_cliente = $datos_cliente[0]->id_cliente;
+        }
+
+        //usuario
+        $usuario_model = new UserModel;
+        $usuario_model->usr_email = $_POST['empleado'];
+        $datos_email = $usuario_model->OneUserByEmail();
+
+        if (empty($datos_email)) {
+            echo 'no esta en la base de datos';
+            redirect('/ticket/');
+        } else {
+            $this->id_usuario = $datos_email[0]->id_usuario;
+        }
+
+        //equipo
+        $equipo_model = new EquipmentModel;
+        $equipo_model->modelo_equipo_descripcion = $_POST['modelo'];
+        $datos_model = $equipo_model->OneEquipByModel();
+
+        if (empty($datos_model)) {
+            echo 'no esta en la base de datos';
+            redirect('/ticket/');
+        } else {
+            $this->id_modelo_equipo = $datos_model[0]->id_modelos_equipos;
+        }
+
+        //prioridad
+        $this->prioridad_descripcion = $_POST['prioridad'];
+        $datos_prioridad = $this->OnePrioridadByDescripcion();
+
+        if (empty($datos_prioridad)) {
+            echo 'no esta en la base de datos';
+            redirect('/ticket/');
+        } else {
+            $this->id_prioridad = $datos_prioridad[0]->id_prioridad;
+        }
+
+        //estado tk
+        $this->estado_ticket_descripcion = $_POST['estado'];
+        $datos_estado = $this->OneETByDescripcion();
+
+        if (empty($datos_estado)) {
+            echo 'no esta en la base de datos';
+            redirect('/ticket/');
+        } else {
+            $this->id_estado_ticket = $datos_estado[0]->id_estado_ticket;
+        }
     }
 }
