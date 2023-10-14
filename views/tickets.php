@@ -99,7 +99,7 @@ $ticket_insert = new AutomaticForm(
     [
         'ticket_estado' => [
             'title_label' => 'Fecha_Creacion',
-            'id_name' => 'fecha_creacion',
+            'id_name' => 'fecha_creacion_a',
             'type' => 'date',
             'height' => 3,
             'placeholder' => '',
@@ -107,7 +107,7 @@ $ticket_insert = new AutomaticForm(
         ],
         'ticket_estado2' => [
             'title_label' => 'Fecha_Cierre',
-            'id_name' => 'fecha_cierre',
+            'id_name' => 'fecha_cierre_a',
             'type' => 'date',
             'height' => 3,
             'placeholder' => 'Estado',
@@ -115,7 +115,7 @@ $ticket_insert = new AutomaticForm(
         ],
         'ticket_estado3' => [
             'title_label' => 'Fecha_Tiempo_Garantia',
-            'id_name' => 'fecha_tiempo_garantia',
+            'id_name' => 'fecha_tiempo_garantia_a',
             'type' => 'date',
             'height' => 3,
             'placeholder' => 'Estado',
@@ -123,7 +123,7 @@ $ticket_insert = new AutomaticForm(
         ],
         'ticket_estado4' => [
             'title_label' => 'Ticket_descripcion',
-            'id_name' => 'ticket_descripcion',
+            'id_name' => 'ticket_descripcion_a',
             'type' => 'text',
             'height' => 3,
             'placeholder' => 'Descripcion',
@@ -131,7 +131,7 @@ $ticket_insert = new AutomaticForm(
         ],
         'ticket_estado5' => [
             'title_label' => 'Editar_valor',
-            'id_name' => 'editar_valor',
+            'id_name' => 'editar_valor_a',
             'type' => 'text',
             'height' => 3,
             'placeholder' => '$',
@@ -139,7 +139,7 @@ $ticket_insert = new AutomaticForm(
         ],
         'ticket_estado6' => [
             'title_label' => 'Prioridad',
-            'id_name' => 'prioridad',
+            'id_name' => 'prioridad_a',
             'type' => 'text',
             'height' => 3,
             'placeholder' => '',
@@ -149,7 +149,7 @@ $ticket_insert = new AutomaticForm(
         ],
         'ticket_estado7' => [
             'title_label' => 'Modelo',
-            'id_name' => 'modelo',
+            'id_name' => 'modelo_a',
             'type' => 'text',
             'height' => 3,
             'placeholder' => 'samsung',
@@ -159,7 +159,7 @@ $ticket_insert = new AutomaticForm(
         ],
         'ticket_estado8' => [
             'title_label' => 'Estado',
-            'id_name' => 'estado',
+            'id_name' => 'estado_a',
             'type' => 'text',
             'height' => 3,
             'placeholder' => '',
@@ -169,7 +169,7 @@ $ticket_insert = new AutomaticForm(
         ],
         'ticket_estado9' => [
             'title_label' => 'Empleado',
-            'id_name' => 'empleado',
+            'id_name' => 'empleado_a',
             'type' => 'text',
             'height' => 3,
             'placeholder' => '',
@@ -179,7 +179,7 @@ $ticket_insert = new AutomaticForm(
         ],
         'ticket_estado10' => [
             'title_label' => 'Email_cliente',
-            'id_name' => 'email_cliente',
+            'id_name' => 'email_cliente_a',
             'type' => 'text',
             'height' => 3,
             'placeholder' => 'algo123@gmail.com',

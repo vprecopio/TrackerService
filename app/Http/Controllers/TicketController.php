@@ -283,14 +283,14 @@ class TicketController extends TicketModel
     {
         //$_POST['editar_valor'];
 
-        $this->ticket_fecha_creacion = $_POST['fecha_creacion'];
-        $this->ticket_fecha_cierre = $_POST['fecha_cierre'];
-        $this->ticket_tiempo_garantia = $_POST['fecha_tiempo_garantia'];
-        $this->ticket_descripcion = $_POST['ticket_descripcion'];
+        $this->ticket_fecha_creacion = $_POST['fecha_creacion_a'];
+        $this->ticket_fecha_cierre = $_POST['fecha_cierre_a'];
+        $this->ticket_tiempo_garantia = $_POST['fecha_tiempo_garantia_a'];
+        $this->ticket_descripcion = $_POST['ticket_descripcion_a'];
 
         //cliente
         $cliente_model = new ClientModel;
-        $cliente_model->email = $_POST['email_cliente'];
+        $cliente_model->email = $_POST['email_cliente_a'];
         $datos_cliente = $cliente_model->OneClientByEmail();
 
         if (empty($datos_cliente)) {
@@ -302,7 +302,7 @@ class TicketController extends TicketModel
 
         //usuario
         $usuario_model = new UserModel;
-        $usuario_model->usr_email = $_POST['empleado'];
+        $usuario_model->usr_email = $_POST['empleado_a'];
         $datos_email = $usuario_model->OneUserByEmail();
 
         if (empty($datos_email)) {
@@ -314,7 +314,7 @@ class TicketController extends TicketModel
 
         //equipo
         $equipo_model = new EquipmentModel;
-        $equipo_model->modelo_equipo_descripcion = $_POST['modelo'];
+        $equipo_model->modelo_equipo_descripcion = $_POST['modelo_a'];
         $datos_model = $equipo_model->OneEquipByModel();
 
         if (empty($datos_model)) {
@@ -325,7 +325,7 @@ class TicketController extends TicketModel
         }
 
         //prioridad
-        $this->prioridad_descripcion = $_POST['prioridad'];
+        $this->prioridad_descripcion = $_POST['prioridad_a'];
         $datos_prioridad = $this->OnePrioridadByDescripcion();
 
         if (empty($datos_prioridad)) {
@@ -336,7 +336,7 @@ class TicketController extends TicketModel
         }
 
         //estado tk
-        $this->estado_ticket_descripcion = $_POST['estado'];
+        $this->estado_ticket_descripcion = $_POST['estado_a'];
         $datos_estado = $this->OneETByDescripcion();
 
         if (empty($datos_estado)) {
