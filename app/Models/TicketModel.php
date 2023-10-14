@@ -355,7 +355,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             ':id_prioridad' => $this->id_prioridad,
             ':id_modelo_equipo' => $this->id_modelo_equipo,
             ':id_estado_ticket' => $this->id_estado_ticket,
-            ':id_valor' => 1,
+            ':id_valor' => $this->id_valor,
         ];
     
         $stm = $this->pdo->prepare($sql);
