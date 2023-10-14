@@ -336,7 +336,12 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
         `ticket_fecha_cierre` = :ticket_fecha_cierre, 
         `ticket_tiempo_garantia` = :ticket_tiempo_garantia, 
         `ticket_descripcion` = :ticket_descripcion, 
-        `id_usuario` = :id_usuario, `id_cliente` = :id_cliente, `id_prioridad` = :id_prioridad, `id_modelo_equipo` = :id_modelo_equipo,`id_valor` = :id_valor
+        `id_usuario` = :id_usuario, 
+        `id_cliente` = :id_cliente, 
+        `id_prioridad` = :id_prioridad, 
+        `id_modelo_equipo` = :id_modelo_equipo,
+        `id_estado_ticket` = :id_estado_ticket,
+        `id_valor` = :id_valor
         WHERE `id_ticket` = :id_ticket";
 
         $params = [
@@ -349,6 +354,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             ':id_cliente' => $this->id_cliente,
             ':id_prioridad' => $this->id_prioridad,
             ':id_modelo_equipo' => $this->id_modelo_equipo,
+            ':id_estado_ticket' => $this->id_estado_ticket,
             ':id_valor' => 1,
         ];
     

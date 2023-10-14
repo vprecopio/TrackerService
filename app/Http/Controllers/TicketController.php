@@ -268,7 +268,6 @@ class TicketController extends TicketModel
             $this->id_estado_ticket = $datos_estado[0]->id_estado_ticket;
         }
 
-
         $this->EditT();
 
         redirect('/ticket/');
