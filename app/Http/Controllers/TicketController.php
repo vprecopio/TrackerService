@@ -195,11 +195,11 @@ class TicketController extends TicketModel
 
     public function delete()
     {
-        if (!isset($_GET["id_ticket"])) {
+        if (isset($_GET["id_ticket"])) {
             $this->id_ticket = $_GET["id_ticket"];
             $this->DeleteT();
-            redirect('/ticket/');
         }
+        redirect('/ticket/');
     }
 
     public function edit()
