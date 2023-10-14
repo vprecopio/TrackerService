@@ -7,8 +7,13 @@ use App\Models\EquipmentModel;
 use App\Models\TicketModel;
 use App\Models\UserModel;
 
+use App\Mailer;
+
 class TicketController extends TicketModel
 {
+    use \CheckInternet;
+
+
     public function index()
     {
         return view('tickets');
@@ -298,6 +303,12 @@ class TicketController extends TicketModel
             redirect('/ticket/');
         } else {
             $this->id_cliente = $datos_cliente[0]->id_cliente;
+
+            //aca tiene que ir para enviarle un email al usuario
+            if ($this->hasConnection()) {
+                $php_mailer = new Mailer;
+                $php_mailer->SendTicketClient($_POST['email_cliente_a'],'usuario',true);
+            }
         }
 
         //usuario

@@ -3,6 +3,7 @@ namespace App;
 
 use PHPMailer\PHPMailer\PHPMailer;
 use Carbon\Carbon;
+use Seed;
 
 final class Mailer
 {
@@ -48,6 +49,28 @@ final class Mailer
         ------------------------------------------<br>
         <br>
         Si fue usted, puede ignorar esta alerta. Si notó alguna actividad sospechosa en su cuenta, cambie su contraseña.
+        <br>
+        Si tiene alguna pregunta o inquietud, también puede visitar nuestro portal de soporte en https://sinopagasnoteayudamos.com
+        <br>
+        Gracias,
+        <br>
+        Los papus de segundo b';
+
+        $this->SendMail($email, $name, $subject, $message, $html);
+    }
+
+    public function SendTicketClient($email, $name, $html)
+    {
+        $url = 'http://localhost:8081/public/trackerservice.php?email='. $email .'&u='. Seed::GenerateSeed($email);
+        $subject = '[TrackerService]: Recibimos tu equipo';
+        $message = '
+        Hola '.$name.',<br>
+        <br>
+        Tenemos tu equipo, podes ver el proceso en el siguiente link:
+        <br>
+        ------------------------------------------<br>
+        link: <a href="'.$url.'">Ver estado de tu ticket</a><br>
+        ------------------------------------------<br>
         <br>
         Si tiene alguna pregunta o inquietud, también puede visitar nuestro portal de soporte en https://sinopagasnoteayudamos.com
         <br>
