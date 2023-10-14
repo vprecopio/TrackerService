@@ -8,6 +8,7 @@
     # Excluir 404.html de la redirección
     RewriteCond %{REQUEST_URI} !^/404.html
     RewriteCond %{REQUEST_URI} !^/trackerservice.php
+    RewriteCond %{REQUEST_URI} !^/test.php
 
     # Redirigir las demás solicitudes a index.php
     RewriteCond %{REQUEST_FILENAME} !-f

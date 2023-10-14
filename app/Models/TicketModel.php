@@ -9,6 +9,7 @@ interface ContratoEstadoTickets
     public function InsertET();
     public function DeleteET();
     public function OneET();
+    public function OneETByDescripcion();
 }
 
 interface ContratoPrioridades
@@ -18,6 +19,7 @@ interface ContratoPrioridades
     public function InsertPrioridad();
     public function DeletePrioridad();
     public function OnePrioridad();
+    public function OnePrioridadByDescripcion();
 }
 
 interface ContratoValorTicket 
@@ -43,7 +45,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     use \Database,\Sanitize;
 
     //atributos valor_ticket
-    private $id_valor, $valor_servicios, $valor_repuestos ,$valor_ticket_total;
+    private $id_valor = null , $valor_servicios, $valor_repuestos ,$valor_ticket_total;
 
     //atributos estados_tickets
     private $id_estado_ticket, $estado_ticket_descripcion;
@@ -62,24 +64,6 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     public function ListVT()
     {
         // a la izquierda del join el nombre de la tabla foranea(traer todos los datos que corresponde al id dentro de tu tabla principal)
-        $sql_ejemplo = "SELECT *
-        FROM
-        tickets
-        JOIN
-        valor_ticket ON valor_ticket.id_valor = tickets.id_valor
-        JOIN
-        usuarios ON usuarios.id_usuario = tickets.id_usuario
-        JOIN
-        clientes ON clientes.id_cliente = tickets.id_cliente
-        JOIN 
-        estados_tickets ON estados_tickets.id_estado_ticket = tickets.id_estado_ticket
-        JOIN
-        prioridades ON prioridades.id_prioridad = tickets.id_prioridad
-        JOIN
-        modelos_equipos ON modelos_equipos.id_modelos_equipos = tickets.id_modelos_equipos   
-        
-        ";
-
 
         try {
             $stm = $this->pdo->prepare("SELECT * FROM `valor_ticket` ");
@@ -217,6 +201,19 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             die($e->getMessage());
         }
     }
+
+    public function OneETByDescripcion()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM estados_tickets WHERE `estados_tickets`.`estado_ticket_descripcion` = :estado_ticket_descripcion");
+            $stm->bindParam(':estado_ticket_descripcion', $this->estado_ticket_descripcion, \PDO::PARAM_STR);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     /* Fin estados_tickets*/
 
 
@@ -287,14 +284,44 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             die($e->getMessage());
         }
     }
+
+    public function OnePrioridadByDescripcion()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM prioridades WHERE `prioridades`.`prioridad_descripcion` = :prioridad_descripcion");
+            $stm->bindParam(':prioridad_descripcion', $this->prioridad_descripcion, \PDO::PARAM_STR);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
     /* Fin prioridades*/
 
     /*Inicio de ticket*/
     public function ListT()
     {
-        $sql = "SELECT * FROM `tickets`";
+        $sql_ejemplo = "SELECT *, 
+        (SELECT descripcion FROM equipos_modelo WHERE equipos_modelo.id_modelo = modelos_equipos.id_modelo) AS ModeloEquipo
+        FROM
+        tickets
+        LEFT JOIN
+        valor_ticket ON valor_ticket.id_valor = tickets.id_valor
+        JOIN
+        usuarios ON usuarios.id_usuario = tickets.id_usuario
+        JOIN
+        clientes ON clientes.id_cliente = tickets.id_cliente
+        JOIN 
+        estados_tickets ON estados_tickets.id_estado_ticket = tickets.id_estado_ticket
+        JOIN
+        prioridades ON prioridades.id_prioridad = tickets.id_prioridad
+        JOIN
+        modelos_equipos ON modelos_equipos.id_modelos_equipos = tickets.id_modelo_equipo   
+        
+        ";
         try {
-            $stm = $this->pdo->prepare($sql);
+            $stm = $this->pdo->prepare($sql_ejemplo);
             $stm->execute();
             return $stm->fetchAll(\PDO::FETCH_OBJ);
         } catch (\Exception $e) {
@@ -303,17 +330,72 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     }
     public function EditT()
     {
-        $sql = "UPDATE `tickets` SET `ticket_fecha_creacion` = '2023-10-01', `ticket_fecha_cierre` = '2023-10-02', `ticket_tiempo_garantia` = '2023-10-04', `ticket_descripcion` = 'fdafdsafsdf', `id_usuario` = '3', `id_cliente` = '11', `id_prioridad` = '2', `id_modelo_equipo` = '8', `id_valor` = '2' WHERE `tickets`.`id_ticket` = 1; ";
+        $sql = "UPDATE `tickets` 
+        SET 
+        `ticket_fecha_creacion` = :ticket_fecha_creacion, 
+        `ticket_fecha_cierre` = :ticket_fecha_cierre, 
+        `ticket_tiempo_garantia` = :ticket_tiempo_garantia, 
+        `ticket_descripcion` = :ticket_descripcion, 
+        `id_usuario` = :id_usuario, 
+        `id_cliente` = :id_cliente, 
+        `id_prioridad` = :id_prioridad, 
+        `id_modelo_equipo` = :id_modelo_equipo,
+        `id_estado_ticket` = :id_estado_ticket,
+        `id_valor` = :id_valor
+        WHERE `id_ticket` = :id_ticket";
+
+        $params = [
+            ':id_ticket' => $this->id_ticket,
+            ':ticket_fecha_creacion' => $this->ticket_fecha_creacion,
+            ':ticket_fecha_cierre' => $this->ticket_fecha_cierre,
+            ':ticket_tiempo_garantia' => $this->ticket_tiempo_garantia,
+            ':ticket_descripcion' => $this->ticket_descripcion,
+            ':id_usuario' => $this->id_usuario,
+            ':id_cliente' => $this->id_cliente,
+            ':id_prioridad' => $this->id_prioridad,
+            ':id_modelo_equipo' => $this->id_modelo_equipo,
+            ':id_estado_ticket' => $this->id_estado_ticket,
+            ':id_valor' => 1,
+        ];
+    
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);  
 
     }
     public function InsertT()
     {
-        $sql= "INSERT INTO `tickets` (`id_ticket`, `ticket_fecha_creacion`, `ticket_fecha_cierre`, `ticket_tiempo_garantia`, `ticket_descripcion`, `id_usuario`, `id_cliente`, `id_estado_ticket`, `id_prioridad`, `id_modelo_equipo`, `id_valor`) VALUES (NULL, '2023-10-08', '2023-10-19', '2023-10-19', 'fdsafdsafdsadfadsf', '1', '10', '1', '1', '1', '1')";
+        $sql= "INSERT INTO 
+        `tickets` 
+        (`ticket_fecha_creacion`, `ticket_fecha_cierre`, `ticket_tiempo_garantia`, `ticket_descripcion`, `id_usuario`, `id_cliente`, `id_estado_ticket`, `id_prioridad`, `id_modelo_equipo`, `id_valor`) 
+        VALUES (:fechacreacion, :fechacierre, :tiempogarantia, :descripcion, :usuario, :cliente, :estadoticket, :prioridad, :modeloequipo, :valor)";
+        $params = [
+            ':fechacreacion' => $this->ticket_fecha_creacion,
+            ':fechacierre' => $this->ticket_fecha_cierre,
+            ':tiempogarantia' => $this->ticket_tiempo_garantia,
+            ':descripcion' => $this->ticket_descripcion,
+            ':usuario' => $this->id_usuario,
+            ':cliente' => $this->id_cliente,
+            ':estadoticket' => $this->id_estado_ticket,
+            ':prioridad' => $this->id_prioridad,
+            ':modeloequipo' => $this->id_modelo_equipo,
+            ':valor' => $this->id_valor,
+        ];
 
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);  
     }
     public function DeleteT()
     {
-        $sql = "DELETE FROM tickets WHERE `tickets`.`id_ticket` = 1";
+        $sql = "DELETE FROM tickets WHERE `tickets`.`id_ticket` = :id_ticket";
+        try {
+            $stm = $this->pdo->prepare($sql);
+            $stm->bindParam(':id_ticket', $this->id_ticket, \PDO::PARAM_INT);
+            $stm->execute();
+            return true;
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+        exit;
 
     }
     public function OneT()

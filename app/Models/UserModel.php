@@ -142,6 +142,20 @@ class UserModel
             die($e->getMessage());
         }
     }
+
+    public function OneUserByEmail()
+    {
+        try {
+            $stm = $this->pdo->prepare("SELECT * FROM usuarios WHERE `usuarios`.`usr_email` = :usr_emai");
+            $stm->bindParam(':usr_emai', $this->usr_email, \PDO::PARAM_STR);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+
     /*----------------------------------------------------------------*/
 
     public function ComprobarEmailYPassword()

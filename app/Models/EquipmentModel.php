@@ -18,11 +18,6 @@ class EquipmentModel
         $this->Connect();
     }
 
-
-
-
-
-
     //esto te trae un modelo tomando como parametro de busqueda lo que exista en el atributo modelo_equipo_descripcion
     public function OneEquip()
     {
@@ -41,6 +36,28 @@ class EquipmentModel
             die($e->getMessage());
         }
     }
+
+
+    public function OneEquipByModel()
+    {
+        $sql = 'SELECT * FROM `modelos_equipos` 
+        JOIN 
+        equipos_modelo ON equipos_modelo.id_modelo = modelos_equipos.id_modelo
+        WHERE 
+        equipos_modelo.descripcion = :equipo_a_buscar LIMIT 1';
+
+        $params = [
+            ':equipo_a_buscar' => $this->modelo_equipo_descripcion
+        ];
+
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute($params);
+
+        return $stm->fetchAll(\PDO::FETCH_OBJ);
+    }
+
+
+
     //esto te trae un modelo tomando como parametro de busqueda lo que exista en el atributo modelo_equipo_descripcion
     public function OneModel()
     {
@@ -97,11 +114,6 @@ class EquipmentModel
         }
     }
 
-
-
-
-
-
     public function ListEquipmentBrand()
     {
         try {
@@ -150,11 +162,6 @@ class EquipmentModel
         }
     }
 
-
-
-
-
-
     public function CreateEquipmentModel()
     {
         $sql = "INSERT INTO `equipos_modelo` (`descripcion`) VALUES (:modelo_descripcion)";
@@ -200,9 +207,6 @@ class EquipmentModel
         $stm = $this->pdo->prepare($sql);
         return $stm->execute($params);
     }
-
-
-
 
     public function EditEquipmentModel()
     {
