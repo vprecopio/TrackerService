@@ -226,22 +226,27 @@ $ticket_insert = new AutomaticForm(
                     <div class="items-center justify-between block sm:flex">
 
                         <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                            <a type="button" href="/equipment/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center hover:text-white text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <a type="button" href="/ticket/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center hover:text-white text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
                                 </svg>
                                 Refrescar
                             </a>
-                            <!--Form agregar equipo -->
+                            <!--Form agregar estado -->
                             <? $form_estadticket->GenerateButton() ?>
                             <? $form_estadticket->GenerateForm() ?>
-                            <!--FIN Agregar Equipo -->
+                            <!--FIN Agregar estado -->
+
+                            <!--Form agregar descripcion -->
                             <? $form_prioridades->GenerateButton() ?>
                             <? $form_prioridades->GenerateForm() ?>
+                            <!--FIN Agregar descripcion -->
+
                             <!--Form agregar equipo -->
                             <? $equipo_form->GenerateButton() ?>
                             <? $equipo_form->GenerateForm() ?>
                             <!--FIN Agregar Equipo -->
+
                             <!--Form agregar ticket -->
                             <? $ticket_insert->GenerateButton() ?>
                             <? $ticket_insert->GenerateForm() ?>
