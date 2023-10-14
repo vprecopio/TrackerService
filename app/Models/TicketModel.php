@@ -45,7 +45,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     use \Database,\Sanitize;
 
     //atributos valor_ticket
-    private $id_valor, $valor_servicios, $valor_repuestos ,$valor_ticket_total;
+    private $id_valor = null , $valor_servicios, $valor_repuestos ,$valor_ticket_total;
 
     //atributos estados_tickets
     private $id_estado_ticket, $estado_ticket_descripcion;

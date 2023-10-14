@@ -18,11 +18,6 @@ class EquipmentModel
         $this->Connect();
     }
 
-
-
-
-
-
     //esto te trae un modelo tomando como parametro de busqueda lo que exista en el atributo modelo_equipo_descripcion
     public function OneEquip()
     {

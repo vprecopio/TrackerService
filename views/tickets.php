@@ -144,6 +144,8 @@ $ticket_insert = new AutomaticForm(
             'height' => 3,
             'placeholder' => '',
             'required' => true,
+            'options' => json_encode($ticket_controller ->ListPrioridad()),
+            'options_table' => 'prioridad_descripcion',
         ],
         'ticket_estado7' => [
             'title_label' => 'Modelo',
@@ -152,6 +154,8 @@ $ticket_insert = new AutomaticForm(
             'height' => 3,
             'placeholder' => 'samsung',
             'required' => true,
+            'options' => json_encode($equipment_controller ->ListEquipments()),
+            'options_table' => 'modelo',
         ],
         'ticket_estado8' => [
             'title_label' => 'Estado',
@@ -170,6 +174,8 @@ $ticket_insert = new AutomaticForm(
             'height' => 3,
             'placeholder' => '',
             'required' => true,
+            'options' => json_encode($usr_controller->ListUser()),
+            'options_table' => 'usr_email', 
         ],
         'ticket_estado10' => [
             'title_label' => 'Email_cliente',
