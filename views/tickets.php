@@ -12,6 +12,7 @@ $nombre_formulario = 'ticket-final';
 $ticket_controller = new TicketController;
 $usr_controller = new UserController;
 $cli_controller = new ClientController;
+$equipment_controller = new EquipmentController;
 
 $form_estadticket = new AutomaticForm(
     'estado',
@@ -52,8 +53,6 @@ $form_prioridades = new AutomaticForm(
 
 
 //---------------------------seccion equipos
-$equipment_controller = new EquipmentController;
-
 $equipo_form = new AutomaticForm(
     'equipo',
     '',
@@ -161,6 +160,8 @@ $ticket_insert = new AutomaticForm(
             'height' => 3,
             'placeholder' => '',
             'required' => true,
+            'options' => json_encode($ticket_controller->ListET()),
+            'options_table' => 'estado_ticket_descripcion',
         ],
         'ticket_estado9' => [
             'title_label' => 'Empleado',
@@ -177,9 +178,12 @@ $ticket_insert = new AutomaticForm(
             'height' => 3,
             'placeholder' => 'algo123@gmail.com',
             'required' => true,
+            'options' => json_encode($cli_controller->ListClient()),
+            'options_table' => 'cliente_email',
         ],
     ]
 );
+
 
 ?>
 
