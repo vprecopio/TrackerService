@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProvController;
-
+use App\AutomaticForm;
 $prov_controller = new ProvController;
 
 
