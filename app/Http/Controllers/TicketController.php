@@ -281,6 +281,7 @@ class TicketController extends TicketModel
         redirect('/ticket/');
 
         echo 'correcto';
+
         
 
         //por ahora el valor del ticket va a estar hardcodeado
@@ -288,5 +289,20 @@ class TicketController extends TicketModel
         //$_POST['Editar'];
 
         exit;
+
+    }
+
+    public function insertarticket()
+    {
+        $_POST['fecha_creacion'];  
+        $_POST['fecha_cierre'];  
+        $_POST['fecha_tiempo_garantia']; 
+        $_POST['ticket_descripcion']; 
+        $_POST['editar_valor']; 
+        $_POST['prioridad']; 
+        $_POST['modelo']; 
+        $_POST['estado']; 
+        $_POST['empleado']; 
+        $_POST['email_cliente'];
     }
 }
