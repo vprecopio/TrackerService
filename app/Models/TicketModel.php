@@ -306,7 +306,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
         (SELECT descripcion FROM equipos_modelo WHERE equipos_modelo.id_modelo = modelos_equipos.id_modelo) AS ModeloEquipo
         FROM
         tickets
-        JOIN
+        LEFT JOIN
         valor_ticket ON valor_ticket.id_valor = tickets.id_valor
         JOIN
         usuarios ON usuarios.id_usuario = tickets.id_usuario
@@ -364,7 +364,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
         VALUES (:fechacreacion, :fechacierre, :tiempogarantia, :descripcion, :usuario, :cliente, :estadoticket, :prioridad, :modeloequipo, :valor)";
         $params = [
             ':fechacreacion' => $this->ticket_fecha_creacion,
-            ':fechacierre,' => $this->ticket_fecha_cierre,
+            ':fechacierre' => $this->ticket_fecha_cierre,
             ':tiempogarantia' => $this->ticket_tiempo_garantia,
             ':descripcion' => $this->ticket_descripcion,
             ':usuario' => $this->id_usuario,
@@ -374,7 +374,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             ':modeloequipo' => $this->id_modelo_equipo,
             ':valor' => $this->id_valor,
         ];
-    
+
         $stm = $this->pdo->prepare($sql);
         return $stm->execute($params);  
     }
