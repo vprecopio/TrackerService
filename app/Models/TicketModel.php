@@ -358,8 +358,25 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     }
     public function InsertT()
     {
-        $sql= "INSERT INTO `tickets` (`id_ticket`, `ticket_fecha_creacion`, `ticket_fecha_cierre`, `ticket_tiempo_garantia`, `ticket_descripcion`, `id_usuario`, `id_cliente`, `id_estado_ticket`, `id_prioridad`, `id_modelo_equipo`, `id_valor`) VALUES (NULL, '2023-10-08', '2023-10-19', '2023-10-19', 'fdsafdsafdsadfadsf', '1', '10', '1', '1', '1', '1')";
-
+        $sql= "INSERT INTO 
+        `tickets` 
+        (`ticket_fecha_creacion`, `ticket_fecha_cierre`, `ticket_tiempo_garantia`, `ticket_descripcion`, `id_usuario`, `id_cliente`, `id_estado_ticket`, `id_prioridad`, `id_modelo_equipo`, `id_valor`) 
+        VALUES (:fechacreacion, :fechacierre, :tiempogarantia, :descripcion, :usuario, :cliente, :estadoticket, :prioridad, :modeloequipo, :valor)";
+        $params = [
+            ':fechacreacion' => $this->ticket_fecha_creacion,
+            ':fechacierre,' => $this->ticket_fecha_cierre,
+            ':tiempogarantia' => $this->ticket_tiempo_garantia,
+            ':descripcion' => $this->ticket_descripcion,
+            ':usuario' => $this->id_usuario,
+            ':cliente' => $this->id_cliente,
+            ':estadoticket' => $this->id_estado_ticket,
+            ':prioridad' => $this->id_prioridad,
+            ':modeloequipo' => $this->id_modelo_equipo,
+            ':valor' => $this->id_valor,
+        ];
+    
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);  
     }
     public function DeleteT()
     {

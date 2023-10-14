@@ -345,5 +345,6 @@ class TicketController extends TicketModel
         } else {
             $this->id_estado_ticket = $datos_estado[0]->id_estado_ticket;
         }
+        $this->InsertT();
     }
 }
