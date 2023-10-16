@@ -6,6 +6,9 @@ use App\Http\Controllers\UserController;
 $nombre_pagina = 'Usuarios';
 $nombre_formulario = 'usuario';
 
+$json_estados='[{"id_estado"a:1,"usr_estado":"activo"},{"id_estado":2,"usr_estado":"inactivo"}]';
+
+
 $user_controller = new UserController;
 
 $user_form = new AutomaticForm(
@@ -53,7 +56,7 @@ $user_form = new AutomaticForm(
             'type' => 'select',
             'height' => 3,
             'required' => true,
-            'options' => json_encode($user_controller->ListStatus()),
+            'options' => $json_estados,
             'options_table' => 'usr_estado',
         ],
     ]
