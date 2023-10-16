@@ -2,7 +2,6 @@
 $aside_list = [
     "/client/" => "Clientes",
     "/user/" => "Usuarios",
-    "/ticket/" => "Tickets",
     "/equipment/" => "Dispositivos",
 ];
 
