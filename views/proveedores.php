@@ -206,7 +206,7 @@ $prov_crear_form = new AutomaticForm(
                                             <!--botones editar y eliminar-->
                                             <td class="p-4 space-x-2 whitespace-nowrap w-1/5">
                                                 <?php
-                                                $llenar_formulario = "'$obj_prov->prov_empresa','$obj_prov->prov_cuit','$obj_prov->prov_dir','$obj_prov->prov_tel','$obj_prov->prov_email','$obj_prov->prov_web','$obj_prov->id_proveedor'";
+                                                $llenar_formulario = "$obj_prov->prov_empresa','$obj_prov->prov_cuit','$obj_prov->prov_dir','$obj_prov->prov_tel','$obj_prov->prov_email','$obj_prov->prov_web','$obj_prov->id_proveedor";
                                                 ?>
                                                 <button type="button" id="updateprovButton" onclick="llenarFormularioCliente('<?= $llenar_formulario ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
