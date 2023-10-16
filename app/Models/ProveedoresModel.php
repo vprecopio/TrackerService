@@ -8,7 +8,7 @@ class ProveedoresModel
 
     protected $id;
     private $prov_empresa ;
-    private $prov_estado ;
+    private $prov_estado=1 ;
     private $prov_dir ;
     private $prov_tel;
     private $prov_email ;
@@ -58,7 +58,7 @@ class ProveedoresModel
             ':prov_email' => $this->prov_email,
             ':prov_web' => $this->prov_web,
         ];
-    
+
         $stm = $this->pdo->prepare($sql);
         return $stm->execute($params);    
     }

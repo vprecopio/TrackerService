@@ -2,75 +2,69 @@
 
 use App\Http\Controllers\ProvController;
 use App\AutomaticForm;
+
 $prov_controller = new ProvController;
 
-
 $prov_crear_form = new AutomaticForm(
-    'Nuevo Proveedor', //titulo de boton principal
-    'Nuevo Proveedor', // titulo del form
-    '/prov/createprov/',
+    'proveedor',
+    '',
+    '/prov/create/',
     'POST',
     'bg-blue-700',
     [
-            '0' => [
+        '0' => [
             'title_label' => 'Nombre',
-            'id_name' => 'nombre-prov_crear',
+            'id_name' => 'nombre_prov_crear',
             'type' => 'text',
-            'height' => 6,
-            'placeholder' => 'Empresa',
+            'height' => 3,
+            'placeholder' => false,
             'required' => true,
-            ],
+        ],
+
         
-            '1' => [
-                'title_label' => 'Estado',
-                'id_name' => 'prov-estado_crear',
-                'type' => 'text',
-                'height' => 6,
-                'placeholder' => 'Estado',
-                'required' => true,
-            ],
-            '2' => [
-                'title_label' => 'Cuit',
-                'id_name' => 'prov_cuit_crear',
-                'type' => 'text',
-                'height' => 6,
-                'required' => true,
-                
-            ],
-            '3' => [
+        '2' => [
+            'title_label' => 'Cuit',
+            'id_name' => 'prov_cuit_crear',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => false,
+            'required' => true,
+
+        ],
+        '3' => [
             'title_label' => 'Direccion',
             'id_name' => 'prov_dir_crear',
             'type' => 'select',
-            'height' => 6,
+            'height' => 3,
+            'placeholder' => false,
             'required' => true,
-            ],
-        
-            '4' => [
-                'title_label' => 'Telefono',
-                'id_name' => 'prov_tel_crear',
-                'type' => 'text',
-                'height' => 6,
-                'placeholder' => '0',
-                'required' => true,
-            ],
-            '5' => [
-                'title_label' => 'Email',
-                'id_name' => 'prov_email',
-                'type' => 'text',
-                'height' => 6,
-                'placeholder' => '0',
-                'required' => true,
-            ],
-            '6' => [
-                'title_label' => 'Web',
-                'id_name' => 'prov_web_crear',
-                'type' => 'text',
-                'height' => 6,
-                'placeholder' => '0',
-                'required' => true,
-            ],
+        ],
 
-        
+        '4' => [
+            'title_label' => 'Telefono',
+            'id_name' => 'prov_tel_crear',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => false,
+            'required' => true,
+        ],
+        '5' => [
+            'title_label' => 'Email',
+            'id_name' => 'prov_email_crear',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => false,
+            'required' => true,
+        ],
+        '6' => [
+            'title_label' => 'Web',
+            'id_name' => 'prov_web_crear',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => false,
+            'required' => true,
+        ],
+
     ]
 );
 
@@ -118,7 +112,7 @@ $prov_crear_form = new AutomaticForm(
 
                     <div class="items-center justify-between block sm:flex">
 
-                     
+
                         <!--buscar-->
                         <div class="flex items-center mb-4 sm:mb-0">
                             <form class="sm:pr-3" action="#" method="GET">
@@ -139,7 +133,7 @@ $prov_crear_form = new AutomaticForm(
                                 Refrescar
                             </a>
                             <?php $prov_crear_form->GenerateButton() ?>
-                            <?php $prov_crear_form->GenerateForm() ?>  
+                            <?php $prov_crear_form->GenerateForm() ?>
                         </div>
                     </div>
                 </div>
@@ -219,7 +213,7 @@ $prov_crear_form = new AutomaticForm(
                                                 </button>
 
 
-                                                <button type="button" id="deleteClientButton" onclick="handleDeleteButtonClick('<?php echo $obj_prov->id_cliente?>')" data-drawer-target="drawer-delete-client-default" data-drawer-show="drawer-delete-client-default" aria-controls="drawer-delete-client-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
+                                                <button type="button" id="deleteClientButton" onclick="handleDeleteButtonClick('<?php echo $obj_prov->id_cliente ?>')" data-drawer-target="drawer-delete-client-default" data-drawer-show="drawer-delete-client-default" aria-controls="drawer-delete-client-default" data-drawer-placement="right" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:ring-red-300 dark:focus:ring-red-900">
 
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd"></path>

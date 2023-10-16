@@ -16,20 +16,19 @@ class ProvController extends ProveedoresModel
         return $this->ListProveedores();
     }
 
-    public function create():Response
+    public function create()
     {
-        var_dump($_POST);
-        exit;
+        
+        
         if ($_POST) {
-            $this->nombre_completo = $_POST['nombre_prov'];
-            $this->prov_estado = $_POST['prov_estado'];
-            $this->prov_cuit = $_POST['prov_cuit'];
-            $this->prov_dir = $_POST['prov_dir'];
-            $this->prov_tel = $_POST['prov_tel'];
-            $this->prov_email = $_POST['prov_email'];
-            $this->prov_web = $_POST['prov_web'];
-            $this->CreateProv();
             
+            $this->prov_empresa = $_POST['nombre_prov_crear'];
+            $this->prov_cuit = $_POST['prov_cuit_crear'];
+            $this->prov_dir = $_POST['prov_dir_crear'];
+            $this->prov_tel = $_POST['prov_tel_crear'];
+            $this->prov_email = $_POST['prov_email_crear'];
+            $this->prov_web = $_POST['prov_web_crear'];
+            $this->CreateProv();
         }
 
         redirect('/prov/');
