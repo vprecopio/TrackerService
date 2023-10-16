@@ -48,13 +48,13 @@ $user_form = new AutomaticForm(
             'required' => true
         ],
         'usuarios-estado' => [
-            'title_label' => 'Estado',
-            'id_name' => 'estado',
+            'title_label' => 'Selecciona una categoria',
+            'id_name' => 'usuarios-estado',
             'type' => 'select',
             'height' => 3,
             'required' => true,
-            'option' => '{"id":1,"estado_descripcion":"Pepsi"}',
-            'options_table' => 'estados_descripcion',
+            'options' => json_encode($user_controller->ListStatus()),
+            'options_table' => 'usr_estado',
         ],
     ]
 );
