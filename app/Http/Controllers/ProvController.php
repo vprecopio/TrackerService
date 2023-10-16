@@ -34,11 +34,11 @@ class ProvController extends ProveedoresModel
         redirect('/prov/');
     }
 
-    public function delete():Response
+    public function delete()
     {
-        $this->id = $_GET['Documento'];
+        $this->id = $_GET['eliminar_prove'];
         $this->DeleteProv();
-        return view('proveedores');
+        redirect('/prov/');
     }
 
    /* public function search():Response
