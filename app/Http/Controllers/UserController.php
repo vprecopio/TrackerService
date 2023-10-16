@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Http\Response;
 use App\Models\UserModel;
 
@@ -21,6 +20,26 @@ class UserController extends UserModel
     {
         $this->id_usuario = $_GET['Documento'];
         $this->DeleteUser();
+        redirect('/user/');
+    }
+
+    public function create(){
+        if($_POST){
+            $this->usr_nombre = $_POST['nombre-crear'];
+            $this->usr_apellido = $_POST['apellido-crear'];
+            $this->usr_email = $_POST['email-crear'];
+            $this->usr_contrasena = $_POST['contrasena-crear'];
+            $this->usr_estado = $_POST['estado-crear'] == 'activo' ? 1 : 0;
+            $this->rol_nombre = $_POST['rol-crear'];
+
+            $rol = $this->OneRole();
+
+            if (!empty($rol)) {
+                $this->id_rol = $rol[0]->id_rol;
+                $this->CreateUser();
+            }
+           
+        }
         redirect('/user/');
     }
 

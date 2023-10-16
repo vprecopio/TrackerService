@@ -37,6 +37,17 @@ class UserModel
         }
     }
 
+    public function ListStatus(){
+        try{
+            $stm = $this -> pdo -> prepare("SELECT DISTINCT usr_estado FROM usuarios");
+
+            $stm -> execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        }catch(\Exception $e){
+            die($e->getMessage());
+        }
+    }
+
 
     public function ListUser(){
         try{

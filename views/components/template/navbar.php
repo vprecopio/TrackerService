@@ -12,7 +12,7 @@
                 </button>
                 <a href="/" class="flex ml-2 md:mr-24">
                     <img src="../public/src/img/logo.png" class="h-8 mr-3" alt="TecnoGestión Logo">
-                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Tecno Gestión</span>
+                    <span class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">TecnoGestión</span>
                 </a>
                 
                     <form action="#" method="GET" class="hidden lg:block lg:pl-3.5">

@@ -1,9 +1,36 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Models\TicketModel;
 
 $client_controller = new ClientController;
 $cantclient = $client_controller->CountClient();
+
+$ticket_model = new TicketModel;
+$allTicket =$ticket_model->allTk();
+
+$array_unico_titulos_estado_de_los_tickets = [];
+$contador_estados = [];
+$total=0;
+foreach ($allTicket as $value) {
+    $array_unico_titulos_estado_de_los_tickets[] = $value->estado_ticket_descripcion;
+    
+    // Verificar si la clave existe en $contador_estados
+    if (isset($contador_estados[$value->estado_ticket_descripcion])) {
+        $contador_estados[$value->estado_ticket_descripcion] += 1;
+    } else {
+        $contador_estados[$value->estado_ticket_descripcion] = 1;
+    }
+    $total +=1;
+}
+
+$array_unico_titulos_estado_de_los_tickets = array_values(array_unique($array_unico_titulos_estado_de_los_tickets));
+
+// Luego, si deseas obtener los valores en un nuevo array:
+$contador_estados = array_values($contador_estados);
+foreach ($contador_estados as &$valor) {
+    $valor = round($valor / $total * 100,0);
+}
 
 
 ?>
@@ -12,6 +39,7 @@ $cantclient = $client_controller->CountClient();
         <main>
             <div class="px-4 pt-6">
                 <div class="grid gap-4 xl:grid-cols-2 2xl:grid-cols-3">
+                    <!-- Radial Chart -->
                     <div class="max-w-full place-self-center bg-white rounded-lg shadow dark:bg-gray-800 p-4 md:p-6">
                         <div class="flex justify-between mb-3">
                             <div class="flex items-center">
@@ -23,62 +51,24 @@ $cantclient = $client_controller->CountClient();
 
                         <div class="bg-gray-50 dark:bg-gray-700 p-3 rounded-lg">
                             <div class="grid grid-cols-3 gap-3 mb-2">
-                                <dl class="bg-orange-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
-                                    <dt class="w-8 h-8 rounded-full bg-orange-100 dark:bg-gray-500 text-orange-600 dark:text-orange-300 text-sm font-medium flex items-center justify-center mb-1">12</dt>
-                                    <dd class="text-orange-600 dark:text-orange-300 text-sm font-medium">Pendiente</dd>
-                                </dl>
-                                <dl class="bg-teal-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
-                                    <dt class="w-8 h-8 rounded-full bg-teal-100 dark:bg-gray-500 text-teal-600 dark:text-teal-300 text-sm font-medium flex items-center justify-center mb-1">23</dt>
-                                    <dd class="text-teal-600 dark:text-teal-300 text-sm font-medium">En progreso</dd>
-                                </dl>
-                                <dl class="bg-blue-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
-                                    <dt class="w-8 h-8 rounded-full bg-blue-100 dark:bg-gray-500 text-blue-600 dark:text-blue-300 text-sm font-medium flex items-center justify-center mb-1">64</dt>
-                                    <dd class="text-blue-600 dark:text-blue-300 text-sm font-medium">Finalizado</dd>
-                                </dl>
+
+                                <?php foreach ($array_unico_titulos_estado_de_los_tickets as $xd) : ?>
+                                    <dl class="bg-blue-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
+                                        <!-- <dt class="w-8 h-8 rounded-full bg-blue-100 dark:bg-gray-500 text-blue-600 dark:text-blue-300 text-sm font-medium flex items-center justify-center mb-1">64</dt> -->
+                                        <dd class="text-blue-600 dark:text-blue-300 text-sm font-medium"><?= ucfirst($xd) ?></dd>
+                                    </dl>
+                                <? endforeach; ?>
+
                             </div>
                         </div>
 
                         <!-- Radial Chart -->
                         <div class="py-6" id="radial-chart"></div>
+                        <!-- Rfdsaf Chart -->
 
-                        <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-                            <div class="flex justify-between items-center pt-5">
-                                <!-- Button -->
-                                <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown" data-dropdown-placement="bottom" class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white" type="button">
-                                    Last 7 days
-                                    <svg class="w-2.5 m-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
-                                    </svg>
-                                </button>
-                                <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
-                                        </li>
-                                        <li>
-                                            <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <a href="#" class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-                                    Progress report
-                                    <svg class="w-2.5 h-2.5 ml-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
                     </div>
                     <div class="flex flex-col space-y-6 2xl:col-span-2">
+                        <!-- Tickets Chart -->
                         <div class="flex-1 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                             <div class="w-full">
                                 <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">New products</h3>
@@ -174,6 +164,7 @@ $cantclient = $client_controller->CountClient();
                                 </div>
                             </div>
                         </div>
+                        <!-- Users Chart -->
                         <div class="flex-1 items-center justify-between p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:flex dark:border-gray-700 sm:p-6 dark:bg-gray-800">
                             <div class="w-full">
                                 <h3 class="text-base font-normal text-gray-500 dark:text-gray-400">Users</h3>
@@ -288,71 +279,5 @@ $cantclient = $client_controller->CountClient();
     </div>
 </div>
 
-<script>
-    // ApexCharts options and config
-    window.addEventListener("load", function() {
-        const getChartOptions = () => {
-            return {
-                series: [90, 85, 70],
-                colors: ["#1C64F2", "#16BDCA", "#FDBA8C"],
-                chart: {
-                    height: "380px",
-                    width: "100%",
-                    type: "radialBar",
-                    sparkline: {
-                        enabled: true,
-                    },
-                },
-                plotOptions: {
-                    radialBar: {
-                        track: {
-                            background: '#E5E7EB',
-                        },
-                        dataLabels: {
-                            show: false,
-                        },
-                        hollow: {
-                            margin: 0,
-                            size: "32%",
-                        }
-                    },
-                },
-                grid: {
-                    show: false,
-                    strokeDashArray: 4,
-                    padding: {
-                        left: 2,
-                        right: 2,
-                        top: -23,
-                        bottom: -20,
-                    },
-                },
-                labels: ["Finalizado", "En progreso", "Pendiente"],
-                legend: {
-                    show: true,
-                    position: "bottom",
-                    fontFamily: "Inter, sans-serif",
-                },
-                tooltip: {
-                    enabled: true,
-                    x: {
-                        show: false,
-                    },
-                },
-                yaxis: {
-                    show: false,
-                    labels: {
-                        formatter: function(value) {
-                            return value + '%';
-                        }
-                    }
-                }
-            }
-        }
 
-        if (document.getElementById("radial-chart") && typeof ApexCharts !== 'undefined') {
-            var chart = new ApexCharts(document.querySelector("#radial-chart"), getChartOptions());
-            chart.render();
-        }
-    });
-</script>
+<? require_once __DIR__ . '/components/ticket/ticket-chart.php' ?>
