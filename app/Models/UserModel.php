@@ -94,6 +94,8 @@ class UserModel
             ':id_rol' => $this->id_rol
         ];
 
+        // var_dump($params);
+        // exit;
         $stm = $this->pdo->prepare($sql);
         return $stm->execute($params);
     }

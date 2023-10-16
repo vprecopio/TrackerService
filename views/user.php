@@ -44,20 +44,29 @@ $user_form = new AutomaticForm(
         ],
         'usuarios-contrasena' => [
             'title_label' => 'Contraseña',
-            'id_name' => 'password-crear',
+            'id_name' => 'contrasena-crear',
             'type' => 'password',
             'height' => 3,
             'placeholder' => '••••••',
             'required' => true
         ],
         'usuarios-estado' => [
-            'title_label' => 'Selecciona una categoria',
+            'title_label' => 'Selecciona un estado',
             'id_name' => 'estado-crear',
             'type' => 'select',
             'height' => 3,
             'required' => true,
             'options' => $json_estados,
             'options_table' => 'usr_estado',
+        ],
+        'usuarios-rol' => [
+            'title_label' => 'Selecciona un rol',
+            'id_name' => 'rol-crear',
+            'type' => 'select',
+            'height' => 3,
+            'required' => true,
+            'options' => json_encode($user_controller->ListUserRoles()),
+            'options_table' => 'rol_nombre',
         ],
     ]
 );

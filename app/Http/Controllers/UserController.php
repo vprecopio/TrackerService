@@ -25,12 +25,13 @@ class UserController extends UserModel
 
     public function create(){
         if($_POST){
-            $this->usr_nombre = $_POST['nombre'];
-            $this->usr_apellido = $_POST['apellido'];
-            $this->usr_email = $_POST['email'];
-            $this->usr_password = $_POST['password'];
-            $this->usr_estado = $_POST['estado'];
-            $this->id_rol = $_POST['rol'];
+            $this->usr_nombre = $_POST['nombre-crear'];
+            $this->usr_apellido = $_POST['apellido-crear'];
+            $this->usr_email = $_POST['email-crear'];
+            $this->usr_contrasena = $_POST['contrasena-crear'];
+            $this->usr_estado = $_POST['estado-crear'] == 'activo' ? 1 : 0;
+            // $this->id_rol = $_POST['rol-crear'] == 0;
+            $this->id_rol = 0;
             $this->CreateUser();
         }
         redirect('/user/');
