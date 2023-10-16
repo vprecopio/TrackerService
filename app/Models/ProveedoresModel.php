@@ -7,12 +7,12 @@ class ProveedoresModel
     use \Database, \Sanitize;
 
     protected $id;
-    private $prov_empresa ;
-    private $prov_estado=1 ;
-    private $prov_dir ;
+    private $prov_empresa;
+    private $prov_estado = 1;
+    private $prov_dir;
     private $prov_tel;
-    private $prov_email ;
-    private $prov_web ;
+    private $prov_email;
+    private $prov_web;
     private $prov_cuit;
 
 
@@ -60,7 +60,7 @@ class ProveedoresModel
         ];
 
         $stm = $this->pdo->prepare($sql);
-        return $stm->execute($params);    
+        return $stm->execute($params);
     }
 
     public function DeleteProv() //elimino prov
@@ -75,56 +75,29 @@ class ProveedoresModel
         }
     }
 
-/*
-    public function ExistClient()
-    {
-        try {
-            $sql = "SELECT COUNT(*) FROM `clientes` WHERE `id_cliente` = :id_cliente";
-            $stm = $this->pdo->prepare($sql);
-            $stm->bindParam(':id_cliente', $this->id, \PDO::PARAM_INT);
-            $stm->execute();
-
-            $result = $stm->fetchColumn();
-
-            return $result > 0 ? true : false;
-        } catch (\Exception $e) {
-            die($e->getMessage());
-        }
-    }
-
     //se que es mal editar todos los campos, pero por ahora queda asi
-    public function EditClient()
+    public function EditProv()
     {
         try {
-            $sql = "UPDATE `clientes` SET `cliente_nombre` = :nuevo_nombre, `cliente_email` = :nuevo_email, `cliente_telefono` = :nuevo_telefono, `cliente_direccion` = :nueva_direccion WHERE `id_cliente` = :id_cliente;";
+            $sql = "UPDATE `proveedores` SET `prov_empresa`=:prov_empresa, `prov_cuit` =:prov_cuit , `prov_dir` =:prov_dir , `prov_tel` =:prov_tel , `prov_email` =:prov_email , `prov_web` =:prov_web  WHERE `proveedores`.`id_proveedor` = :id_proveedor; ";
 
             $stm = $this->pdo->prepare($sql);
 
-            // Asignar valores a los marcadores de posición
-            $stm->bindParam(':nuevo_nombre', $this->nombre_completo);
-            $stm->bindParam(':nuevo_email', $this->email);
-            $stm->bindParam(':nuevo_telefono', $this->telefono);
-            $stm->bindParam(':nueva_direccion', $this->direccion);
-            $stm->bindParam(':id_cliente', $this->id);
+            $params = [
+                ':prov_empresa' => $this->prov_empresa,
+                ':prov_estado' => $this->prov_estado,
+                ':prov_cuit' => $this->prov_cuit,
+                ':prov_dir' => $this->prov_dir,
+                ':prov_tel' => $this->prov_tel,
+                ':prov_email' => $this->prov_email,
+                ':prov_web' => $this->prov_web,
+                ':id_proveedor'=>$this->id
+            ];
 
             // Ejecutar la consulta
-            $stm->execute();
+            $stm->execute($params);
         } catch (\Exception $e) {
             die($e->getMessage());
         }
     }
-
-    public function CountClient()
-    {
-        try {
-            $sql = 'SELECT COUNT(cliente_email) AS cantclient FROM `clientes`';
-            $stm = $this->pdo->prepare($sql);
-
-            $stm->execute();
-
-            return $stm->fetchAll(\PDO::FETCH_OBJ);
-        } catch (\Exception $e) {
-            die($e->getMessage());
-        }
-    }*/
 }

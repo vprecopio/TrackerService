@@ -1,27 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Http\Response;
 use App\Models\ProveedoresModel;
 
 class ProvController extends ProveedoresModel
 {
-    public function index():Response
+    public function index(): Response
     {
         return view('proveedores');
     }
 
-    public function list():Response
+    public function list(): Response
     {
         return $this->ListProveedores();
     }
 
     public function create()
     {
-        
-        
+
+
         if ($_POST) {
-            
+
             $this->prov_empresa = $_POST['nombre_prov_crear'];
             $this->prov_cuit = $_POST['prov_cuit_crear'];
             $this->prov_dir = $_POST['prov_dir_crear'];
@@ -41,7 +42,7 @@ class ProvController extends ProveedoresModel
         redirect('/prov/');
     }
 
-   /* public function search():Response
+    /* public function search():Response
     {
         if ($_POST) {
             $this->id = $_POST['id'];
@@ -52,22 +53,22 @@ class ProvController extends ProveedoresModel
     }
     */
 
-    public function edit():Response
+    public function edit()
     {
         //cuando el usuario envia el formulario editar.....FALTA EDITAR
-        if ($_POST && isset($_POST['id_proveedor']) && isset($_POST['Editar'])) 
-        {
-            $this->id = $_POST['id'];
-            $this->nombre_completo = $_POST['nombre'] ?? 'sin datos';
-            $this->email = $_POST['email'] ?? 'sin datos';
-            $this->telefono = $_POST['telefono'] ?? 'sin datos';
-            $this->direccion = $_POST['direccion'] ?? 'sin datos';
-
+        if ($_POST && isset($_POST['id']) && isset($_POST['Editar'])) {
+            $this->prov_empresa = $_POST["editar-prove"];
+            $this->prov_cuit = $_POST["editar-cuit"];
+            $this->prov_dir = $_POST["editar-direccion"];
+            $this->prov_tel = $_POST["editar-telefono"];
+            $this->prov_email = $_POST["editar-email"];
+            $this->prov_web = $_POST["editar-web"];
+            $this->id = $_POST["id"];
             $this->EditProv();
 
-            return view('proveedores');
+            redirect('/prov/');
         }
 
-        return view('proveedores');
+        redirect('/prov/');
     }
 }
