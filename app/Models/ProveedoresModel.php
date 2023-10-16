@@ -100,7 +100,7 @@ class ProveedoresModel
                 ':prov_tel' => $this->prov_tel,
                 ':prov_email' => $this->prov_email,
                 ':prov_web' => $this->prov_web,
-                ':id_proveedor'=> (int)$this->id
+                ':id_proveedor'=> (int) $this->id
             ];
 
             // Ejecutar la consulta
