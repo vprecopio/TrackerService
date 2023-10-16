@@ -86,6 +86,7 @@ class ProveedoresModel
             `prov_dir` = :prov_dir,
             `prov_tel` = :prov_tel,
             `prov_email` = :prov_email,
+            `prov_estado` = :prov_estado,
             `prov_web` = :prov_web  
             WHERE `proveedores`.`id_proveedor` = :id_proveedor ";
 
@@ -99,7 +100,7 @@ class ProveedoresModel
                 ':prov_tel' => $this->prov_tel,
                 ':prov_email' => $this->prov_email,
                 ':prov_web' => $this->prov_web,
-                ':id_proveedor'=>$this->id
+                ':id_proveedor'=> (int)$this->id
             ];
 
             // Ejecutar la consulta
