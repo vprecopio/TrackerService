@@ -205,8 +205,10 @@ $prov_crear_form = new AutomaticForm(
 
                                             <!--botones editar y eliminar-->
                                             <td class="p-4 space-x-2 whitespace-nowrap w-1/5">
-
-                                                <button type="button" id="updateprovButton" onclick="llenarFormularioCliente('<?php echo $obj_prov->id_cliente; ?>','<?= $obj_prov->cliente_nombre ?>', '<?= $obj_prov->cliente_email ?>', '<?= $obj_prov->cliente_telefono ?>', '<?= $obj_prov->cliente_direccion ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                                                <?php
+                                                $llenar_formulario = "'$obj_prov->prov_empresa','$obj_prov->prov_cuit','$obj_prov->prov_dir','$obj_prov->prov_tel','$obj_prov->prov_email','$obj_prov->prov_web','$obj_prov->id_proveedor'";
+                                                ?>
+                                                <button type="button" id="updateprovButton" onclick="llenarFormularioCliente('<?= $llenar_formulario ?>');" data-drawer-target="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-show="drawer-update-<?= $nombre_formulario ?>-default" aria-controls="drawer-update-<?= $nombre_formulario ?>-default" data-drawer-placement="right" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                                         <svg>
                                                             <path d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z"></path>
@@ -321,7 +323,7 @@ $prov_crear_form = new AutomaticForm(
             <!-- Formulario Eliminar Cliente -->
 
 
-           
+
         </entities-crud>
 
     </div>
@@ -337,19 +339,24 @@ $prov_crear_form = new AutomaticForm(
 
 <script>
     // Función para llenar los campos del formulario con los datos del cliente
-    function llenarFormularioCliente(id, nombre, email, telefono, direccion) {
+    function llenarFormularioCliente(prov_empresa, prov_cuit, prov_dir, prov_tel, prov_email,prov_web,id_proveedor) {
         // Obtener referencias a los campos del formulario
-        var idInput = document.getElementById("id");
-        var nombreInput = document.getElementById("nombre");
-        var emailInput = document.getElementById("email");
-        var telefonoInput = document.getElementById("telefono");
-        var direccionInput = document.getElementById("direccion");
+        var prov_empresa0 = document.getElementById("editar-prove");
+        var prov_cuit0 = document.getElementById("editar-cuit");
+        var prov_dir0 = document.getElementById("editar-direccion");
+        var prov_tel0 = document.getElementById("editar-telefono");
+        var prov_email0 = document.getElementById("editar-email");
+        var prov_web0 = document.getElementById("editar-web");
+        var id_proveedor0 = document.getElementById("id");
+
 
         // Llenar los campos con los datos del cliente
-        idInput.value = id;
-        nombreInput.value = nombre;
-        emailInput.value = email;
-        telefonoInput.value = telefono;
-        direccionInput.value = direccion;
+        prov_empresa0.value = prov_empresa;
+        prov_cuit0.value = prov_cuit;
+        prov_dir0.value = prov_dir;
+        prov_tel0.value = prov_tel;
+        prov_email0.value = prov_email;
+        prov_web0.value = prov_web;
+        id_proveedor0.value = id_proveedor;
     }
 </script>
