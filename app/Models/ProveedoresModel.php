@@ -79,7 +79,15 @@ class ProveedoresModel
     public function EditProv()
     {
         try {
-            $sql = "UPDATE `proveedores` SET `prov_empresa`=:prov_empresa, `prov_cuit` =:prov_cuit , `prov_dir` =:prov_dir , `prov_tel` =:prov_tel , `prov_email` =:prov_email , `prov_web` =:prov_web  WHERE `proveedores`.`id_proveedor` = :id_proveedor; ";
+            $sql = "UPDATE `proveedores` 
+            SET 
+            `prov_empresa` = :prov_empresa, 
+            `prov_cuit` = :prov_cuit, 
+            `prov_dir` = :prov_dir,
+            `prov_tel` = :prov_tel,
+            `prov_email` = :prov_email,
+            `prov_web` = :prov_web  
+            WHERE `proveedores`.`id_proveedor` = :id_proveedor ";
 
             $stm = $this->pdo->prepare($sql);
 
