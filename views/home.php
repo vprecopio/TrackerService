@@ -29,7 +29,7 @@ $array_unico_titulos_estado_de_los_tickets = array_values(array_unique($array_un
 // Luego, si deseas obtener los valores en un nuevo array:
 $contador_estados = array_values($contador_estados);
 foreach ($contador_estados as &$valor) {
-    $valor = $valor / $total * 100;
+    $valor = round($valor / $total * 100,0);
 }
 
 
