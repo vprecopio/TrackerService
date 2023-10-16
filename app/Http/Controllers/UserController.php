@@ -30,9 +30,15 @@ class UserController extends UserModel
             $this->usr_email = $_POST['email-crear'];
             $this->usr_contrasena = $_POST['contrasena-crear'];
             $this->usr_estado = $_POST['estado-crear'] == 'activo' ? 1 : 0;
-            // $this->id_rol = $_POST['rol-crear'] == 0;
-            $this->id_rol = 0;
-            $this->CreateUser();
+            $this->rol_nombre = $_POST['rol-crear'];
+
+            $rol = $this->OneRole();
+
+            if (!empty($rol)) {
+                $this->id_rol = $rol[0]->id_rol;
+                $this->CreateUser();
+            }
+           
         }
         redirect('/user/');
     }
