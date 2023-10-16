@@ -6,7 +6,7 @@ use App\Http\Controllers\UserController;
 $nombre_pagina = 'Usuarios';
 $nombre_formulario = 'usuario';
 
-$json_estados='[{"id_estado"a:1,"usr_estado":"activo"},{"id_estado":2,"usr_estado":"inactivo"}]';
+$json_estados='[{"id_estado":1,"usr_estado":"activo"},{"id_estado":2,"usr_estado":"inactivo"}]';
 
 
 $user_controller = new UserController;
