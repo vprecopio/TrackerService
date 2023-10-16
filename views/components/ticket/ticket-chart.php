@@ -1,9 +1,3 @@
-
-<?php
-
-echo json_encode($contador_estados);
-?>
-
 <script>
 window.addEventListener("load", function () {
   const getChartOptions = () => {

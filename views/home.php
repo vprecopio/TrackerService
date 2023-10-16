@@ -9,20 +9,28 @@ $cantclient = $client_controller->CountClient();
 $ticket_model = new TicketModel;
 $allTicket =$ticket_model->allTk();
 
-//print_r($allTicket);exit;
-
 $array_unico_titulos_estado_de_los_tickets = [];
-
-$contador_estados=[];
-foreach ($allTicket as $value)
-{
+$contador_estados = [];
+$total=0;
+foreach ($allTicket as $value) {
     $array_unico_titulos_estado_de_los_tickets[] = $value->estado_ticket_descripcion;
-    $contador_estados[$value->estado_ticket_descripcion] +=1;
+    
+    // Verificar si la clave existe en $contador_estados
+    if (isset($contador_estados[$value->estado_ticket_descripcion])) {
+        $contador_estados[$value->estado_ticket_descripcion] += 1;
+    } else {
+        $contador_estados[$value->estado_ticket_descripcion] = 1;
+    }
+    $total +=1;
 }
-$array_unico_titulos_estado_de_los_tickets =  array_values(array_unique($array_unico_titulos_estado_de_los_tickets));
 
+$array_unico_titulos_estado_de_los_tickets = array_values(array_unique($array_unico_titulos_estado_de_los_tickets));
 
-$contador_estados=array_values($contador_estados);
+// Luego, si deseas obtener los valores en un nuevo array:
+$contador_estados = array_values($contador_estados);
+foreach ($contador_estados as &$valor) {
+    $valor = $valor / $total * 100;
+}
 
 
 ?>
@@ -47,7 +55,7 @@ $contador_estados=array_values($contador_estados);
                                 <?php foreach ($array_unico_titulos_estado_de_los_tickets as $xd) : ?>
                                     <dl class="bg-blue-50 dark:bg-gray-600 rounded-lg flex flex-col items-center justify-center h-[78px]">
                                         <!-- <dt class="w-8 h-8 rounded-full bg-blue-100 dark:bg-gray-500 text-blue-600 dark:text-blue-300 text-sm font-medium flex items-center justify-center mb-1">64</dt> -->
-                                        <dd class="text-blue-600 dark:text-blue-300 text-sm font-medium"><?= $xd ?></dd>
+                                        <dd class="text-blue-600 dark:text-blue-300 text-sm font-medium"><?= ucfirst($xd) ?></dd>
                                     </dl>
                                 <? endforeach; ?>
 
