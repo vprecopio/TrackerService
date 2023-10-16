@@ -321,6 +321,21 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
         $sql = "SELECT * FROM `tickets` WHERE `tickets`.`id_ticket` = 1";
     }
 
+
+    public function allTk(){
+
+        $sql = "SELECT *, (SELECT marca_descripcion FROM equipos_marca WHERE equipos_marca.id_marcas = modelos_equipos.id_marca) AS equipo_marca, (SELECT descripcion FROM equipos_modelo WHERE equipos_modelo.id_modelo = modelos_equipos.id_modelo) AS equipo_modelo FROM tickets JOIN clientes ON tickets.id_cliente = clientes.id_cliente JOIN estados_tickets ON tickets.id_estado_ticket = estados_tickets.id_estado_ticket JOIN modelos_equipos ON tickets.id_modelo_equipo = modelos_equipos.id_modelos_equipos";
+
+        try {
+            $stm = $this->pdo->prepare($sql);
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+        
+    }
+
 }
 
 
