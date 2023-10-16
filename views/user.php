@@ -127,10 +127,12 @@ $user_form = new AutomaticForm(
                                 Refrescar
                             </a>
 
+                            <?php if($_SESSION['TODO'][0]->rol_nombre == 'administrador'):?>
                             <!--Form agregar usuario -->
                             <? $user_form->GenerateButton() ?>
                             <? $user_form->GenerateForm() ?>
                             <!--FIN Agregar usuario -->
+                            <?php endif;?>
                         </div>
                     </div>
                 </div>
