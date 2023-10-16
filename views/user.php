@@ -17,7 +17,7 @@ $user_form = new AutomaticForm(
     [
         'usuarios-nombre' => [
             'title_label' => 'Nombre',
-            'id_name' => 'nombre',
+            'id_name' => 'nombre-crear',
             'type' => 'text',
             'height' => 3,
             'placeholder' => 'Gustavo',
@@ -25,7 +25,7 @@ $user_form = new AutomaticForm(
         ],
         'usuarios-apellido' => [
             'title_label' => 'Apellido',
-            'id_name' => 'apellido',
+            'id_name' => 'apellido-crear',
             'type' => 'text',
             'height' => 3,
             'placeholder' => 'Sanchez',
@@ -33,7 +33,7 @@ $user_form = new AutomaticForm(
         ],
         'usuarios-email' => [
             'title_label' => 'Email',
-            'id_name' => 'email',
+            'id_name' => 'email-crear',
             'type' => 'email',
             'height' => 3,
             'placeholder' => 'ejemplo@mail.com',
@@ -41,7 +41,7 @@ $user_form = new AutomaticForm(
         ],
         'usuarios-contrasena' => [
             'title_label' => 'Contraseña',
-            'id_name' => 'password',
+            'id_name' => 'password-crear',
             'type' => 'password',
             'height' => 3,
             'placeholder' => '••••••',
@@ -49,7 +49,7 @@ $user_form = new AutomaticForm(
         ],
         'usuarios-estado' => [
             'title_label' => 'Selecciona una categoria',
-            'id_name' => 'usuarios-estado',
+            'id_name' => 'estado-crear',
             'type' => 'select',
             'height' => 3,
             'required' => true,
