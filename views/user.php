@@ -1,8 +1,63 @@
 <?php
 
+use App\AutomaticForm;
 use App\Http\Controllers\UserController;
 
+$nombre_pagina = 'Usuarios';
+$nombre_formulario = 'usuario';
+
 $user_controller = new UserController;
+
+$user_form = new AutomaticForm(
+    'usuario',
+    '',
+    '/user/create/',
+    'POST',
+    'bg-blue-700',
+    [
+        'usuarios-nombre' => [
+            'title_label' => 'Nombre',
+            'id_name' => 'nombre',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => 'Gustavo',
+            'required' => true,
+        ],
+        'usuarios-apellido' => [
+            'title_label' => 'Apellido',
+            'id_name' => 'apellido',
+            'type' => 'text',
+            'height' => 3,
+            'placeholder' => 'Sanchez',
+            'required' => true,
+        ],
+        'usuarios-email' => [
+            'title_label' => 'Email',
+            'id_name' => 'email',
+            'type' => 'email',
+            'height' => 3,
+            'placeholder' => 'ejemplo@mail.com',
+            'required' => true,
+        ],
+        'usuarios-contrasena' => [
+            'title_label' => 'Contraseña',
+            'id_name' => 'password',
+            'type' => 'password',
+            'height' => 3,
+            'placeholder' => '••••••',
+            'required' => true
+        ],
+        'usuarios-estado' => [
+            'title_label' => 'Estado',
+            'id_name' => 'estado',
+            'type' => 'select',
+            'height' => 3,
+            'required' => true,
+            'option' => '{"id":1,"estado_descripcion":"Pepsi"}',
+            'options_table' => 'estados_descripcion',
+        ],
+    ]
+);
 ?>
 <div class="flex pt-16 overflow-hidden bg-gray-50 dark:bg-gray-900">
     <div id="main-content" class="relative w-full h-full overflow-y-auto bg-gray-50 lg:ml-64 dark:bg-gray-900 min-h-screen">
@@ -17,7 +72,7 @@ $user_controller = new UserController;
                                         <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                                         </svg>
-                                        Home
+                                        Página principal
                                     </a>
                                 </li>
                                 <li>
@@ -25,7 +80,7 @@ $user_controller = new UserController;
                                         <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                                         </svg>
-                                        <a href="/crud/" class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">Crud</a>
+                                        <a href="/crud/" class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">Tablas</a>
                                     </div>
                                 </li>
                                 <li>
@@ -33,13 +88,13 @@ $user_controller = new UserController;
                                         <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                                         </svg>
-                                        <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page">Usuarios</span>
+                                        <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page"><?= $nombre_pagina ?></span>
                                     </div>
                                 </li>
                             </ol>
                         </nav>
                         <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                            Todos los usuarios
+                            Todos los <?= $nombre_pagina ?>
                         </h1>
                     </div>
                     <div class="sm:flex">
@@ -47,18 +102,23 @@ $user_controller = new UserController;
                             <form class="lg:pr-3" action="#" method="GET">
                                 <label for="users-search" class="sr-only">Buscar usuario</label>
                                 <div class="relative mt-1 lg:w-64 xl:w-96">
-                                    <input type="text" name="email" id="users-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Buscar usuario">
+                                    <input type="text" name="email" id="users-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Buscar <?= $nombre_pagina ?>">
                                 </div>
                             </form>
                         </div>
                         <!--Fin buscar-->
                         <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                            <a type="button" href="/user/" type="button" data-refresh="" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                            <a type="button" href="/user/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center hover:text-white text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
                                 </svg>
                                 Refrescar
                             </a>
+
+                            <!--Form agregar usuario -->
+                            <? $user_form->GenerateButton() ?>
+                            <? $user_form->GenerateForm() ?>
+                            <!--FIN Agregar usuario -->
                         </div>
                     </div>
                 </div>
@@ -71,19 +131,19 @@ $user_controller = new UserController;
                                 <!--Titulos-->
                                 <thead class="bg-gray-100 dark:bg-gray-700">
                                     <tr>
-                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400">
                                             Nombre completo
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400">
                                             Email
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400">
                                             Estado
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400">
                                             Rol
                                         </th>
-                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400 w-1/5">
+                                        <th scope="col" class="p-4 text-xs font-bold text-left text-gray-500 uppercase dark:text-gray-400">
                                             Acciones
                                         </th>
                                     </tr>
@@ -94,14 +154,14 @@ $user_controller = new UserController;
                                     <?php foreach ($user_controller->ListUser() as $obj_user) : ?>
                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                             <!--datos-->
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="nombre"><?= $obj_user->usr_nombre . ' ' . $obj_user->usr_apellido ?></data>
                                             </td>
 
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="email"><?= $obj_user->usr_email ?></data>
                                             </td>
-                                            <td class="p-4 text-base font-normal text-gray-900 whitespace-nowrap dark:text-white w-1/5">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <div class="flex items-center">
                                                     <?php if ($obj_user->usr_estado > 0) : ?>
                                                         <div class="h-2.5 w-2.5 rounded-full bg-green-400 mr-2"></div>
@@ -112,12 +172,12 @@ $user_controller = new UserController;
                                                     <?php endif; ?>
                                                 </div>
                                             </td>
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white w-1/5">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="rol"><?= $obj_user->rol_nombre ?></data>
                                             </td>
 
                                             <!--botones editar y eliminar-->
-                                            <td class="p-4 space-x-2 whitespace-nowrap w-1/5">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
 
                                                 <button type="button" id="updateUserButton" onclick="llenarFormularioUsuario('<?php echo $obj_user->id_usuario ?>','<?= $obj_user->usr_nombre ?>', '<?= $obj_user->usr_apellido ?>', '<?= $obj_user->usr_email ?>', '<?= $obj_user->usr_estado ?>', '<?= $obj_user->rol_nombre ?>');" data-drawer-target="drawer-update-user-default" data-drawer-show="drawer-update-user-default" aria-controls="drawer-update-user-default" data-drawer-placement="right" class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-bold rounded-lg text-sm px-3 py-2 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                                     <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -178,8 +238,8 @@ $user_controller = new UserController;
                         <div>
                             <label for="estado" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
                             <select id="estado" name="estado" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    <option>Activo</option>
-                                    <option>Inactivo</option>
+                                <option>Activo</option>
+                                <option>Inactivo</option>
                             </select>
                         </div>
                         <div>
@@ -267,13 +327,13 @@ $user_controller = new UserController;
         apellidoInput.value = apellido;
         emailInput.value = email;
         //estadoInput.value = estado;
-        
+
         for (var i = 0; i < estadoInput.options.length; i++) {
-        if (estadoInput.options[i].value === estado) {
-            estadoInput.options[i].selected = true;
-            break;
+            if (estadoInput.options[i].value === estado) {
+                estadoInput.options[i].selected = true;
+                break;
+            }
         }
-    }
         rolInput.value = rol;
     }
 </script>

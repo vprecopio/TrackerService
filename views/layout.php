@@ -26,6 +26,7 @@ if (isset($_SESSION["TODO"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TecnoGestión</title>
+    <link rel="icon" type="image/x-icon" href="../public/src/img/favicon.ico">
     <script src="../public/src/scripts/flowbite.min.js"></script>
     <script src="../public/src/scripts/apexcharts.js"></script>
     <link rel="stylesheet" href="../public/src/styles/flowbite.min.css"/>
