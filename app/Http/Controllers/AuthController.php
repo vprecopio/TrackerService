@@ -20,17 +20,22 @@ class AuthController extends UserModel
 
     public function login()
     {
-        if (isset($_POST['password']) && isset($_POST['email'])) {
+        if (isset($_POST['password']) && isset($_POST['email']))
+        {
             $this->usr_contrasena = sha1($_POST['password']);
             $this->usr_email = $_POST['email'];
 
             $respuesta = $this->ComprobarEmailYPassword();
+            $estado = $respuesta->usr_estado ?? 0;
 
-            if (empty($respuesta)) {
-                // si está vacío
+            if (empty($respuesta) && $estado == 0) 
+            {
                 $_SESSION['logged_in'] = false;
-                return view('authlogin');
-            } else {
+                echo "<script>alert('Usuario o Contraseña incorrecto')</script>";
+                redirect('/');
+            } 
+            else
+            {
                 // si está lleno
                 $_SESSION['logged_in'] = true; // Marcar al usuario como autenticado
                 $_SESSION['TODO'] = $respuesta;
