@@ -334,7 +334,7 @@ $ticket_insert = new AutomaticForm(
 
                                             <!--datos-->
 
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td id="<?= $obj_value->id_ticket.'-'.$obj_value->cliente_email ?>" class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="id_ticket"><?= $obj_value->id_ticket ?></data>
                                             </td>
 

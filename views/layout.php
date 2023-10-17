@@ -29,8 +29,14 @@ if (isset($_SESSION["TODO"])) {
     <link rel="icon" type="image/x-icon" href="../public/src/img/favicon.ico">
     <script src="../public/src/scripts/flowbite.min.js"></script>
     <script src="../public/src/scripts/apexcharts.js"></script>
-    <link rel="stylesheet" href="../public/src/styles/flowbite.min.css"/>
-    <link rel="stylesheet" href="../public/src/styles/main.css"/>
+    <link rel="stylesheet" href="../public/src/styles/flowbite.min.css" />
+    <link rel="stylesheet" href="../public/src/styles/main.css" />
+    <style>
+        *:target {
+            border: 2px solid red;
+            /* Establece un contorno rojo de 2 píxeles cuando la URL incluye #texto-1 */
+        }
+    </style>
 </head>
 
 <body>
@@ -49,4 +55,5 @@ if (isset($_SESSION["TODO"])) {
 
     <script src="../public/src/scripts/dark-mode.js"></script>
 </body>
+
 </html>

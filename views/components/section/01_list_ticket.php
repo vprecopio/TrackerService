@@ -3,23 +3,15 @@
 use \App\Models\TicketModel;
 
 $model_tiket = new TicketModel;
-echo '<pre>';
-var_dump($model_tiket -> allTk());
 
 $title_secction_ticket = 'Tickets';
 $sub_secction_ticket = 'Esto es una lista de los últimos tickets.';
 
-$th_title = ['Transaction', 'Date &amp; Time', 'Amount', 'Reference number', 'Payment method', 'Status'];
+$th_title = ['Fecha de creación', 'Email del Cliente', 'Nombre del dispositivo', 'Estado del ticket','Ver más'];
 
-$th_content = [
-    'Payment from Bonnie Green',
-    'Apr 23 ,2021',
-    '$2300',
-    '0047568936',
-    '••• 475',
-    'completado',
-];
+$estados_a_excluir = ['entregado','reparado'];
 
+$array = new ArrayIterator($model_tiket->allTk());
 $text_link = [
     'text' => 'Todos los Tickets',
     'link' => '/ticket/',
@@ -33,9 +25,9 @@ $text_link = [
     <div class="items-center justify-between lg:flex">
         <div class="mb-4 lg:mb-0">
             <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                <?=$title_secction_ticket?>
+                <?= $title_secction_ticket ?>
             </h3>
-            <span class="text-base font-normal text-gray-500 dark:text-gray-400"><?=$sub_secction_ticket?></span>
+            <span class="text-base font-normal text-gray-500 dark:text-gray-400"><?= $sub_secction_ticket ?></span>
         </div>
     </div>
     <!-- Table -->
@@ -54,13 +46,27 @@ $text_link = [
                             </tr>
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800">
-                            <tr>
-                                <? foreach ($th_content as $value) : ?>
-                                    <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                        <span class="font-semibold"><?= $value ?></span>
-                                    </td>
-                                <? endforeach; ?>
-                            </tr>
+                            <? foreach ($array as $value) : ?>
+                                <? if (!in_array($value->estado_ticket_descripcion, $estados_a_excluir)) : ?>
+                                    <tr>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                            <span class="font-semibold"><?= $value->ticket_fecha_creacion ?></span>
+                                        </td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                            <a class="font-semibold underline" href="mailto:<?= $value->cliente_email ?>"><?= $value->cliente_email ?></a>
+                                        </td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                            <span class="font-semibold"><?= $value->equipo_modelo ?></span>
+                                        </td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                            <span class="font-semibold"><?= $value->estado_ticket_descripcion ?></span>
+                                        </td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                            <a class="font-semibold underline" href="/ticket/#<?= $value->id_ticket.'-'.$value->cliente_email?>">Ver Más</a>
+                                        </td>
+                                    </tr>
+                                <? endif; ?>
+                            <? endforeach; ?>
                         </tbody>
                     </table>
                 </div>
