@@ -1,7 +1,7 @@
 <?php
 
 use \App\Models\TicketModel;
-
+use Carbon\Carbon;
 $model_tiket = new TicketModel;
 
 $title_secction_ticket = 'Tickets';
@@ -50,7 +50,7 @@ $text_link = [
                                 <? if (!in_array($value->estado_ticket_descripcion, $estados_a_excluir)) : ?>
                                     <tr>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <span class="font-semibold"><?= $value->ticket_fecha_creacion ?></span>
+                                            <span class="font-semibold"><?=Carbon::parse($value->ticket_fecha_creacion)->locale('es_ES')->isoFormat('LL')?></span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                             <a class="font-semibold underline" href="mailto:<?= $value->cliente_email ?>"><?= $value->cliente_email ?></a>
