@@ -7,21 +7,21 @@ $client_controller = new ClientController;
 $cantclient = $client_controller->CountClient();
 
 $ticket_model = new TicketModel;
-$allTicket =$ticket_model->allTk();
+$allTicket = $ticket_model->allTk();
 
 $array_unico_titulos_estado_de_los_tickets = [];
 $contador_estados = [];
-$total=0;
+$total = 0;
 foreach ($allTicket as $value) {
     $array_unico_titulos_estado_de_los_tickets[] = $value->estado_ticket_descripcion;
-    
+
     // Verificar si la clave existe en $contador_estados
     if (isset($contador_estados[$value->estado_ticket_descripcion])) {
         $contador_estados[$value->estado_ticket_descripcion] += 1;
     } else {
         $contador_estados[$value->estado_ticket_descripcion] = 1;
     }
-    $total +=1;
+    $total += 1;
 }
 
 $array_unico_titulos_estado_de_los_tickets = array_values(array_unique($array_unico_titulos_estado_de_los_tickets));
@@ -29,7 +29,7 @@ $array_unico_titulos_estado_de_los_tickets = array_values(array_unique($array_un
 // Luego, si deseas obtener los valores en un nuevo array:
 $contador_estados = array_values($contador_estados);
 foreach ($contador_estados as &$valor) {
-    $valor = round($valor / $total * 100,0);
+    $valor = round($valor / $total * 100, 0);
 }
 
 
