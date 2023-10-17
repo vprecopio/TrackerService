@@ -355,7 +355,7 @@ $ticket_insert = new AutomaticForm(
                                                 <data value="ticket_descripcion"><?= $obj_value->ticket_descripcion ?></data>
                                             </td>
 
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap da rk:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="usr_nombre"><?= $obj_value->usr_email ?></data>
                                             </td>
 
@@ -371,11 +371,11 @@ $ticket_insert = new AutomaticForm(
                                                 <data value="prioridad_descripcion"><?= $obj_value->prioridad_descripcion ?></data>
                                             </td>
 
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap da rk:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="ModeloEquipo"><?= $obj_value->ModeloEquipo ?></data>
                                             </td>
 
-                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap da rk:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="valor_ticket_total">$<?= $obj_value->valor_ticket_total ?></data>
                                             </td>
 

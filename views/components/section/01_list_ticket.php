@@ -3,12 +3,14 @@
 use \App\Models\TicketModel;
 
 $model_tiket = new TicketModel;
-//var_dump($model_tiket -> ListT());
+echo '<pre>';
+var_dump($model_tiket -> allTk());
 
 $title_secction_ticket = 'Tickets';
 $sub_secction_ticket = 'Esto es una lista de los últimos tickets.';
 
 $th_title = ['Transaction', 'Date &amp; Time', 'Amount', 'Reference number', 'Payment method', 'Status'];
+
 $th_content = [
     'Payment from Bonnie Green',
     'Apr 23 ,2021',
