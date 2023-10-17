@@ -285,6 +285,7 @@ class TicketController extends TicketModel
 
     public function insertarticket()
     {
+        $flag = false;
         //$_POST['editar_valor'];
 
         $this->ticket_fecha_creacion = $_POST['fecha_creacion_a'];
@@ -302,12 +303,7 @@ class TicketController extends TicketModel
             redirect('/ticket/');
         } else {
             $this->id_cliente = $datos_cliente[0]->id_cliente;
-
-            //aca tiene que ir para enviarle un email al usuario
-            if ($this->hasConnection()) {
-                $php_mailer = new Mailer;
-                $php_mailer->SendTicketClient($_POST['email_cliente_a'],'usuario',true);
-            }
+            $flag = true;
         }
 
         //usuario
@@ -320,6 +316,7 @@ class TicketController extends TicketModel
             redirect('/ticket/');
         } else {
             $this->id_usuario = $datos_email[0]->id_usuario;
+            $flag = true;
         }
 
         //equipo
@@ -332,6 +329,7 @@ class TicketController extends TicketModel
             redirect('/ticket/');
         } else {
             $this->id_modelo_equipo = $datos_model[0]->id_modelos_equipos;
+            $flag = true;
         }
 
         //prioridad
@@ -343,6 +341,7 @@ class TicketController extends TicketModel
             redirect('/ticket/');
         } else {
             $this->id_prioridad = $datos_prioridad[0]->id_prioridad;
+            $flag = true;
         }
 
         //estado tk
@@ -354,9 +353,16 @@ class TicketController extends TicketModel
             redirect('/ticket/');
         } else {
             $this->id_estado_ticket = $datos_estado[0]->id_estado_ticket;
+            $flag = true;
         }
         $this->InsertT();
 
+
+        //aca tiene que ir para enviarle un email al usuario
+        if ($this->hasConnection() && $flag == true) {
+            $php_mailer = new Mailer;
+            $php_mailer->SendTicketClient($_POST['email_cliente_a'], 'usuario', true);
+        }
 
         redirect('/ticket/');
     }
