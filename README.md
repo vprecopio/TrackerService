@@ -2,6 +2,23 @@
 
 En este documento está presente todo lo necesario para la puesta a prueba de nuestro proyecto **TecnoGestión**.
 
+## Pasos para la configuración
+
+
+
+## Cuentas
+
+**Administrador**:
+Email: admin@admin.com
+Contraseña: 1234
+
+**Técnico**:
+Email: tecnico@tecnico.com
+Contraseña: 1234
+
+**Ventas/Recepción**:
+Email: ventas@ventas.com
+Contraseña: 1234
 
 ## Contenido del archivo *.env*
 
@@ -24,103 +41,54 @@ PHP_MYADMIN_PORT=8081
 
 ```yml
 version: '3.3'
-
 services:
 
-  
-
 db:
-
 image: 'mysql:5.7'
-
 volumes:
-
 - ./dump/:/var/lib/mysql
-
 environment:
-
 MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-
 MYSQL_USER: ${MYSQL_USER}
-
 MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD}
-
 MYSQL_DATABASE: ${MYSQL_DATABASE}
-
 # networks:
-
 # red_interna:
-
 # ipv4_address: 192.168.91.2
-
 container_name: mysql
 
-  
-
 phpmyadmin:
-
 image: phpmyadmin/phpmyadmin:latest
-
 #restart: always
-
 environment:
-
 PMA_HOST: db
-
 PMA_USER: root
-
 PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-
 ports:
-
 - ${PHP_MYADMIN_PORT}:80
-
 depends_on:
-
 - db
-
-  
 
 php-apache:
-
 build: php-apache/
-
 env_file:
-
 - .env
-
 links:
-
 - db:${MYSQL_SERVER}
-
 volumes:
-
 - ./TrackerService/:/var/www/html
-
 ports:
-
 - ${PHP_PORT}:80
-
 depends_on:
-
 - db
-
 # networks:
-
 # red_interna:
-
 # ipv4_address: 192.168.91.3
-
 container_name: App
-
 # networks:
-
 # red_interna:
-
 # ipam:
-
 # config:
-
 # - subnet: 192.168.91.1/29
 ```
 
