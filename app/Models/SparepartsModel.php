@@ -141,4 +141,55 @@ class SparepartsModel
       
     }
 
+    // Edito Repuesto
+   
+    public function EditSpareparts()
+    {
+        $sql = "UPDATE `repuestos` SET `repuesto_nombre`=:repuesto_nombre, `repuesto_descripcion`=:repuesto_descripcion, `repuesto_stock`=:repuesto_stock, 'repuesto_costo'=:repuesto_costo, 'repuesto_gan'=:repuesto_gan, 'repuesto_id_provedor'=:repuesto_id_provedor,'id_categoria_repuesto'=:id_categoria_repuesto,'repuesto_estado'=:repuesto_estado WHERE `repuestos`.`id_repuesto`=:id_repuesto";
+        $params = [
+            ':repuesto_estado' => $this->repuesto_estado,
+            ':repuesto_nombre' => $this->repuesto_nombre,
+            ':repuesto_descripcion' => $this->repuesto_descripcion,
+            ':repuesto_id_provedor' => $this->id_proveedor,
+            ':repuesto_stock' => $this->respuesto_stock,
+            ':repuesto_costo' => $this->repuesto_costo,
+            ':repuesto_gan' => $this->repuesto_gan,
+            ':id_categoria_repuesto' => $this->id_categoria_repuesto
+        ];
+
+        $stm = $this->pdo->prepare($sql);
+        return $stm->execute($params);
+        
+    }
+    public function ListCategorias() //Listo la categorias de repuestos
+    {
+        try {
+            $stm = $this->pdo->prepare(
+                "SELECT `categoria_repuestos`.`categoria_repuesto_descripcion` AS `nombre_categoria`
+                FROM `categorias_repuestos` AS `categoria_repuestos`;"
+            );
+
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+    public function ListProveedores() //listo proveedores
+    {
+        try {
+            $stm = $this->pdo->prepare(
+                "SELECT `proveedores`.`prov_empresa` AS `nombre_prov`
+                FROM `proveedores` AS `proveedores`;"
+            );
+
+            $stm->execute();
+            return $stm->fetchAll(\PDO::FETCH_OBJ);
+        } catch (\Exception $e) {
+            die($e->getMessage());
+        }
+    }
+
+
+
 }

@@ -71,4 +71,33 @@ class SparepartsController extends SparepartsModel
         $this->DeleteSpareparts();
         return view('spareparts');
     }
+
+    public function edit()
+    {
+        if ($_POST['Editar']) {
+
+            echo '<pre>';
+            print_r($_POST);exit;
+            
+            $this->repuesto_nombre = $_POST['repuesto'];
+            $this->repuesto_descripcion = $_POST['descripcion'];
+            $this->prov_empresa = $_POST['proveedor'];
+            $this->categoria_repuesto_descripcion = $_POST['categoria'];
+            $this->respuesto_stock = $_POST['stock'];
+            $this->repuesto_costo = $_POST['costo'];
+            $this->repuesto_gan = $_POST['ganancia'];
+            $this->repuesto_estado = $_POST['estado-repuesto'];
+
+            
+
+           if (!empty($repuesto_nombre) && !empty($repuesto_descripcion)) {
+       
+                $this->EditSpareparts();
+                
+            }
+            
+        }
+        unset($_POST,$id_repuesto);
+        return view('spareparts');
+    }
 }
