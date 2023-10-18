@@ -330,11 +330,11 @@ $ticket_insert = new AutomaticForm(
                                 <!--clientes-->
                                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                     <?php foreach ($ticket_controller->ListT() as $obj_value) : ?>
-                                        <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <tr id="<?= $obj_value->id_ticket.'-'.$obj_value->cliente_email ?>" class="hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                             <!--datos-->
 
-                                            <td id="<?= $obj_value->id_ticket.'-'.$obj_value->cliente_email ?>" class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td  class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="id_ticket"><?= $obj_value->id_ticket ?></data>
                                             </td>
 

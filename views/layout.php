@@ -34,6 +34,7 @@ if (isset($_SESSION["TODO"])) {
     <style>
         *:target {
             outline: 1px solid red;
+            background: #f330003b;
         }
     </style>
 </head>
