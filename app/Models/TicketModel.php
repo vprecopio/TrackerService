@@ -54,7 +54,9 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     private $id_prioridad, $prioridad_descripcion;
 
     //atributos ticket 	
-    private $id_ticket, $ticket_fecha_creacion, $ticket_fecha_cierre, $ticket_tiempo_garantia, $ticket_descripcion, $id_usuario, $id_cliente, $id_modelo_equipo; 	
+    private $id_ticket, $ticket_fecha_creacion, $ticket_fecha_cierre, $ticket_tiempo_garantia, $ticket_descripcion, $id_usuario, $id_cliente, $id_modelo_equipo;
+    
+    private $ticket_valor = null;
 
     public function __construct()
     {
@@ -341,7 +343,8 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
         `id_prioridad` = :id_prioridad, 
         `id_modelo_equipo` = :id_modelo_equipo,
         `id_estado_ticket` = :id_estado_ticket,
-        `id_valor` = :id_valor
+        `id_valor` = :id_valor,
+        `ticket_valor` = :ticket_valor
         WHERE `id_ticket` = :id_ticket";
 
         $params = [
@@ -356,6 +359,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             ':id_modelo_equipo' => $this->id_modelo_equipo,
             ':id_estado_ticket' => $this->id_estado_ticket,
             ':id_valor' => $this->id_valor,
+            ':ticket_valor' => $this->ticket_valor,
         ];
     
         $stm = $this->pdo->prepare($sql);
@@ -366,8 +370,8 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
     {
         $sql= "INSERT INTO 
         `tickets` 
-        (`ticket_fecha_creacion`, `ticket_fecha_cierre`, `ticket_tiempo_garantia`, `ticket_descripcion`, `id_usuario`, `id_cliente`, `id_estado_ticket`, `id_prioridad`, `id_modelo_equipo`, `id_valor`) 
-        VALUES (:fechacreacion, :fechacierre, :tiempogarantia, :descripcion, :usuario, :cliente, :estadoticket, :prioridad, :modeloequipo, :valor)";
+        (`ticket_fecha_creacion`, `ticket_fecha_cierre`, `ticket_tiempo_garantia`, `ticket_descripcion`, `id_usuario`, `id_cliente`, `id_estado_ticket`, `id_prioridad`, `id_modelo_equipo`, `id_valor`,`ticket_valor`) 
+        VALUES (:fechacreacion, :fechacierre, :tiempogarantia, :descripcion, :usuario, :cliente, :estadoticket, :prioridad, :modeloequipo, :valor, :ticket_valor)";
         $params = [
             ':fechacreacion' => $this->ticket_fecha_creacion,
             ':fechacierre' => $this->ticket_fecha_cierre,
@@ -379,6 +383,7 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             ':prioridad' => $this->id_prioridad,
             ':modeloequipo' => $this->id_modelo_equipo,
             ':valor' => $this->id_valor,
+            ':ticket_valor' => $this->ticket_valor,
         ];
 
         $stm = $this->pdo->prepare($sql);
