@@ -1,109 +1,138 @@
-# TecnoGestion
+# TecnoGestión
 
-Sistema de Seguimiento de Servicio Tecnico para aparatos electronicos.
+En este documento está presente todo lo necesario para la puesta a prueba de nuestro proyecto **TecnoGestión**.
 
-## Uso del Trait de Base de Datos
+## Pasos para la configuración
 
-**Introducción:**
-En este apartado, aprenderás cómo utilizar un trait global para gestionar la conexión a la base de datos
+Ingresar en el contenedor de apache y dar "composer install"
 
-**Utilizar el Trait de Base de Datos:**
-Para comenzar a trabajar con la base de datos, simplemente utiliza el trait global que ya está cargado en tu proyecto a través de Composer. Dentro de tu clase, agrega la siguiente línea de código `use \Database;`:
+Importar la base de datos "tk_ultimate_03.sql" en la base de datos "tickets".
 
-```php
-<?php
-namespace Your\Namespace;
+## Cuentas
 
-class MiClaseModel
-{
-    //heredas el atributo pdo y el metodo Connect
-     use \Database;
+**Administrador**:
+Email: admin@admin.com
+Contraseña: 1234
 
-    public function __construct()
-    {
-        $this->Connect();
-    }
+**Técnico**:
+Email: tecnico@tecnico.com
+Contraseña: 1234
 
-    public function TuFuncion()
-    {
-        $sql = 'tu sentencia sql';
-        $stm = $this->pdo->prepare($sql);
-        /*
-        Resto de tu codigo ...
-        */
-    }
-    
-}
+**Ventas/Recepción**:
+Email: ventas@ventas.com
+Contraseña: 1234
+
+## Contenido del archivo *.env*
+
+```
+MYSQL_DATABASE=tickets
+MYSQL_USER=user
+MYSQL_USER_PASSWORD=G52023
+MYSQL_ROOT_PASSWORD=G52023G52023G52023
+MYSQL_SERVER=db
+MYSQL_SERVER_PORT=3306
+MAIL_HOST=smtp.gmail.com
+MAIL_USER=practicasprofesionalizantestwo@gmail.com
+MAIL_PASS=fhqbackrhmagwpky
+MAIL_PORT=587
+PHP_PORT=8181
+PHP_MYADMIN_PORT=8081
 ```
 
-**Conexión a la Base de Datos:**
-Para que el trait de base de datos funcione correctamente, es importante que se establezca la conexión con la base de datos en el constructor de la clase que lo utiliza. Esto se logra utilizando `$this->connect();` en el constructor, como se muestra en el ejemplo anterior.
+## Contenido del archivo *docker-compose.yml*
 
-## Como mostrar una Vista y crear el Controller
+```yml
+version: '3.3'
+services:
 
-**Introducción:**
-En TrackerService, utilizamos controladores para gestionar las acciones y vistas de nuestras rutas. Aquí se explica cómo mostrar una vista utilizando un controlador como ejemplo.
+db:
+image: 'mysql:5.7'
+volumes:
+- ./dump/:/var/lib/mysql
+environment:
+MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+MYSQL_USER: ${MYSQL_USER}
+MYSQL_PASSWORD: ${MYSQL_USER_PASSWORD}
+MYSQL_DATABASE: ${MYSQL_DATABASE}
+# networks:
+# red_interna:
+# ipv4_address: 192.168.91.2
+container_name: mysql
 
-1. **Ubicación del Controlador:**
-   - Crea el controlador dentro de la carpeta `/app/Http/Controllers/`.
-   - El nombre del archivo del controlador debe terminar en `Controller.php`.
-   - La primera letra del nombre del archivo debe estar en mayúsculas, seguida de "Controller". Por ejemplo, `EjemploController.php`.
+phpmyadmin:
+image: phpmyadmin/phpmyadmin:latest
+#restart: always
+environment:
+PMA_HOST: db
+PMA_USER: root
+PMA_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+ports:
+- ${PHP_MYADMIN_PORT}:80
+depends_on:
+- db
 
-2. **Definir una Clase:**
-   - Dentro del archivo del controlador, define una clase que finalice con la palabra "Controller". Esta clase será responsable de manejar las acciones relacionadas con la ruta.
+php-apache:
+build: php-apache/
+env_file:
+- .env
+links:
+- db:${MYSQL_SERVER}
+volumes:
+- ./TrackerService/:/var/www/html
+ports:
+- ${PHP_PORT}:80
+depends_on:
+- db
+# networks:
+# red_interna:
+# ipv4_address: 192.168.91.3
+container_name: App
+# networks:
+# red_interna:
+# ipam:
+# config:
+# - subnet: 192.168.91.1/29
+```
 
-3. **Crear el metodo "index":**
-   - Dentro de la clase del controlador, define el método `index()`. Este método será responsable de manejar la acción cuando se accede a la ruta `http://tudominio.com/ejemplo/`.
+## Contenido del archivo *Dockerfile*
 
-4. **Retorno Vista/opcional:**
-   - Si es necesario, puedes utilizar `return` para devolver una respuesta al navegador, como una vista o una respuesta JSON o etc. Por ejemplo para devolver una vista solo es necesario usar la funcion `view()` dentro de tu metodo:
+```
+# Puedo elegir la version de php que voy a instalar
+FROM php:8.2.7-apache
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
+WORKDIR /var/www/html
 
-     ```php
-     <?php
-     namespace App\Http\Controllers;
+RUN apt-get update && \
+	apt-get install -y \
+	git \
+	unzip \
+	libzip-dev \
+	libpng-dev \
+	libmagickwand-dev --no-install-recommends 
 
-     class EjemploController
-     {
-        public function index()
-        {
-            // Retorna la vista de inicio de la ruta
-            return view('nombredetuvista');
-        }
-     }```
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-5. **Ejecutar un metodo:**
-   - Dentro de la clase podes definir diferentes metodos. El nombre de ese metodo es una accion que puede ser ejecutada consultando una ruta desde navegador `http://tudominio.com/nombredetucontrollador/metodo/`, agrega el código necesario para realizar la acción deseada cuando se visite la ruta. Esto puede incluir la obtención de datos, la preparación de variables o cualquier otro procesamiento específico para esa accion.
-   - A continuación, se muestra un ejemplo de cómo podría verse la estructura de un controlador en TrackerService:
+RUN pecl install imagick && \
+    docker-php-ext-enable imagick
 
-   ```php
-   <?php
-   namespace App\Http\Controllers;
-   
-   use App\Models\UserModel;
+# Puedo elegir la las librerias
+RUN docker-php-ext-install pdo pdo_mysql zip gd
 
-   class AuthController extends UserModel
-   {
-    // http://tudominio.com/auth/
-    public function index()
-    {
-        return view('authhome');
-    }
+RUN echo "date.timezone = America/Argentina/Buenos_Aires" > /usr/local/etc/php/php.ini
+RUN echo "session.cookie_lifetime=86400" >> /usr/local/etc/php/php.ini
+RUN echo "session.gc_maxlifetime=86400" >> /usr/local/etc/php/php.ini
 
-    // http://tudominio.com/auth/login/
-    public function login()
-    {
-        //formulario para logearse
-        return view('authlogin');
-    }
+RUN a2enmod rewrite
+RUN a2enmod headers
+RUN a2enmod expires
 
-    // http://tudominio.com/auth/register/
-    public function register()
-    {
-        return view('authregister');
-    }
+RUN service apache2 restart
 
-    /*
-    Resto de tu codigo ...
-    */
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+```
 
-   }```
+
+**Varela Mauro**  
+**Precopio Victor**  
+**Sandoval Lucas**  
+**Nuñez Alejandro**  
