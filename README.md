@@ -132,7 +132,7 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 ```
 
 
-**Varela Mauro**
-**Precopio Victor**
-**Sandoval Lucas**
-**Nuñez Alejandro**
+**Varela Mauro**  
+**Precopio Victor**  
+**Sandoval Lucas**  
+**Nuñez Alejandro**  
