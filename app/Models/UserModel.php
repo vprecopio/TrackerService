@@ -105,7 +105,7 @@ class UserModel
             $stm->execute();
             return true;
         }catch(\Exception $e){
-            die($e->getMessage());
+            echo "<script>alert('El usuario tiene ticket asignados')</script>";
         }
     }
 

@@ -60,3 +60,14 @@ class Seed
         return $a === $b ? true : false;
     }
 }
+
+
+final class SanitizeText
+{
+    static function Output (string|int $string):string|int
+    {
+        $string = htmlspecialchars( $string, ENT_QUOTES, 'UTF-8');
+        return $string;
+
+    }
+}

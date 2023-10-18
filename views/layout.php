@@ -33,8 +33,7 @@ if (isset($_SESSION["TODO"])) {
     <link rel="stylesheet" href="../public/src/styles/main.css" />
     <style>
         *:target {
-            border: 2px solid red;
-            /* Establece un contorno rojo de 2 píxeles cuando la URL incluye #texto-1 */
+            outline: 1px solid red;
         }
     </style>
 </head>
