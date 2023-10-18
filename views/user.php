@@ -311,19 +311,8 @@ $user_form = new AutomaticForm(
     function handleDeleteButtonClick(userId) {
         var deleteButton = document.getElementById("deleteUserButton");
         var deleteLink = document.querySelector("#drawer-delete-user-default a.text-white.bg-red-600");
-        deleteLink.href = "/user/delete/?id_usuario" + userId;
+        deleteLink.href = "/user/delete/?id_usuario=" + userId;
     }
-
-    document.addEventListener("DOMContentLoaded", function() {
-        var deleteButton = document.getElementById("deleteUserButton");
-        var userId = deleteButton.getAttribute("data-user-id");
-        var deleteLink = document.querySelector("#drawer-delete-user-default a.text-white.bg-red-600");
-
-        deleteButton.addEventListener("click", function() {
-            // Establecer la ID del cliente en el enlace de eliminación
-            deleteLink.href = "/user/delete/?Documento=" + userId;
-        });
-    });
 
     // Función para llenar los campos del formulario con los datos del usuario
     function llenarFormularioUsuario(id, nombre, apellido, email, estado, rol) {

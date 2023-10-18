@@ -25,9 +25,9 @@ $text_link = [
     <div class="items-center justify-between lg:flex">
         <div class="mb-4 lg:mb-0">
             <h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-                <?= $title_secction_ticket ?>
+                <?= SanitizeText::Output($title_secction_ticket) ?>
             </h3>
-            <span class="text-base font-normal text-gray-500 dark:text-gray-400"><?= $sub_secction_ticket ?></span>
+            <span class="text-base font-normal text-gray-500 dark:text-gray-400"><?= SanitizeText::Output($sub_secction_ticket) ?></span>
         </div>
     </div>
     <!-- Table -->
@@ -40,7 +40,7 @@ $text_link = [
                             <tr>
                                 <? foreach ($th_title as $value) : ?>
                                     <td scope="col" class="p-4 text-xs font-medium tracking-wider text-left text-gray-500 uppercase dark:text-white">
-                                        <?= $value ?>
+                                        <?=SanitizeText::Output($value) ?>
                                     </td>
                                 <? endforeach; ?>
                             </tr>
@@ -50,19 +50,19 @@ $text_link = [
                                 <? if (!in_array($value->estado_ticket_descripcion, $estados_a_excluir)) : ?>
                                     <tr>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <span class="font-semibold"><?=Carbon::parse($value->ticket_fecha_creacion)->locale('es_ES')->isoFormat('LL')?></span>
+                                            <span class="font-semibold"><?=SanitizeText::Output(Carbon::parse($value->ticket_fecha_creacion)->locale('es_ES')->isoFormat('LL'))?></span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <a class="font-semibold underline" href="mailto:<?= $value->cliente_email ?>"><?= $value->cliente_email ?></a>
+                                            <a class="font-semibold underline" href="mailto:<?= SanitizeText::Output($value->cliente_email) ?>"><?= SanitizeText::Output($value->cliente_email) ?></a>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <span class="font-semibold"><?= $value->equipo_modelo ?></span>
+                                            <span class="font-semibold"><?= SanitizeText::Output($value->equipo_modelo) ?></span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <span class="font-semibold"><?= $value->estado_ticket_descripcion ?></span>
+                                            <span class="font-semibold"><?= SanitizeText::Output($value->estado_ticket_descripcion) ?></span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <a class="font-semibold underline" href="/ticket/#<?= $value->id_ticket.'-'.$value->cliente_email?>">Ver Más</a>
+                                            <a class="font-semibold underline" href="/ticket/#<?= SanitizeText::Output($value->id_ticket.'-'.$value->cliente_email)?>">Ver Más</a>
                                         </td>
                                     </tr>
                                 <? endif; ?>
@@ -76,8 +76,8 @@ $text_link = [
     <!-- Card Footer -->
     <div class="flex items-center justify-between pt-3 sm:pt-6">
         <div class="flex-shrink-0">
-            <a href="<?= $text_link['link'] ?>" class="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700">
-                <?= $text_link['text'] ?>
+            <a href="<?= SanitizeText::Output($text_link['link']) ?>" class="inline-flex items-center p-2 text-xs font-medium uppercase rounded-lg text-primary-700 sm:text-sm hover:bg-gray-100 dark:text-primary-500 dark:hover:bg-gray-700">
+                <?= SanitizeText::Output($text_link['text']) ?>
                 <svg class="w-4 h-4 ml-1 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                 </svg>

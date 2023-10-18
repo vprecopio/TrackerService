@@ -18,9 +18,10 @@ class UserController extends UserModel
 
     public function delete()
     {
-        $this->id_usuario = $_GET['Documento'];
+        $this->id_usuario = $_GET['id_usuario'];
         $this->DeleteUser();
         redirect('/user/');
+        exit;
     }
 
     public function create(){
@@ -41,6 +42,7 @@ class UserController extends UserModel
            
         }
         redirect('/user/');
+        exit;
     }
 
     public function edit()
@@ -62,5 +64,6 @@ class UserController extends UserModel
             }
         }
         redirect('/user/');
+        exit;
     }
 }
