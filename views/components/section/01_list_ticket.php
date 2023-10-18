@@ -5,7 +5,7 @@ use Carbon\Carbon;
 $model_tiket = new TicketModel;
 
 $title_secction_ticket = 'Dispositivos';
-$sub_secction_ticket = 'Sin entregar o reparar';
+$sub_secction_ticket = 'Sin entregar o a reparar';
 
 $th_title = ['Fecha de creación', 'Email del Cliente', 'Nombre del dispositivo', 'Estado del ticket','         '];
 
@@ -59,11 +59,11 @@ $text_link = [
                                             <span class=""><?= SanitizeText::Output($value->equipo_modelo) ?></span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <span class="font-semibold"><?= SanitizeText::Output($value->estado_ticket_descripcion) ?></span>
+                                            <span class="font-semibold"><?= SanitizeText::Output(ucfirst($value->estado_ticket_descripcion)) ?></span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
 
-                                            <a  href="/ticket/#<?= SanitizeText::Output($value->id_ticket.'-'.$value->cliente_email)?>" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Ver Más</a>
+                                            <a  href="/ticket/#<?= SanitizeText::Output($value->id_ticket.'-'.$value->cliente_email)?>" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Ver más</a>
                                         </td>
                                     </tr>
                                 <? endif; ?>

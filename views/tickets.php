@@ -6,8 +6,8 @@ use App\Http\Controllers\EquipmentController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\UserController;
 
-$nombre_pagina = 'Ticket';
-$nombre_formulario = 'ticket-final';
+$nombre_pagina = 'Tickets';
+$nombre_formulario = 'ticket';
 //---------------------------seccion ticket
 $ticket_controller = new TicketController;
 $usr_controller = new UserController;
@@ -19,7 +19,7 @@ $form_estadticket = new AutomaticForm(
     'Nuevo estado',
     '/ticket/insertarestadoticket/',
     'POST',
-    '',
+    'bg-blue-700',
     [
         'ticket_estado' => [
             'title_label' => 'Nuevo estado',
@@ -37,7 +37,7 @@ $form_prioridades = new AutomaticForm(
     'Nueva descripcion',
     '/ticket/insertarprioridadticket/',
     'POST',
-    '',
+    'bg-blue-700',
     [
         'prioridad_descripcion' => [
             'title_label' => 'Nueva descripcion',
@@ -58,7 +58,7 @@ $equipo_form = new AutomaticForm(
     '',
     '/equipment/create/',
     'POST',
-    '',
+    'bg-blue-700',
     [
         'equipos-modelo' => [
             'title_label' => 'Nombre del equipo',
@@ -95,7 +95,7 @@ $ticket_insert = new AutomaticForm(
     'Insertar Ticket',
     '/ticket/insertarticket/',
     'POST',
-    '',
+    'bg-blue-700',
     [
         'ticket_estado' => [
             'title_label' => 'Fecha_Creacion',
@@ -207,7 +207,7 @@ $ticket_insert = new AutomaticForm(
                                         <svg class="w-5 h-5 mr-2.5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
                                         </svg>
-                                        Home
+                                        Página principal
                                     </a>
                                 </li>
                                 <li>
@@ -215,7 +215,7 @@ $ticket_insert = new AutomaticForm(
                                         <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                                         </svg>
-                                        <a href="/crud/" class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">Crud</a>
+                                        <a href="/crud/" class="ml-1 text-gray-700 hover:text-primary-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">Tablas</a>
                                     </div>
                                 </li>
                                 <li>
@@ -236,7 +236,7 @@ $ticket_insert = new AutomaticForm(
                     <div class="items-center justify-between block sm:flex">
 
                         <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
-                            <a type="button" href="/ticket/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center hover:text-white text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                            <a type="button" href="/ticket/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-700 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:focus:ring-green-800">
                                 <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
                                 </svg>
@@ -278,16 +278,16 @@ $ticket_insert = new AutomaticForm(
                                 <thead class="bg-gray-100 dark:bg-gray-700">
                                     <tr>
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            IdTicket
+                                            Id
                                         </th>
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            Fecha Creacion
+                                            Fecha de creación
                                         </th>
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            Fecha Cierre
+                                            Fecha de cierre
                                         </th>
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            Tiempo de Garantia
+                                            Tiempo de garantia
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -303,7 +303,7 @@ $ticket_insert = new AutomaticForm(
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            EstadoTicket
+                                            Estado del ticket
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -311,7 +311,7 @@ $ticket_insert = new AutomaticForm(
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
-                                            ModeloEquipo
+                                            Modelo de Dispositivo
                                         </th>
 
                                         <th scope="col" class="p-4 text-xs font-medium text-left text-gray-500 uppercase dark:text-gray-400">
@@ -364,11 +364,11 @@ $ticket_insert = new AutomaticForm(
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <data value="estado_ticket_descripcion"><?= $obj_value->estado_ticket_descripcion ?></data>
+                                                <data value="estado_ticket_descripcion"><?= ucfirst($obj_value->estado_ticket_descripcion) ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <data value="prioridad_descripcion"><?= $obj_value->prioridad_descripcion ?></data>
+                                                <data value="prioridad_descripcion"><?= ucfirst($obj_value->prioridad_descripcion) ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">

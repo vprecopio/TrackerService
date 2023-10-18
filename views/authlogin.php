@@ -22,12 +22,12 @@
                         </div>
                         <label for="remember" class="ml-2 text-sm font-bold text-gray-900 dark:text-gray-300">Recordarme</label>
                     </div>
-                    <a href="/auth/forgot/" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">¿Olvidó su contraseña?</a>
+                    <!-- <a href="/auth/forgot/" class="ml-auto text-sm text-blue-700 hover:underline dark:text-blue-500">¿Olvidó su contraseña?</a> -->
                 </div>
                 <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-bold rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Ingresar</button>
-                <div class="text-sm font-bold text-gray-500 dark:text-gray-300">
+                <!-- <div class="text-sm font-bold text-gray-500 dark:text-gray-300">
                     ¿No tiene cuenta? <a href="/auth/register/" class="text-blue-700 hover:underline dark:text-blue-500">Registrarse</a>
-                </div>
+                </div> -->
             </form>
         </div>
 

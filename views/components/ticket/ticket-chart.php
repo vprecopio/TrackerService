@@ -3,7 +3,7 @@ window.addEventListener("load", function () {
   const getChartOptions = () => {
     return {
       series: <?=json_encode($contador_estados)?>,
-      colors: ["#1C64F2", "#16BDCA", "#FDBA8C"],
+      colors: ["#1C64F2", "#16BDCA", "#FDBA8C", "#F3C2EA", "#FA5F49", "#FFEB99"],
       chart: {
         height: "380px",
         width: "100%",
