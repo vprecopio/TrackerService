@@ -15,7 +15,7 @@ use Carbon\Carbon;
                 <div class="absolute w-3 h-3 bg-green-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-800 dark:bg-gray-700">
                 </div>
                 <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"><?= Carbon::parse($value->ticket_fecha_cierre)->locale('es_ES')->isoFormat('LL') ?></time>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tu equipo ha sido entregado con éxito 📦</h3>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tu dispositivo ha sido entregado con éxito 📦</h3>
             </li>
             <!-- Fin Estado Entregado -->
 
@@ -25,7 +25,7 @@ use Carbon\Carbon;
                 <div class="absolute w-3 h-3 bg-green-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-800 dark:bg-gray-700">
                 </div>
                 <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"><?= Carbon::parse($value->ticket_fecha_cierre)->locale('es_ES')->isoFormat('LL') ?></time>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tu equipo ya esta reparado ✅🛠️</h3>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tu dispositivo ya esta reparado ✅🛠️</h3>
             </li>
             <!-- Fin Estado reparado -->
 
@@ -50,7 +50,7 @@ use Carbon\Carbon;
                 <div class="absolute w-3 h-3 bg-green-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-800 dark:bg-gray-700">
                 </div>
                 <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"><?= Carbon::parse($value->ticket_fecha_cierre)->locale('es_ES')->isoFormat('LL') ?></time>
-                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tu equipo se encuentra en proceso de asignación ⌛</h3>
+                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Tu dispositivo se encuentra en proceso de asignación ⌛</h3>
             </li>
             <!-- Fin Estado en proceso de asignacion -->
         <?php endif; ?>
@@ -60,7 +60,7 @@ use Carbon\Carbon;
             <div class="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-800 dark:bg-gray-700">
             </div>
             <time class="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500"><?= Carbon::parse($value->ticket_fecha_creacion)->locale('es_ES')->isoFormat('LL') ?></time>
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Hemos recibido tu equipo 🔍📦</h3>
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Hemos recibido tu dispositivo 🔍📦</h3>
             <p class="text-base font-normal text-gray-500 dark:text-gray-400"><?= $value->equipo_modelo ?><br><?= $value->equipo_marca ?></p>
         </li>
         <!-- Fin Estado Inicial -->
