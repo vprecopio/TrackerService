@@ -100,25 +100,17 @@ $user_form = new AutomaticForm(
                                         <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
                                         </svg>
-                                        <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page"><?= $nombre_pagina ?></span>
+                                        <span class="ml-1 text-gray-400 md:ml-2 dark:text-gray-500" aria-current="page"><?= SanitizeText::Output($nombre_pagina) ?></span>
                                     </div>
                                 </li>
                             </ol>
                         </nav>
                         <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
-                            Todos los <?= $nombre_pagina ?>
+                            Todos los <?= SanitizeText::Output($nombre_pagina) ?>
                         </h1>
                     </div>
                     <div class="sm:flex">
-                        <div class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
-                            <form class="lg:pr-3" action="#" method="GET">
-                                <label for="users-search" class="sr-only">Buscar usuario</label>
-                                <div class="relative mt-1 lg:w-64 xl:w-96">
-                                    <input type="text" name="email" id="users-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Buscar <?= $nombre_pagina ?>">
-                                </div>
-                            </form>
-                        </div>
-                        <!--Fin buscar-->
+
                         <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                             <a type="button" href="/user/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center hover:text-white text-white rounded-lg bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                 <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -169,11 +161,11 @@ $user_form = new AutomaticForm(
                                         <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                             <!--datos-->
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <data value="nombre"><?= $obj_user->usr_nombre . ' ' . $obj_user->usr_apellido ?></data>
+                                                <data value="nombre"><?= SanitizeText::Output($obj_user->usr_nombre . ' ' . $obj_user->usr_apellido) ?></data>
                                             </td>
 
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <data value="email"><?= $obj_user->usr_email ?></data>
+                                                <data value="email"><?= SanitizeText::Output($obj_user->usr_email) ?></data>
                                             </td>
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <div class="flex items-center">
@@ -187,7 +179,7 @@ $user_form = new AutomaticForm(
                                                 </div>
                                             </td>
                                             <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                <data value="rol"><?= $obj_user->rol_nombre ?></data>
+                                                <data value="rol"><?= SanitizeText::Output($obj_user->rol_nombre) ?></data>
                                             </td>
 
                                             <!--botones editar y eliminar-->
@@ -262,7 +254,7 @@ $user_form = new AutomaticForm(
 
                                 <?php foreach ($user_controller->ListUserRoles() as $obj_rol) : ?>
 
-                                    <option><?= $obj_rol->rol_nombre ?></option>
+                                    <option><?= SanitizeText::Output($obj_rol->rol_nombre) ?></option>
 
                                 <?php endforeach; ?>
                             </select>
