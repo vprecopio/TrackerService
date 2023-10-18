@@ -74,8 +74,8 @@ class ClientModel
             $stm->bindParam(':id_client', $this->id, \PDO::PARAM_INT);
             $stm->execute();
             return true;
-        } catch (\Exception $e) {
-            die($e->getMessage());
+        } catch (\Exception) {
+            echo "<script>alert('No puede eliminar al usuario, tiene asignado tickets :O')</script>";
         }
     }
 

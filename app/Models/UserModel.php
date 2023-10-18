@@ -106,7 +106,6 @@ class UserModel
             return true;
         }catch(\Exception $e){
             echo "<script>alert('El usuario tiene ticket asignados')</script>";
-
         }
     }
 
