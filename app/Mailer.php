@@ -81,4 +81,28 @@ final class Mailer
         $this->SendMail($email, $name, $subject, $message, $html);
     }
 
+    public function ResendTicketClient($email, $name,$nuevo_estado,$id_equipo, $html)
+    {
+        $url = 'http://localhost:8181/public/trackerservice.php?email='. $email .'&u='. Seed::GenerateSeed($email).'#equipo-'.$id_equipo;
+        $subject = '[TrackerService]: Tu dispositivo cambio de estado';
+        $message = '
+        Hola '.$name.',<br>
+        <br>
+        Ahora tu dispositivo esta en estado de '.$nuevo_estado.'.</br>
+        Podes ver el proceso en el siguiente link:
+        <br>
+        ------------------------------------------<br>
+        link: <a href="'.$url.'">Ver estado de tu ticket</a><br>
+        ------------------------------------------<br>
+        <br>
+        Si tiene alguna pregunta o inquietud, también puede visitar nuestro portal de soporte en https://sinopagasnoteayudamos.com
+        <br>
+        Gracias,
+        <br>
+        Los papus de segundo b';
+
+        $this->SendMail($email, $name, $subject, $message, $html);
+    }
+
+
 }

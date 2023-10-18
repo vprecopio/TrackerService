@@ -302,6 +302,16 @@ class TicketController extends TicketModel
                 redirect('/ticket/');
             } else {
                 $this->id_estado_ticket = $datos_estado[0]->id_estado_ticket;
+
+                $estado_ok= $_POST['editar_estado'] ?? 'nada';
+                $email_cliente = $datos_cliente[0]->cliente_email;
+                $id_del_equipo = $datos_model[0]->id_modelos_equipos ?? '999';
+
+                //aca tiene que ir para enviarle un email al usuario
+                if ($this->hasConnection() && $estado_ok == $datos_estado[0]->estado_ticket_descripcion) {
+                    $php_mailer = new Mailer;
+                    $php_mailer->ResendTicketClient($email_cliente, 'usuario',$estado_ok,$id_del_equipo, true);
+                }
             }
 
             $this->EditT();
