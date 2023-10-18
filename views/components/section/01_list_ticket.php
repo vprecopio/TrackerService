@@ -4,10 +4,10 @@ use \App\Models\TicketModel;
 use Carbon\Carbon;
 $model_tiket = new TicketModel;
 
-$title_secction_ticket = 'Tickets';
-$sub_secction_ticket = 'Esto es una lista de los últimos tickets.';
+$title_secction_ticket = 'Dispositivos';
+$sub_secction_ticket = 'Sin entregar o reparar';
 
-$th_title = ['Fecha de creación', 'Email del Cliente', 'Nombre del dispositivo', 'Estado del ticket','Ver más'];
+$th_title = ['Fecha de creación', 'Email del Cliente', 'Nombre del dispositivo', 'Estado del ticket','         '];
 
 $estados_a_excluir = ['entregado','reparado'];
 
@@ -50,19 +50,20 @@ $text_link = [
                                 <? if (!in_array($value->estado_ticket_descripcion, $estados_a_excluir)) : ?>
                                     <tr>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <span class="font-semibold"><?=SanitizeText::Output(Carbon::parse($value->ticket_fecha_creacion)->locale('es_ES')->isoFormat('LL'))?></span>
+                                            <span class=""><?=SanitizeText::Output(Carbon::parse($value->ticket_fecha_creacion)->locale('es_ES')->isoFormat('LL'))?></span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                             <a class="font-semibold underline" href="mailto:<?= SanitizeText::Output($value->cliente_email) ?>"><?= SanitizeText::Output($value->cliente_email) ?></a>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <span class="font-semibold"><?= SanitizeText::Output($value->equipo_modelo) ?></span>
+                                            <span class=""><?= SanitizeText::Output($value->equipo_modelo) ?></span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                             <span class="font-semibold"><?= SanitizeText::Output($value->estado_ticket_descripcion) ?></span>
                                         </td>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                            <a class="font-semibold underline" href="/ticket/#<?= SanitizeText::Output($value->id_ticket.'-'.$value->cliente_email)?>">Ver Más</a>
+
+                                            <a  href="/ticket/#<?= SanitizeText::Output($value->id_ticket.'-'.$value->cliente_email)?>" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Ver Más</a>
                                         </td>
                                     </tr>
                                 <? endif; ?>
