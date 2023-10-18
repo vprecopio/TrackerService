@@ -69,6 +69,12 @@ $client = new TicketClient($_GET['email']);
     <link rel="stylesheet" href="/public/src/main.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.8.1/flowbite.min.css" rel="stylesheet" />
+    <style>
+        *:target {
+            outline: 1px solid green;
+            filter: drop-shadow(1px 1px 2px #4444dd);
+        }
+    </style>
 </head>
 
 <body class="bg-gray-50 dark:bg-gray-800">
