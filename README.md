@@ -4,7 +4,9 @@ En este documento está presente todo lo necesario para la puesta a prueba de nu
 
 ## Pasos para la configuración
 
+Ingresar en el contenedor de apache y dar "composer install"
 
+Importar la base de datos "tk_ultimate_03.sql" en la base de datos "tickets".
 
 ## Cuentas
 
@@ -128,3 +130,9 @@ RUN service apache2 restart
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 ```
+
+
+**Varela Mauro**
+**Precopio Victor**
+**Sandoval Lucas**
+**Nuñez Alejandro**
