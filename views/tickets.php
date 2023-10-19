@@ -144,7 +144,7 @@ $ticket_insert = new AutomaticForm(
             'height' => 3,
             'placeholder' => '',
             'required' => true,
-            'options' => json_encode($ticket_controller ->ListPrioridad()),
+            'options' => json_encode($ticket_controller->ListPrioridad()),
             'options_table' => 'prioridad_descripcion',
         ],
         'ticket_estado7' => [
@@ -154,7 +154,7 @@ $ticket_insert = new AutomaticForm(
             'height' => 3,
             'placeholder' => 'samsung',
             'required' => true,
-            'options' => json_encode($equipment_controller ->ListEquipments()),
+            'options' => json_encode($equipment_controller->ListEquipments()),
             'options_table' => 'modelo',
         ],
         'ticket_estado8' => [
@@ -175,7 +175,7 @@ $ticket_insert = new AutomaticForm(
             'placeholder' => '',
             'required' => true,
             'options' => json_encode($usr_controller->ListUser()),
-            'options_table' => 'usr_email', 
+            'options_table' => 'usr_email',
         ],
         'ticket_estado10' => [
             'title_label' => 'Email_cliente',
@@ -242,21 +242,24 @@ $ticket_insert = new AutomaticForm(
                                 </svg>
                                 Refrescar
                             </a>
-                            <!--Form agregar estado -->
-                            <? $form_estadticket->GenerateButton() ?>
-                            <? $form_estadticket->GenerateForm() ?>
-                            <!--FIN Agregar estado -->
+                            <?php if ($_SESSION['TODO'][0]->rol_nombre == 'administrador') : ?>
+                                <!--Form agregar estado -->
+                                <? $form_estadticket->GenerateButton() ?>
+                                <? $form_estadticket->GenerateForm() ?>
+                                <!--FIN Agregar estado -->
 
-                            <!--Form agregar descripcion -->
-                            <? $form_prioridades->GenerateButton() ?>
-                            <? $form_prioridades->GenerateForm() ?>
-                            <!--FIN Agregar descripcion -->
+                                <!--Form agregar descripcion -->
+                                <? $form_prioridades->GenerateButton() ?>
+                                <? $form_prioridades->GenerateForm() ?>
+                                <!--FIN Agregar descripcion -->
+                            <? endif; ?>
 
-                            <!--Form agregar equipo -->
-                            <? $equipo_form->GenerateButton() ?>
-                            <? $equipo_form->GenerateForm() ?>
-                            <!--FIN Agregar Equipo -->
-
+                            <?php if ($_SESSION['TODO'][0]->rol_nombre == 'administrador' || $_SESSION['TODO'][0]->rol_nombre == 'tecnico') : ?>
+                                <!--Form agregar equipo -->
+                                <? $equipo_form->GenerateButton() ?>
+                                <? $equipo_form->GenerateForm() ?>
+                                <!--FIN Agregar Equipo -->
+                            <? endif; ?>
                             <!--Form agregar ticket -->
                             <? $ticket_insert->GenerateButton() ?>
                             <? $ticket_insert->GenerateForm() ?>
@@ -330,11 +333,11 @@ $ticket_insert = new AutomaticForm(
                                 <!--clientes-->
                                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
                                     <?php foreach ($ticket_controller->ListT() as $obj_value) : ?>
-                                        <tr id="<?= $obj_value->id_ticket.'-'.$obj_value->cliente_email ?>" class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                        <tr id="<?= $obj_value->id_ticket . '-' . $obj_value->cliente_email ?>" class="hover:bg-gray-100 dark:hover:bg-gray-700">
 
                                             <!--datos-->
 
-                                            <td  class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                            <td class="p-4 text-base font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                 <data value="id_ticket"><?= $obj_value->id_ticket ?></data>
                                             </td>
 
