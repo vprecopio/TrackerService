@@ -13,7 +13,7 @@ class TicketController extends TicketModel
 {
     use \CheckInternet;
 
-    private $rol_ok = ['administrador', 'ventas'];
+    private $rol_ok = ['administrador', 'ventas','tecnico'];
 
     public function index()
     {
