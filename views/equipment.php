@@ -123,17 +123,6 @@ $categoria_form = new AutomaticForm(
 
                     <div class="items-center justify-between block sm:flex">
 
-                        <!--buscar-->
-                        <div class="flex items-center mb-4 sm:mb-0">
-                            <form class="sm:pr-3" action="#" method="GET">
-                                <label for="products-search" class="sr-only">Buscar</label>
-                                <div class="relative w-48 mt-1 sm:w-64 xl:w-96">
-                                    <input type="text" name="email" id="products-search" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Buscar <?= $nombre_pagina ?>">
-                                </div>
-                            </form>
-                        </div>
-                        <!--Fin buscar-->
-
                         <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                             <a type="button" href="/equipment/" type="button" data-refresh="" class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-green-700 focus:ring-4 focus:ring-green-300 sm:w-auto dark:bg-green-600 dark:focus:ring-green-800">
                                 <svg class="w-5 h-5 mr-2 -ml-1" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
