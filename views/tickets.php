@@ -33,14 +33,14 @@ $form_estadticket = new AutomaticForm(
 );
 
 $form_prioridades = new AutomaticForm(
-    'descripcion',
-    'Nueva descripcion',
+    'prioridad',
+    'Nueva prioridad',
     '/ticket/insertarprioridadticket/',
     'POST',
     'bg-blue-700',
     [
         'prioridad_descripcion' => [
-            'title_label' => 'Nueva descripcion',
+            'title_label' => 'Agregar prioridad',
             'id_name' => 'nueva-descripcion',
             'type' => 'text',
             'height' => 3,
