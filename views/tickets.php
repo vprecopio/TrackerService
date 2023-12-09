@@ -430,33 +430,16 @@ $ticket_insert = new AutomaticForm(
 
                 <form action="/ticket/edit/" method="POST">
                     <div class="space-y-4">
-
-
-                        <div>
-                            <label for="fecha_creacion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">fecha_creacion</label>
-                            <input type="date" name="fecha_creacion" id="fecha_creacion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
-                        </div>
-
-                        <div>
-                            <label for="fecha_cierre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">fecha_cierre</label>
-                            <input type="date" name="fecha_cierre" id="fecha_cierre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
-                        </div>
-
-                        <div>
-                            <label for="tiempo_garantia" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">tiempo_garantia</label>
-                            <input type="date" name="tiempo_garanti" id="tiempo_garantia" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
-                        </div>
-
+                        <!-- se modificaron los input para volver hidden ocultos -->
+                        <input type="hidden" name="fecha_creacion" id="fecha_creacion" value="modelo">
+                        <input type="hidden" name="fecha_cierre" id="fecha_cierre" value="modelo">
+                        <input type="hidden" name="tiempo_garantia" id="tiempo_garantia" value="modelo">
+                        <input type="hidden" name="editar_valor" id="editar_valor" value="modelo">
+                                        <!-- se modifico el formulario para la vista del tecnico -->
                         <div>
                             <label for="ticket_descripcion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ticket_descripcion</label>
                             <input type="text" name="ticket_descripcion" id="ticket_descripcion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
                         </div>
-
-                        <div>
-                            <label for="editar_valor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">editar_valor</label>
-                            <input type="number" name="editar_valor" id="editar_valor" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
-                        </div>
-
 
                         <div class="mb-4">
                             <label for="editar_prioridad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una prioridad</label>
@@ -484,8 +467,8 @@ $ticket_insert = new AutomaticForm(
                                 <?php endforeach; ?>
                             </select>
                         </div>
-
-                        <div class="mb-4">
+                                    <!-- se volvio hidden a el anteultimo foreach -->
+                        <div class="mb-4" style="display: none;">
                             <label for="editar_email_usuario" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asignar a empleado</label>
                             <select id="editar_email_usuario" name="editar_email_usuario" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <?php foreach ($usr_controller->ListUser() as $obj_brand) : ?>
@@ -493,6 +476,7 @@ $ticket_insert = new AutomaticForm(
                                 <?php endforeach; ?>
                             </select>
                         </div>
+
 
                         <div class="mb-4">
                             <label for="editar_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email del Cliente</label>
