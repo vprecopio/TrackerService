@@ -5,7 +5,7 @@ use Carbon\Carbon;
 $model_tiket = new TicketModel;
 
 $title_secction_ticket = 'Tickets Asignados';
-$sub_secction_ticket = 'Sin entregar o a reparar';
+$sub_secction_ticket = 'A reparar';
 
 $th_title = ['Fecha de creación', 'Email del Cliente', 'Nombre del dispositivo', 'Estado del ticket','         '];
 
@@ -64,7 +64,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                         </thead>
                         <tbody class="bg-white dark:bg-gray-800">
                             <? foreach ($array as $value) : ?>
-                                <? if ($value->usuario_asignado === $userID) : ?> 
+                                <? if ($value->usuario_asignado === $userID && $value->id_estado_ticket === 3) : ?> 
                                     <tr>
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                             <span class=""><?=SanitizeText::Output(Carbon::parse($value->ticket_fecha_creacion)->locale('es_ES')->isoFormat('LL'))?></span>
@@ -81,6 +81,13 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
                                         <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
 
                                             <a  href="/ticket/#<?= SanitizeText::Output($value->id_ticket.'-'.$value->cliente_email)?>" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Ver más</a>
+
+                                        </td>
+                                        <td class="p-4 text-sm font-normal text-gray-900 whitespace-nowrap dark:text-white">
+                                             <!-- se modifico el button para que me envie los datos a la funcion de javascript -->
+                                            <button onclick="finalizarTicket(<?= $value->id_ticket ?>, <?= $userID ?>)" class="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
+                                                Finalizar
+                                            </button>
                                         </td>
                                     </tr>
                                 <? endif; ?>
@@ -103,3 +110,29 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
         </div>
     </div>
 </div>
+
+<script>
+    function finalizarTicket(idTicket, idUsuario) {
+        // Realiza la solicitud AJAX
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "/ticket/editarUsuarioAsignado2", true);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+        // Define la función que se ejecutará cuando la solicitud esté completa
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                // La solicitud fue exitosa, puedes realizar acciones adicionales si es necesario
+                console.log(xhr.responseText);
+
+                // Recarga la página después de la asignación exitosa
+                location.reload();
+            } else {
+                // La solicitud falló, manejar el error según tus necesidades
+                console.error(xhr.statusText);
+            }
+        };
+
+        // Envía los datos del formulario
+        xhr.send("id_ticket=" + encodeURIComponent(idTicket) + "&userID=" + encodeURIComponent(idUsuario));
+    }
+</script>
