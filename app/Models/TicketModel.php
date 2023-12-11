@@ -20,7 +20,7 @@ interface ContratoPrioridades
     public function DeletePrioridad();
     public function OnePrioridad();
     public function OnePrioridadByDescripcion();
-    public function  editUsuarioAsignado();
+    public function editUsuarioAsignado();
 }
 
 interface ContratoValorTicket
@@ -86,6 +86,33 @@ class TicketModel implements ContratoEstadoTickets, ContratoPrioridades, Contrat
             // Convertir $this->usuario_asignado a entero
             $usuarioAsignado = (int)$this->usuario_asignado;
             $estado = 3;
+            $query = $this->prepare('UPDATE tickets 
+            SET usuario_asignado = :usuario_asignado,
+                id_estado_ticket = :id_estado_ticket
+            WHERE id_ticket = :idTicket');
+
+            $query->execute([
+                'idTicket' => $this->id_ticket,
+                'usuario_asignado' => $usuarioAsignado,
+                'id_estado_ticket' => $estado
+            ]);
+
+
+            return true;
+        } catch (\PDOException $e) {
+            // Mostrar un mensaje más detallado del error
+            echo 'Error al actualizar el ticket: ' . $e->getMessage();
+            return false;
+        }
+    }
+
+    public function editUsuarioAsignado2()
+    {
+        try {
+            //esto se agrego el jueves a la madrugada 
+            // Convertir $this->usuario_asignado a entero
+            $usuarioAsignado = (int)$this->usuario_asignado;
+            $estado = 6;
             $query = $this->prepare('UPDATE tickets 
             SET usuario_asignado = :usuario_asignado,
                 id_estado_ticket = :id_estado_ticket
