@@ -261,6 +261,9 @@ foreach ($contador_estados as &$valor) {
                         
                     //asignados
                         require __DIR__ . '/components/section/03_list_ticket_tecnic.php';
+
+                    //reparado
+                        require __DIR__ . '/components/section/04_list_ticket_tecnic.php';
                 } 
                 
                 ?>  
