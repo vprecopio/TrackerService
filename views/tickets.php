@@ -270,7 +270,6 @@ $ticket_insert = new AutomaticForm(
                 </div>
             </div>
 
-
             <!--Listado equipos-->
             <div class="flex flex-col">
                 <div class="overflow-x-auto">
@@ -325,10 +324,8 @@ $ticket_insert = new AutomaticForm(
                                             Botones
                                         </th>
 
-
                                     </tr>
                                 </thead>
-
 
                                 <!--clientes-->
                                 <tbody class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
@@ -408,8 +405,6 @@ $ticket_insert = new AutomaticForm(
                                 </tbody>
                                 <!--Fin clientes-->
 
-
-
                             </table>
                         </div>
                     </div>
@@ -435,7 +430,7 @@ $ticket_insert = new AutomaticForm(
                         <input type="hidden" name="fecha_cierre" id="fecha_cierre" value="modelo">
                         <input type="hidden" name="tiempo_garantia" id="tiempo_garantia" value="modelo">
                         <input type="hidden" name="editar_valor" id="editar_valor" value="modelo">
-                                        <!-- se modifico el formulario para la vista del tecnico -->
+                        <!-- se modifico el formulario para la vista del tecnico -->
                         <div>
                             <label for="ticket_descripcion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">ticket_descripcion</label>
                             <input type="text" name="ticket_descripcion" id="ticket_descripcion" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="modelo" placeholder="modelo" required="">
@@ -477,7 +472,6 @@ $ticket_insert = new AutomaticForm(
                             </select>
                         </div>
 
-
                         <div class="mb-4">
                             <label for="editar_email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email del Cliente</label>
                             <select id="editar_email" name="editar_email" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
@@ -499,7 +493,6 @@ $ticket_insert = new AutomaticForm(
 
             </div>
             <!-- Fin Edit equipo Drawer -->
-
 
             <!-- Delete euipo Drawer -->
             <div id="drawer-delete-equipment-default" class="fixed top-0 right-0 z-40 w-full h-screen max-w-xs p-4 overflow-y-auto transition-transform bg-white dark:bg-gray-800 translate-x-full" tabindex="-1" aria-labelledby="drawer-label" aria-hidden="true">
@@ -523,7 +516,6 @@ $ticket_insert = new AutomaticForm(
                 </a>
             </div>
             <!-- Formulario Eliminar Equipo -->
-
 
         </entities-crud>
 
