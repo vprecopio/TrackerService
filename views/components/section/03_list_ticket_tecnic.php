@@ -16,7 +16,7 @@ $text_link = [
     'text' => 'Todos los Tickets',
     'link' => '/ticket/',
 ];
-
+//por ahora esto
 ?>
 
 <?php
