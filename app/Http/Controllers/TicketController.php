@@ -473,5 +473,60 @@ class TicketController extends TicketModel
             redirect('/ticket');
         }
     }
+
+    //se agrego una funcion de editar miercoles a la madrugada
+    public function editarUsuarioAsignado2()
+    {
+        $ticketId = $_POST['id_ticket'];
+        $nuevoUsuarioAsignado = $_POST['userID']; // Cambiar a $_POST['userAsignado']
+
+        // Verificar el rol del usuario actual
+        if (in_array($_SESSION['TODO'][0]->rol_nombre, $this->rol_ok)) {
+            // Validar la existencia del ID del ticket y el nuevo usuario asignado
+            if (!empty($ticketId) && !empty($nuevoUsuarioAsignado)) {
+                // Crear una instancia del modelo TicketModel
+                $ticketModel = new \App\models\TicketModel();
+
+                // Asignar el ID del ticket
+                $ticketModel->setIdTicket($ticketId);
+
+                // Verificar si el ticket existe
+                $ticket = $ticketModel->OneTT();
+                if (!empty($ticket)) {
+                    // Asignar el nuevo usuario asignado
+                    $ticketModel->setUsuarioAsignado($nuevoUsuarioAsignado);
+
+                    // Llamar a la función de edición en el modelo
+                    try {
+                        if ($ticketModel->editUsuarioAsignado2()) {
+                            echo 'Usuario asignado editado correctamente.';
+                        } else {
+                            // Obtener información de error directamente desde la conexión PDO
+                            $errorInfo = $ticketModel->pdo->errorInfo();
+                            echo 'Error al editar el usuario asignado. Detalles: ' . implode(', ', $errorInfo);
+                        }
+                    } catch (\PDOException $e) {
+                        echo 'Error al editar el usuario asignado. Detalles: ' . $e->getMessage();
+                    }
+
+                    // Puedes agregar aquí más lógica o redirección si es necesario
+                    echo 'Usuario asignado editado correctamente111.';
+
+                    // Puedes agregar aquí más lógica o redirección si es necesario
+                    echo 'Usuario asignado editado correctamente111.';
+                } else {
+                    echo 'El ticket con ID ' . $ticketId . ' no existe.';
+                }
+            } else {
+                echo 'ID del ticket o nuevo usuario asignado no válido.';
+            }
+
+            exit;
+        } else {
+            // Redirigir si el rol no es válido
+            redirect('/ticket');
+        }
+    }
+
 }
 //hasta aca toda la funcion 
