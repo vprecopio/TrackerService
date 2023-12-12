@@ -252,9 +252,22 @@ foreach ($contador_estados as &$valor) {
                         </div>
                     </div>
                 </div>
+            
+                <?php 
+                if($_SESSION['TODO'][0]->rol_nombre == 'tecnico')
+                {
+                    //sin asignar
+                        require __DIR__ . '/components/section/02_list_ticket_tecnic.php';
+                        
+                    //asignados
+                        require __DIR__ . '/components/section/03_list_ticket_tecnic.php';
 
-
-                <? require_once __DIR__ . '/components/section/01_list_ticket.php' ?>
+                    //reparado
+                        require __DIR__ . '/components/section/04_list_ticket_tecnic.php';
+                } 
+                
+                ?>  
+                
             </div>
         </main>
 
