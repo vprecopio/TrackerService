@@ -20,7 +20,6 @@ $text_link = [
 ?>
 
 <?php
-// se agrego esto taka taka
 // Verifica si el usuario ha iniciado sesión
 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 
@@ -36,7 +35,7 @@ if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
 // Puedes realizar otras operaciones aquí según tus necesidades
 
 ?>
-//se agrego hasta aca
+
 <div class="p-4 my-4 bg-white border border-gray-200 rounded-lg shadow-sm dark:border-gray-700 sm:p-6 dark:bg-gray-800">
     <!-- Card header -->
     <div class="items-center justify-between lg:flex">

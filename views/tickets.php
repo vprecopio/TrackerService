@@ -437,7 +437,7 @@ $ticket_insert = new AutomaticForm(
                         </div>
 
                         <div class="mb-4">
-                            <label for="editar_prioridad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona una prioridad</label>
+                            <label for="editar_prioridad" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Prioridad</label>
                             <select id="editar_prioridad" name="editar_prioridad" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <?php foreach ($ticket_controller->ListPrioridad() as $obj_brand) : ?>
                                     <option><?= $obj_brand->prioridad_descripcion ?></option>
@@ -446,7 +446,7 @@ $ticket_insert = new AutomaticForm(
                         </div>
 
                         <div class="mb-4">
-                            <label for="editar_modelo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona un modelo</label>
+                            <label for="editar_modelo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Modelo</label>
                             <select id="editar_modelo" name="editar_modelo" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <?php foreach ($equipment_controller->ListEquipments() as $obj_brand) : ?>
                                     <option><?= $obj_brand->modelo ?></option>
@@ -455,14 +455,15 @@ $ticket_insert = new AutomaticForm(
                         </div>
 
                         <div class="mb-4">
-                            <label for="editar_estado" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Selecciona un estado</label>
+                            <label for="editar_estado" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estado</label>
                             <select id="editar_estado" name="editar_estado" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                 <?php foreach ($ticket_controller->ListET() as $obj_brand) : ?>
-                                    <option><?= $obj_brand->estado_ticket_descripcion ?></option>
+                                    <option value="<?= $obj_brand->estado_ticket_descripcion ?>"><?= $obj_brand->estado_ticket_descripcion ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
-                                    <!-- se volvio hidden a el anteultimo foreach -->
+
+                        <!-- se volvio hidden a el anteultimo foreach -->
                         <div class="mb-4" style="display: none;">
                             <label for="editar_email_usuario" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Asignar a empleado</label>
                             <select id="editar_email_usuario" name="editar_email_usuario" class="bg-gray-50 border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
@@ -546,7 +547,7 @@ $ticket_insert = new AutomaticForm(
         var j = document.getElementById("editar_estado");
         var z = document.getElementById("id_ticket");
 
-        // Obtener referencias a los campos del formulario
+        // Asignar valores a los campos del formulario
         a.value = fecha_creacion;
         b.value = fecha_cierre;
         c.value = tiempo_garantia;
@@ -556,7 +557,16 @@ $ticket_insert = new AutomaticForm(
         g.value = editar_valor;
         h.value = editar_prioridad;
         i.value = editar_modelo;
-        j.value = editar_estado;
+
+        // Seleccionar la opción correcta en el campo editar_estado
+        for (var k = 0; k < j.options.length; k++) {
+            if (j.options[k].text === editar_estado) {
+                j.selectedIndex = k;
+                break;
+            }
+        }
+
+        // Asignar el valor del campo id_ticket
         z.value = id;
     }
 </script>
